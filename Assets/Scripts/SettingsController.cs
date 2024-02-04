@@ -44,6 +44,7 @@ public class SettingsController : MonoBehaviour
     
     void SwitchMusic()
     {
+        _soundEffectsPlayer.SwitchMusic();
         _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         Debug.Log("Music button clicked!");
     }
