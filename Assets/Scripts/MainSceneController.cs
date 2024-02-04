@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,7 +12,7 @@ public class MainSceneController : MonoBehaviour
     [SerializeField] private Button _startGameButton;
     [SerializeField] private Button _exitButton;
     
-    [SerializeField] private Text _versionLabel;
+    [SerializeField] private TMP_Text _versionLabel;
     
     [SerializeField] private GameObject _manuWindowPrefab;
     [SerializeField] private GameObject _settingsWindowPrefab;
@@ -21,6 +22,7 @@ public class MainSceneController : MonoBehaviour
         _settingsButton.onClick.AddListener(OpenSettings);
         _startGameButton.onClick.AddListener(StartGame);
         _exitButton.onClick.AddListener(ExitApplication);
+        _versionLabel.text = "v 0.0.1";
     }
 
     void ExitApplication()
