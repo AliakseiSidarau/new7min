@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +11,14 @@ public class SettingsController : MonoBehaviour
 
     [SerializeField] private GameObject _manuWindowPrefab;
     [SerializeField] private GameObject _settingsWindowPrefab;
+    
+    private SoundEffectsPlayer _soundEffectsPlayer;
+
+    void Awake()
+    {
+        _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+    }
+
     void Start()
     {
         _closeSettingsButton.onClick.AddListener(CloseSettingsWindow);
@@ -22,6 +29,7 @@ public class SettingsController : MonoBehaviour
 
     void CloseSettingsWindow()
     {
+        _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         Debug.Log("CloseSettings button clicked!");
         _settingsWindowPrefab.SetActive(false);
         _manuWindowPrefab.SetActive(true);
@@ -29,16 +37,21 @@ public class SettingsController : MonoBehaviour
 
     void SwitchSound()
     {
+        _soundEffectsPlayer.SwitchSound();
+        _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         Debug.Log("Sound button clicked!");
     }
     
     void SwitchMusic()
     {
+        _soundEffectsPlayer.SwitchMusic();
+        _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         Debug.Log("Music button clicked!");
     }
     
     void SwitchVibration()
     {
+        _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         Debug.Log("Vibration button clicked!");
     }
 }

@@ -1,9 +1,7 @@
-using System;
+using DefaultNamespace;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using Button = UnityEngine.UI.Button;
 
 public class MainSceneController : MonoBehaviour
@@ -16,6 +14,13 @@ public class MainSceneController : MonoBehaviour
     
     [SerializeField] private GameObject _manuWindowPrefab;
     [SerializeField] private GameObject _settingsWindowPrefab;
+    private SoundEffectsPlayer _soundEffectsPlayer;
+
+    
+    void Awake()
+    {
+        _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+    }
 
     void Start()
     {
@@ -27,17 +32,20 @@ public class MainSceneController : MonoBehaviour
 
     void ExitApplication()
     {
+        _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         Debug.Log("Exit button clicked!");
         Application.Quit();
     }
     void StartGame()
     {
+        _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         Debug.Log("Start Game button clicked!");
         SceneManager.LoadScene("Game");
     }
 
     void OpenSettings()
     {
+        _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         Debug.Log("Settings button clicked!");
         _manuWindowPrefab.SetActive(false);
         _settingsWindowPrefab.SetActive(true);
