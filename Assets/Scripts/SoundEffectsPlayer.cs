@@ -15,5 +15,10 @@ namespace DefaultNamespace
         {
            _sfxSource.PlayOneShot(click);
         }
+
+        public void SwitchSound()
+        {
+            _sfxSource.mute = !_sfxSource.mute;
+        }
     }
 }
