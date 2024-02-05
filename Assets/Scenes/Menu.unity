@@ -830,7 +830,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicSource: {fileID: 732865947}
   _sfxSource: {fileID: 1986788186}
-  clic: {fileID: 8300000, guid: 831772417efb242ccaab61b69018c20b, type: 3}
+  click: {fileID: 8300000, guid: 63c997c3f3edc4a67b9a11910278000a, type: 3}
+  background: {fileID: 8300000, guid: 459445fcfdf522824a37cf69a5d22418, type: 3}
 --- !u!4 &2052207251
 Transform:
   m_ObjectHideFlags: 0
