@@ -11,8 +11,17 @@ public class SettingsController : MonoBehaviour
 
     [SerializeField] private GameObject _manuWindowPrefab;
     [SerializeField] private GameObject _settingsWindowPrefab;
-    
+
     private SoundEffectsPlayer _soundEffectsPlayer;
+    
+    private bool _sound;
+    private bool _music;
+    private bool _vibration;
+
+    public bool Sound => _sound;
+    public bool Music => _music;
+    public bool Vibration => _vibration;
+   
 
     void Awake()
     {
