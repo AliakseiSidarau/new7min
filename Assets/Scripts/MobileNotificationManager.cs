@@ -30,9 +30,4 @@ public class MobileNotificationManager : MonoBehaviour
             AndroidNotificationCenter.SendNotification(notification, "main");
         }
     }
-
-    void Update()
-    {
-        
-    }
 }

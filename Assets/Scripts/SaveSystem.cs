@@ -17,6 +17,7 @@ namespace DefaultNamespace
             
             formatter.Serialize(stream, data);
             stream.Close();
+            
         }
 
         public static SettingsData LoadSettings()

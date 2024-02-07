@@ -1,4 +1,5 @@
 using DefaultNamespace;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +22,22 @@ public class SettingsController : MonoBehaviour
     public bool Sound => _sound;
     public bool Music => _music;
     public bool Vibration => _vibration;
-   
+
+    public void SaveSettings()
+    {
+        SaveSystem.SaveSettings(this);
+        Debug.LogWarning($"SAVED!!! Sound - {_sound}, music - {_music}, vibration - {_vibration}");
+    }
+
+    public void LoadSettings()
+    {
+        SettingsData data = SaveSystem.LoadSettings();
+        _sound = data.sound;
+        _music = data.music;
+        _vibration = data.vibration;
+        Debug.LogWarning($"LOADED!!! Sound - {_sound}, music - {_music}, vibration - {_vibration}");
+
+    }
 
     void Awake()
     {
@@ -48,19 +64,24 @@ public class SettingsController : MonoBehaviour
     {
         _soundEffectsPlayer.SwitchSound();
         _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
+        _sound = !_sound;
         Debug.Log("Sound button clicked!");
+        SaveSettings();
     }
     
     void SwitchMusic()
     {
         _soundEffectsPlayer.SwitchMusic();
         _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
+        _music = !_music;
         Debug.Log("Music button clicked!");
+        LoadSettings();
     }
     
     void SwitchVibration()
     {
         _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
+        _vibration = !_vibration;
         Debug.Log("Vibration button clicked!");
     }
 }
