@@ -65,7 +65,7 @@ public class SettingsController : MonoBehaviour
         _soundEffectsPlayer.SwitchSound();
         _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         _sound = !_sound;
-        Debug.Log("Sound button clicked!");
+        Debug.Log($"Sound button clicked! - {_sound}");
         SaveSettings();
     }
     
@@ -74,7 +74,7 @@ public class SettingsController : MonoBehaviour
         _soundEffectsPlayer.SwitchMusic();
         _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         _music = !_music;
-        Debug.Log("Music button clicked!");
+        Debug.Log($"Music button clicked! - {_music}");
         LoadSettings();
     }
     
@@ -82,6 +82,6 @@ public class SettingsController : MonoBehaviour
     {
         _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         _vibration = !_vibration;
-        Debug.Log("Vibration button clicked!");
+        Debug.Log($"Vibration button clicked! - {_vibration}");
     }
 }
