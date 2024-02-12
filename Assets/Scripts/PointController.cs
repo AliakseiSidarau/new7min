@@ -6,8 +6,10 @@ public class PointController : MonoBehaviour
     private bool _needChangeSide;
     private Vector3 _pointPosition;
 
-    public void ChangePosition(Vector3 pointPosition)
+    void ChangePosition(Vector3 pointPosition)
     {
         _point.transform.position = _pointPosition;
     }
+    
+    
 }
