@@ -7,6 +7,8 @@ TagManager:
   - Audio
   - TopPoint
   - BottomPoint
+  - WayPoint
+  - StarShip
   layers:
   - Default
   - TransparentFX
