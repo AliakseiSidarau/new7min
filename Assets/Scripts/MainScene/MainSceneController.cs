@@ -40,7 +40,7 @@ public class MainSceneController : MonoBehaviour
     {
         _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         Debug.Log("Start Game button clicked!");
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("SpaceGame");
     }
 
     void OpenSettings()

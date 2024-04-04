@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Audio
+  - TopPoint
+  - BottomPoint
+  - WayPoint
+  - StarShip
   layers:
   - Default
   - TransparentFX
