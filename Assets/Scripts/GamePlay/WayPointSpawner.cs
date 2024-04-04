@@ -20,7 +20,7 @@ public class WayPointSpawner : MonoBehaviour
         _positionMouse = Input.mousePosition;
         _positionMouse.z = 2f;
         
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Time.timeScale != 0f)
         {
             ClearWayPoints();
             MakeWayPoints();
