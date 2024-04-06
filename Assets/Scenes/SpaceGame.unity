@@ -421,18 +421,19 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.49149534, y: -0.25641817}
-  - {x: -0.23758863, y: 0.40011775}
+  - {x: -0.5010527, y: -0.2874795}
+  - {x: -0.2495353, y: 0.35949898}
   - {x: 0.0000612773, y: 0.78821427}
-  - {x: 0.2539626, y: 0.36159226}
-  - {x: 0.49149537, y: -0.2904364}
-  - {x: -0.49503496, y: -0.29043636}
+  - {x: 0.2539626, y: 0.35442427}
+  - {x: 0.27906194, y: 0.28721246}
+  - {x: 0.49388474, y: -0.28804708}
+  - {x: -0.4974243, y: -0.295215}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -1004,7 +1005,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736135617}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
