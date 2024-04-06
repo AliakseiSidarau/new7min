@@ -18,4 +18,9 @@ public class RocketShipController : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, Mathf.Atan2(_currentWayPoint.Target().position.y - transform.position.y, _currentWayPoint.Target().position.x - transform.position.x) * Mathf.Rad2Deg - 90);
         } 
     }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        _currentWayPoint.CanMakeNextWayPoint = true;
+    }
 }
