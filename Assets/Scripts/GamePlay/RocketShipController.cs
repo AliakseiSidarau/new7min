@@ -4,6 +4,7 @@ public class RocketShipController : MonoBehaviour
 {
     [SerializeField] private WayPointSpawner _currentWayPoint;
     [SerializeField] private float _shipSpeed;
+    [SerializeField] private GameObject _diamond;
 
     void Update()
     {
@@ -21,6 +22,14 @@ public class RocketShipController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        _currentWayPoint.CanMakeNextWayPoint = true;
+        if (other.gameObject.CompareTag("WayPoint"))
+        {
+            _currentWayPoint.CanMakeNextWayPoint = true;
+        }
+
+        if (other.gameObject.CompareTag("Diamond"))
+        {
+            _diamond.SetActive(false);
+        }
     }
 }

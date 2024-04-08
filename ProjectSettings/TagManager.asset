@@ -9,6 +9,7 @@ TagManager:
   - BottomPoint
   - WayPoint
   - StarShip
+  - Diamond
   layers:
   - Default
   - TransparentFX
