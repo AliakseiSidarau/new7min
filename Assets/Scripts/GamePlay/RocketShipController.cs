@@ -5,6 +5,7 @@ public class RocketShipController : MonoBehaviour
     [SerializeField] private WayPointSpawner _currentWayPoint;
     [SerializeField] private float _shipSpeed;
     [SerializeField] private GameObject _diamond;
+    [SerializeField] private CounterController _controller;
 
     void Update()
     {
@@ -30,6 +31,8 @@ public class RocketShipController : MonoBehaviour
         if (other.gameObject.CompareTag("Diamond"))
         {
             _diamond.SetActive(false);
+            _controller.Counter++;
+            Debug.Log("Collision - Diamond!");
         }
     }
 }

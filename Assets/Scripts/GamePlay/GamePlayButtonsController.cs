@@ -10,8 +10,9 @@ public class GamePlayButtonsController : MonoBehaviour
    [SerializeField] private Button _pauseButton;
    [SerializeField] private Button _exitButton;
    [SerializeField] private TMP_Text _pauseText;
+   
    private SoundEffectsPlayer _soundEffectsPlayer;
-
+   
    void Start()
    {
       _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
