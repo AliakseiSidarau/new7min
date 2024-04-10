@@ -290,6 +290,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83442282}
   m_CullTransparentMesh: 1
+--- !u!1 &412451919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 412451921}
+  - component: {fileID: 412451920}
+  m_Layer: 0
+  m_Name: MeteorsSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &412451920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412451919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bd0a3845f4e429e95f19773e28b59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meteors:
+  - {fileID: 2217499735012253272, guid: 67e7dc9e02428481d9b4869a6a3d5bc9, type: 3}
+  - {fileID: 2217499735012253272, guid: 67e7dc9e02428481d9b4869a6a3d5bc9, type: 3}
+  - {fileID: 2217499735012253272, guid: 67e7dc9e02428481d9b4869a6a3d5bc9, type: 3}
+--- !u!4 &412451921
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412451919}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &594468824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,3 +1639,4 @@ SceneRoots:
   - {fileID: 75331252}
   - {fileID: 789919128}
   - {fileID: 9174359346316298917}
+  - {fileID: 412451921}
