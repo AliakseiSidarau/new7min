@@ -39,6 +39,6 @@ public class GamePlayButtonsController : MonoBehaviour
    void ExitFromGamePlay()
    {
       _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
-      SceneManager.LoadScene("Menu");
+      SceneManager.LoadScene("MainMenu");
    }
 }
