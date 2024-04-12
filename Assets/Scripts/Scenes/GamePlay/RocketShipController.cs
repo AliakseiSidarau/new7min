@@ -1,3 +1,5 @@
+using System;
+using DefaultNamespace;
 using UnityEngine;
 
 public class RocketShipController : MonoBehaviour
@@ -6,6 +8,12 @@ public class RocketShipController : MonoBehaviour
     [SerializeField] private float _shipSpeed;
     [SerializeField] private GameObject _diamond;
     [SerializeField] private CounterController _controller;
+    private SoundEffectsPlayer _soundEffectsPlayer;
+
+    private void Awake()
+    {
+        _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+    }
 
     void Update()
     {
@@ -30,6 +38,7 @@ public class RocketShipController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Diamond"))
         {
+            _soundEffectsPlayer.PlayClaim(_soundEffectsPlayer.claim);
             _diamond.SetActive(false);
             _controller.Counter++;
             Debug.Log("Collision - Diamond!");
