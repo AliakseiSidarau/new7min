@@ -1,5 +1,6 @@
 using System;
 using DefaultNamespace;
+using Scenes.GamePlay;
 using UnityEngine;
 
 public class RocketShipController : MonoBehaviour
@@ -7,7 +8,6 @@ public class RocketShipController : MonoBehaviour
     [SerializeField] private WayPointSpawner _currentWayPoint;
     [SerializeField] private float _shipSpeed;
     [SerializeField] private GameObject _diamond;
-    [SerializeField] private CounterController _controller;
     private SoundEffectsPlayer _soundEffectsPlayer;
 
     private void Awake()
@@ -19,7 +19,7 @@ public class RocketShipController : MonoBehaviour
     {
         if (Time.timeScale != 0f)
         {
-            if (_currentWayPoint.Target() == null)
+            if (_currentWayPoint.Target() is null)
             {
                 return;
             }
@@ -40,7 +40,7 @@ public class RocketShipController : MonoBehaviour
         {
             _soundEffectsPlayer.PlayClaim(_soundEffectsPlayer.claim);
             _diamond.SetActive(false);
-            _controller.Counter++;
+            Counter.AddScore();
             Debug.Log("Collision - Diamond!");
         }
     }
