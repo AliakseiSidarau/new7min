@@ -863,6 +863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseButton: {fileID: 83442284}
   _exitButton: {fileID: 1751774228}
+  _loseGameButton: {fileID: 202471689}
   _pauseText: {fileID: 1736135619}
 --- !u!1 &1095365076
 GameObject:

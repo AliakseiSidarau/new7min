@@ -19,7 +19,8 @@ namespace DefaultNamespace
 
         void RestartGame()
         {
-            SceneManager.LoadScene("Game");
+            
+            SceneManager.LoadScene("SpaceGame");
         }
 
         void ExitGame()
