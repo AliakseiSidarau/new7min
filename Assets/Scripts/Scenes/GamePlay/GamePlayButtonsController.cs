@@ -9,6 +9,7 @@ public class GamePlayButtonsController : MonoBehaviour
 {
    [SerializeField] private Button _pauseButton;
    [SerializeField] private Button _exitButton;
+   [SerializeField] private Button _loseGameButton;
    [SerializeField] private TMP_Text _pauseText;
    
    
@@ -19,6 +20,7 @@ public class GamePlayButtonsController : MonoBehaviour
       _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
       _pauseButton.onClick.AddListener(OpenPauseMenu);
       _exitButton.onClick.AddListener(ExitFromGamePlay);
+      _loseGameButton.onClick.AddListener(LoseGame);
    }
 
    void OpenPauseMenu()
@@ -40,5 +42,11 @@ public class GamePlayButtonsController : MonoBehaviour
    {
       _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
       SceneManager.LoadScene("MainMenu");
+   }
+
+   void LoseGame()
+   {
+      _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.claim);
+      SceneManager.LoadScene("GameOver");
    }
 }
