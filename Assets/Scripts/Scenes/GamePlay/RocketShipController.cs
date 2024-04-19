@@ -13,6 +13,7 @@ public class RocketShipController : MonoBehaviour
     private void Awake()
     {
         _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+        _shipSpeed = 2f;
     }
 
     void Update()
