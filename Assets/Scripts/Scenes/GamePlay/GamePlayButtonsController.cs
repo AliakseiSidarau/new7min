@@ -11,8 +11,9 @@ public class GamePlayButtonsController : MonoBehaviour
    [SerializeField] private Button _pauseButton;
    [SerializeField] private Button _exitButton;
    [SerializeField] private Button _loseGameButton;
-   [SerializeField] private TMP_Text _pauseText;
+   [SerializeField] private Button _plusScoreButton;
    
+   [SerializeField] private TMP_Text _pauseText;
    
    private SoundEffectsPlayer _soundEffectsPlayer;
    
@@ -22,6 +23,7 @@ public class GamePlayButtonsController : MonoBehaviour
       _pauseButton.onClick.AddListener(OpenPauseMenu);
       _exitButton.onClick.AddListener(ExitFromGamePlay);
       _loseGameButton.onClick.AddListener(LoseGame);
+      _plusScoreButton.onClick.AddListener(PlusScore);
       Counter.Score = 0;
    }
 
@@ -50,5 +52,11 @@ public class GamePlayButtonsController : MonoBehaviour
    {
       _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.claim);
       SceneManager.LoadScene("GameOver");
+   }
+
+   void PlusScore()
+   {
+      _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.claim);
+      Counter.AddScore();
    }
 }
