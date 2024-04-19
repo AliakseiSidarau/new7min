@@ -1,4 +1,5 @@
 using System;
+using Scenes.GamePlay;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -19,7 +20,6 @@ namespace DefaultNamespace
 
         void RestartGame()
         {
-            
             SceneManager.LoadScene("SpaceGame");
         }
 

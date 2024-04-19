@@ -1,5 +1,6 @@
 using System;
 using DefaultNamespace;
+using Scenes.GamePlay;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,7 @@ public class GamePlayButtonsController : MonoBehaviour
       _pauseButton.onClick.AddListener(OpenPauseMenu);
       _exitButton.onClick.AddListener(ExitFromGamePlay);
       _loseGameButton.onClick.AddListener(LoseGame);
+      Counter.Score = 0;
    }
 
    void OpenPauseMenu()
