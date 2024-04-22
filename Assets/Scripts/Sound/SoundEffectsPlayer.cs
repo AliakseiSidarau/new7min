@@ -21,6 +21,19 @@ namespace DefaultNamespace
             _musicSource.Play();
         }
 
+        public void StateSettings(bool soundState, bool musicState)
+        {
+            if (soundState == false)
+            {
+                _sfxSource.mute = true;
+            }
+
+            if (soundState)
+            {
+                _sfxSource.mute = false;
+            }
+        }
+
         public void PlayClick(AudioClip click)
         {
            _sfxSource.PlayOneShot(click);

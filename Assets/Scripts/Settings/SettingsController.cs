@@ -66,22 +66,22 @@ public class SettingsController : MonoBehaviour
     {
         _soundEffectsPlayer.SwitchSound();
         _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
-        _sound = !_sound;
-        Debug.Log($"Sound button clicked! - {_sound}");
+        Sound = !Sound;
+        Debug.Log($"Sound button clicked! - {Sound}");
     }
     
     void SwitchMusic()
     {
         _soundEffectsPlayer.SwitchMusic();
         _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
-        _music = !_music;
-        Debug.Log($"Music button clicked! - {_music}");
+        Music = !Music;
+        Debug.Log($"Music button clicked! - {Music}");
     }
     
     void SwitchVibration()
     {
         _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
-        _vibration = !_vibration;
-        Debug.Log($"Vibration button clicked! - {_vibration}");
+        Vibration = !Vibration;
+        Debug.Log($"Vibration button clicked! - {Vibration}");
     }
 }
