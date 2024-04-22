@@ -59,6 +59,7 @@ public class SettingsController : MonoBehaviour
         Debug.Log("CloseSettings button clicked!");
         _settingsWindowPrefab.SetActive(false);
         _manuWindowPrefab.SetActive(true);
+        SaveSettings();
     }
 
     void SwitchSound()
@@ -67,7 +68,6 @@ public class SettingsController : MonoBehaviour
         _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         _sound = !_sound;
         Debug.Log($"Sound button clicked! - {_sound}");
-        SaveSettings();
     }
     
     void SwitchMusic()
