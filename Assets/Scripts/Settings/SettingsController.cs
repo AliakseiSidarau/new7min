@@ -42,6 +42,7 @@ public class SettingsController : MonoBehaviour
     void Awake()
     {
         _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+        LoadSettings();
     }
 
     void Start()
@@ -75,7 +76,6 @@ public class SettingsController : MonoBehaviour
         _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
         _music = !_music;
         Debug.Log($"Music button clicked! - {_music}");
-        LoadSettings();
     }
     
     void SwitchVibration()
