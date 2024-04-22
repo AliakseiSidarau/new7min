@@ -19,19 +19,29 @@ namespace DefaultNamespace
         {
             _musicSource.clip = background;
             _musicSource.Play();
+            
         }
 
-        public void StateSettings(bool soundState, bool musicState)
+        public void SoundCheaker(bool soundState)
         {
+            Debug.Log($"Sound state -> {soundState}");
             if (soundState == false)
             {
                 _sfxSource.mute = true;
             }
+            _sfxSource.mute = false;
+            Debug.Log($"I've check! SFX - {_sfxSource.mute}");
+        }
 
-            if (soundState)
+        public void MusicCheaker(bool musicState)
+        {
+            Debug.Log($"Music state -> {musicState}");
+            if (musicState == false)
             {
-                _sfxSource.mute = false;
+                _musicSource.mute = true;
             }
+            _musicSource.mute = false;
+            Debug.Log($"I've check! Music - {_musicSource.mute}");
         }
 
         public void PlayClick(AudioClip click)

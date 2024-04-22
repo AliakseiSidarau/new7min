@@ -43,6 +43,8 @@ public class SettingsController : MonoBehaviour
     {
         _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
         LoadSettings();
+        _soundEffectsPlayer.MusicCheaker(Music);
+        _soundEffectsPlayer.SoundCheaker(Sound);
     }
 
     void Start()
