@@ -44,5 +44,10 @@ public class RocketShipController : MonoBehaviour
             Counter.AddScore();
             Debug.Log("Collision - Diamond!");
         }
+        
+        if (other.gameObject.CompareTag("Meteor"))
+        {
+            Debug.Log("Collision - Meteor!");
+        }
     }
 }
