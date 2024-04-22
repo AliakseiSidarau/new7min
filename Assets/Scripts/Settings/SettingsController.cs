@@ -19,23 +19,23 @@ public class SettingsController : MonoBehaviour
     private bool _music;
     private bool _vibration;
 
-    public bool Sound => _sound;
-    public bool Music => _music;
-    public bool Vibration => _vibration;
+    public bool Sound { set; get; }
+    public bool Music { set; get; }
+    public bool Vibration { set; get; }
 
     public void SaveSettings()
     {
         SaveSystem.SaveSettings(this);
-        Debug.LogWarning($"SAVED!!! Sound - {_sound}, music - {_music}, vibration - {_vibration}");
+        Debug.LogWarning($"SAVED!!! Sound - {Sound}, music - {Music}, vibration - {Vibration}");
     }
 
     public void LoadSettings()
     {
         SettingsData data = SaveSystem.LoadSettings();
-        _sound = data.sound;
-        _music = data.music;
-        _vibration = data.vibration;
-        Debug.LogWarning($"LOADED!!! Sound - {_sound}, music - {_music}, vibration - {_vibration}");
+        Sound = data.sound;
+        Music = data.music;
+        Vibration = data.vibration;
+        Debug.LogWarning($"LOADED!!! Sound - {Sound}, music - {Music}, vibration - {Vibration}");
 
     }
 
