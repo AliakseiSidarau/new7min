@@ -19,9 +19,8 @@ namespace DefaultNamespace
         {
             _musicSource.clip = background;
             _musicSource.Play();
-            
         }
-
+        
         public void SoundCheaker(bool soundState)
         {
             Debug.Log($"Sound state -> {soundState}");

@@ -1,6 +1,7 @@
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using Button = UnityEngine.UI.Button;
 
@@ -15,11 +16,14 @@ public class MainSceneController : MonoBehaviour
     [SerializeField] private GameObject _manuWindowPrefab;
     [SerializeField] private GameObject _settingsWindowPrefab;
     private SoundEffectsPlayer _soundEffectsPlayer;
+   // [SerializeField] private SettingsController _settingsController;
 
     
     void Awake()
     {
         _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+        //_settingsController = GetComponent<SettingsController>();
+       // _settingsController.LoadSettings();
     }
 
     void Start()

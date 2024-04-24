@@ -14,6 +14,6 @@ public class MeteorsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _vector, 0.1f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _vector, 0.01f * Time.deltaTime);
     }
 }

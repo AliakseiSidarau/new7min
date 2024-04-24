@@ -42,7 +42,7 @@ public class SettingsController : MonoBehaviour
     void Awake()
     {
         _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
-        LoadSettings();
+       LoadSettings();
         _soundEffectsPlayer.MusicCheaker(Music);
         _soundEffectsPlayer.SoundCheaker(Sound);
     }

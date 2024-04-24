@@ -178,8 +178,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3832799362252803606}
   - component: {fileID: -4727601335023312123}
-  - component: {fileID: 2248269858053900395}
-  - component: {fileID: -1421350591754124551}
+  - component: {fileID: 475169927126187651}
+  - component: {fileID: 1338540268533402510}
   m_Layer: 0
   m_Name: MeteorBig
   m_TagString: Meteor
@@ -217,8 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a242674e3dd83fd44b030214022e957a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!68 &2248269858053900395
-EdgeCollider2D:
+--- !u!61 &475169927126187651
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -249,32 +249,20 @@ EdgeCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.16023377, y: 0.03483355}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.2139335, y: 2.0467327}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.67017436, y: 0.8051198}
-  - {x: 0.23922002, y: 1.0615944}
-  - {x: -0.20506959, y: 0.79934096}
-  - {x: -0.20191827, y: 0.32840875}
-  - {x: -0.933667, y: 0.19184583}
-  - {x: -0.93368495, y: -0.06401495}
-  - {x: -1.2319133, y: -0.19357447}
-  - {x: -1.2375746, y: -0.7147084}
-  - {x: -0.66270864, y: -0.9640128}
-  - {x: -0.357628, y: -0.827623}
-  - {x: -0.087587744, y: -0.7026046}
-  - {x: -0.087587774, y: -0.34755167}
-  - {x: 0.0024259388, y: -0.3650543}
-  - {x: 0.92756355, y: -0.17752641}
-  - {x: 0.92756367, y: 0.17752649}
-  - {x: 0.6070049, y: 0.24676079}
-  - {x: 0.67974615, y: 0.29315007}
-  - {x: 0.67252564, y: 0.7951183}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!50 &-1421350591754124551
+--- !u!50 &1338540268533402510
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
