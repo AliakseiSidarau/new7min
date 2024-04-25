@@ -9,6 +9,9 @@ using UnityEngine;
 public class CounterController : MonoBehaviour
 {
     [SerializeField] private TMP_Text _counterText;
+    [SerializeField] private TMP_Text _bestScoreText;
+    private int _currentScore;
+    private int _bestScore;
   
     void Start()
     {
@@ -18,5 +21,19 @@ public class CounterController : MonoBehaviour
     void Update()
     {
         _counterText.text = Counter.Score.ToString();
+        _currentScore = Counter.ReturnScore();
+
+    }
+
+    private int GetBest( int curScore)
+    {
+        if (curScore >= _bestScore)
+        {
+            return curScore;
+        }
+        else
+        {
+            return _bestScore;
+        } 
     }
 }
