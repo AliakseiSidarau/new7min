@@ -874,6 +874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _counterText: {fileID: 1331755054}
+  _bestScoreText: {fileID: 1570290500}
 --- !u!1 &789919124
 GameObject:
   m_ObjectHideFlags: 0

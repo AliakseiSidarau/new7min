@@ -16,12 +16,17 @@ public class CounterController : MonoBehaviour
     void Start()
     {
         _counterText.text = "0";
+        _bestScore = GetBest(_currentScore);
+        _bestScoreText.text = _bestScore.ToString();
+
     }
 
     void Update()
     {
         _counterText.text = Counter.Score.ToString();
         _currentScore = Counter.ReturnScore();
+        _bestScore = GetBest(_currentScore);
+        _bestScoreText.text = _bestScore.ToString();
 
     }
 
@@ -29,6 +34,7 @@ public class CounterController : MonoBehaviour
     {
         if (curScore >= _bestScore)
         {
+            _bestScore = curScore;
             return curScore;
         }
         else
