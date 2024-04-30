@@ -2,6 +2,7 @@ using System;
 using DefaultNamespace;
 using Scenes.GamePlay;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RocketShipController : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class RocketShipController : MonoBehaviour
         
         if (other.gameObject.CompareTag("Meteor"))
         {
+            Destroy(this);
+            SceneManager.LoadScene("GameOver");
             Debug.Log("Collision - Meteor!");
         }
     }
