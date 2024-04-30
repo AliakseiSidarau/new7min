@@ -8,12 +8,12 @@ namespace DefaultNamespace
         [Header("------------------ Audio Source ------------------")]
         [SerializeField] private AudioSource _musicSource;
         [SerializeField] private AudioSource _sfxSource;
-        [SerializeField] private AudioSource _claim;
 
         [Header("------------------ Audio Clip ------------------")]
         public AudioClip click;
         public AudioClip background;
         public AudioClip claim;
+        public AudioClip boom;
 
         private void Start()
         {
@@ -51,6 +51,11 @@ namespace DefaultNamespace
         public void PlayClaim(AudioClip claim)
         {
             _sfxSource.PlayOneShot(claim);
+        }
+
+        public void PlayBoom(AudioClip boom)
+        {
+            _sfxSource.PlayOneShot(boom);
         }
         public void SwitchSound()
         {

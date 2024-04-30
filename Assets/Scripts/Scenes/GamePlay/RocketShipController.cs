@@ -48,6 +48,7 @@ public class RocketShipController : MonoBehaviour
         
         if (other.gameObject.CompareTag("Meteor"))
         {
+            _soundEffectsPlayer.PlayBoom(_soundEffectsPlayer.boom);
             Destroy(this);
             SceneManager.LoadScene("GameOver");
             Debug.Log("Collision - Meteor!");
