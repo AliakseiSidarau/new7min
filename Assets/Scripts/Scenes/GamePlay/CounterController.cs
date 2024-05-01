@@ -12,12 +12,14 @@ public class CounterController : MonoBehaviour
     [SerializeField] private TMP_Text _bestScoreText;
     private int _currentScore;
     private int _bestScore;
+
+    public static int BestScore { get; set; }
   
     void Start()
     {
         _counterText.text = "0";
-        _bestScore = GetBest(_currentScore);
-        _bestScoreText.text = _bestScore.ToString();
+        BestScore = GetBest(_currentScore);
+        _bestScoreText.text = BestScore.ToString();
 
     }
 
@@ -25,21 +27,25 @@ public class CounterController : MonoBehaviour
     {
         _counterText.text = Counter.Score.ToString();
         _currentScore = Counter.ReturnScore();
-        _bestScore = GetBest(_currentScore);
-        _bestScoreText.text = _bestScore.ToString();
-
+        BestScore = GetBest(_currentScore);
+        _bestScoreText.text = BestScore.ToString();
     }
 
     private int GetBest( int curScore)
     {
-        if (curScore >= _bestScore)
+        if (curScore >= BestScore)
         {
-            _bestScore = curScore;
+            BestScore = curScore;
             return curScore;
         }
         else
         {
-            return _bestScore;
+            return BestScore;
         } 
+    }
+
+    public static int GetBestForLoseScreen()
+    {
+        return BestScore;
     }
 }
