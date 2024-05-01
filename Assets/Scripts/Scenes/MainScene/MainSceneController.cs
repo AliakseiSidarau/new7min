@@ -15,7 +15,10 @@ public class MainSceneController : MonoBehaviour
     
     [SerializeField] private GameObject _manuWindowPrefab;
     [SerializeField] private GameObject _settingsWindowPrefab;
+    
+    [SerializeField] private string _versionText = "v 0.0.1";
     private SoundEffectsPlayer _soundEffectsPlayer;
+    
    // [SerializeField] private SettingsController _settingsController;
 
     
@@ -31,7 +34,7 @@ public class MainSceneController : MonoBehaviour
         _settingsButton.onClick.AddListener(OpenSettings);
         _startGameButton.onClick.AddListener(StartGame);
         _exitButton.onClick.AddListener(ExitApplication);
-        _versionLabel.text = "v 0.0.1";
+        _versionLabel.text = _versionText;
     }
 
     void ExitApplication()
