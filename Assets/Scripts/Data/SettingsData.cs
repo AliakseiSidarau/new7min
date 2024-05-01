@@ -1,3 +1,5 @@
+using Settings;
+
 namespace DefaultNamespace
 {
     [System.Serializable]

@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Scenes.GameOver
 {
     public class GameOverScoreController: MonoBehaviour
     {

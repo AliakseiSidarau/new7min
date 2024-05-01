@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Sound
 {
     public class SoundEffectsPlayer : MonoBehaviour
     {

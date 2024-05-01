@@ -1,5 +1,7 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Data;
+using Settings;
 using UnityEngine;
 
 namespace DefaultNamespace

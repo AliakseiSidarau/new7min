@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DefaultNamespace
+namespace Data
 {
     public class PlayerDataController: MonoBehaviour
 

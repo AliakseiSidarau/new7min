@@ -1,18 +1,21 @@
 using UnityEngine;
 
-public class DontDestroyOnLoad : MonoBehaviour
+namespace Utils
 {
-    private static GameObject _audioManager; 
-    void Start()
+    public class DontDestroyOnLoad : MonoBehaviour
     {
-        if (_audioManager != null)
+        private static GameObject _audioManager; 
+        void Start()
         {
-            Destroy(gameObject);
-        }
-        else
-        {
-            _audioManager = gameObject;
-            DontDestroyOnLoad(gameObject);
+            if (_audioManager != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                _audioManager = gameObject;
+                DontDestroyOnLoad(gameObject);
+            }
         }
     }
 }

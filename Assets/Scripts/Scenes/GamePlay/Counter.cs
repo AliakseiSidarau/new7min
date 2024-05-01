@@ -1,6 +1,4 @@
-﻿using TMPro;
-
-namespace Scenes.GamePlay
+﻿namespace Scenes.GamePlay
 {
     public class Counter
     {

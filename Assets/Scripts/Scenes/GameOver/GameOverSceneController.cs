@@ -1,11 +1,8 @@
-using System;
-using Scenes.GamePlay;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 
-namespace DefaultNamespace
+namespace Scenes.GameOver
 {
     public class GameOverSceneController : MonoBehaviour
     {
