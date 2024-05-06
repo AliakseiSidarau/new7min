@@ -9,15 +9,24 @@ namespace Scenes.GamePlay
         [SerializeField] private TMP_Text _bestScoreText;
         private int _currentScore;
         private int _bestScore;
+        
+        private const string BestScoreKey = "bestScoreKey";
 
         public static int BestScore { get; set; }
   
         void Start()
         {
-            _counterText.text = "0";
-            BestScore = GetBest(_currentScore);
-            _bestScoreText.text = BestScore.ToString();
+            if (PlayerPrefs.HasKey(BestScoreKey))
+            {
+                BestScore = PlayerPrefs.GetInt(BestScoreKey);
+            }
+            else
+            {
+                BestScore = 0;
+            }
 
+            _bestScoreText.text = PlayerPrefs.GetInt(BestScoreKey).ToString();
+            _counterText.text = "0";
         }
 
         void Update()
@@ -33,6 +42,7 @@ namespace Scenes.GamePlay
             if (curScore >= BestScore)
             {
                 BestScore = curScore;
+                PlayerPrefs.SetInt(BestScoreKey, curScore);
                 return curScore;
             }
             else
