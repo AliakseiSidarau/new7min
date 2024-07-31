@@ -1,35 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Random = Unity.Mathematics.Random;
 
-public class DiamondSpawner : MonoBehaviour
+namespace Scenes.GamePlay
 {
-
-    [SerializeField] private GameObject _diamond;
-
-    // the range of X
-    [Header("X Spawn Range")]
-    public float xMin;
-    public float xMax;
-
-    // the range of y
-    [Header("Y Spawn Range")]
-    public float yMin;
-    public float yMax;
-
-    // Start is called before the first frame update
-    void Start()
+    public class DiamondSpawner : MonoBehaviour
     {
-        // Defines the min and max ranges for x and y
-        Vector2 pos = new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax));
+        [SerializeField] private GameObject _diamond;
+        private float _randomRangeX;
+        private float _randomRangeY;
+        private float _camSizeH;
+        private float _camSizeW;
+        private Vector3 _pos;
+        private Random _rnd;
+        void Start()
+        {
+            ScreenSizeToUnits();
+            _rnd = new Random(2);
+            _pos = new Vector3((_rnd.NextFloat(-(_camSizeW /2),(_camSizeW /2))), (_rnd.NextFloat(-(_camSizeH/2),(_camSizeH/2))), 0);
+            _diamond.transform.position = _pos;
+            Debug.Log($"H - {_camSizeH}, W - {_camSizeW}");
+        }
 
-        _diamond.transform.position = pos;
+        public void ChangeDiamondPosition()
+        {
+            _pos = new Vector3((_rnd.NextFloat(-(_camSizeW /2),(_camSizeW /2))), (_rnd.NextFloat(-(_camSizeH/2),(_camSizeH/2))), 0);
+            _diamond.transform.position = _pos;
+        }
+
+        void ScreenSizeToUnits()
+        {
+            _camSizeH = Camera.main.orthographicSize;
+            _camSizeW = Camera.main.aspect * _camSizeH;
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 }

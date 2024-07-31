@@ -9,12 +9,13 @@ namespace Scenes.GamePlay
     {
         [SerializeField] private WayPointSpawner _currentWayPoint;
         [SerializeField] private float _shipSpeed;
-        [SerializeField] private GameObject _diamond;
         private SoundEffectsPlayer _soundEffectsPlayer;
+        private DiamondSpawner _diamondSpawner;
 
         private void Awake()
         {
             _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+            _diamondSpawner = GameObject.FindGameObjectWithTag("DiamondSpawner").GetComponent<DiamondSpawner>();
             _shipSpeed = 2f;
         }
 
@@ -42,7 +43,7 @@ namespace Scenes.GamePlay
             if (other.gameObject.CompareTag("Diamond"))
             {
                 _soundEffectsPlayer.PlayClaim(_soundEffectsPlayer.claim);
-                _diamond.SetActive(false);
+                _diamondSpawner.ChangeDiamondPosition();
                 Counter.AddScore();
                 Debug.Log("Collision - Diamond!");
             }
