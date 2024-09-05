@@ -442,6 +442,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meteors:
   - {fileID: 2217499735012253272, guid: 67e7dc9e02428481d9b4869a6a3d5bc9, type: 3}
+  - {fileID: 2217499735012253272, guid: 637cb9b59a395447c96719d54c1f7e02, type: 3}
+  - {fileID: 2217499735012253272, guid: 67e7dc9e02428481d9b4869a6a3d5bc9, type: 3}
+  - {fileID: 2217499735012253272, guid: 637cb9b59a395447c96719d54c1f7e02, type: 3}
+  - {fileID: 2217499735012253272, guid: 67e7dc9e02428481d9b4869a6a3d5bc9, type: 3}
   _meteorsSpeed: 1
 --- !u!4 &412451921
 Transform:
@@ -1030,8 +1034,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _diamond: {fileID: 2073476377}
-  _randomRangeX: 3
-  _randomRangeY: 3
 --- !u!4 &989933880
 Transform:
   m_ObjectHideFlags: 0
