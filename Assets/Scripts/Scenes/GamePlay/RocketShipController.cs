@@ -11,6 +11,7 @@ namespace Scenes.GamePlay
         [SerializeField] private float _shipSpeed;
         private SoundEffectsPlayer _soundEffectsPlayer;
         private DiamondSpawner _diamondSpawner;
+        private Quaternion _angle;
 
         private void Awake()
         {
@@ -30,7 +31,17 @@ namespace Scenes.GamePlay
         
                 transform.position = Vector3.MoveTowards(transform.position, _currentWayPoint.Target().position, _shipSpeed * Time.deltaTime);
                 transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, Mathf.Atan2(_currentWayPoint.Target().position.y - transform.position.y, _currentWayPoint.Target().position.x - transform.position.x) * Mathf.Rad2Deg - 90);
-            } 
+            }
+
+            if (transform.position != _currentWayPoint.Target().position)
+            {
+                _angle = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, Mathf.Atan2(_currentWayPoint.Target().position.y - transform.position.y, _currentWayPoint.Target().position.x - transform.position.x) * Mathf.Rad2Deg - 90);
+            }
+
+            if (transform.position == _currentWayPoint.Target().position)
+            {
+                transform.rotation = _angle;
+            }
         }
     
         private void OnTriggerEnter2D(Collider2D other)
