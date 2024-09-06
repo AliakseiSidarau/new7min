@@ -472,9 +472,9 @@ GameObject:
   m_Component:
   - component: {fileID: 594468827}
   - component: {fileID: 594468826}
-  - component: {fileID: 594468825}
   - component: {fileID: 594468828}
   - component: {fileID: 594468829}
+  - component: {fileID: 594468830}
   m_Layer: 0
   m_Name: StarShip
   m_TagString: StarShip
@@ -482,20 +482,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &594468825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594468824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 127183837493b45de8bfe59bc011c7a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentWayPoint: {fileID: 75331251}
-  _shipSpeed: 3
 --- !u!212 &594468826
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -637,6 +623,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &594468830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594468824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da40008160f54f5a9950d76afc76b53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &725602572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,6 +1181,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095365076}
   m_CullTransparentMesh: 1
+--- !u!1 &1178632337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1178632339}
+  - component: {fileID: 1178632340}
+  m_Layer: 0
+  m_Name: GamePlayController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1178632339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178632337}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1178632340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178632337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127183837493b45de8bfe59bc011c7a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentWayPoint: {fileID: 75331251}
+  _starship: {fileID: 594468824}
 --- !u!1 &1188289506
 GameObject:
   m_ObjectHideFlags: 0
@@ -2607,3 +2651,4 @@ SceneRoots:
   - {fileID: 9174359346316298917}
   - {fileID: 412451921}
   - {fileID: 989933880}
+  - {fileID: 1178632339}
