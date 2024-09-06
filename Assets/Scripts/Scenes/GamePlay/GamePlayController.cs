@@ -9,15 +9,16 @@ namespace Scenes.GamePlay
     {
         [SerializeField] private WayPointSpawner _currentWayPoint;
         [SerializeField] private GameObject _starship;
+        [SerializeField] private GameObject _diamond;
         private SoundEffectsPlayer _soundEffectsPlayer;
         private DiamondSpawner _diamondSpawner;
         private Quaternion _angle;
 
-        private void Awake()
-        {
-            _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
-            _diamondSpawner = GameObject.FindGameObjectWithTag("DiamondSpawner").GetComponent<DiamondSpawner>();
-        }
+        // private void Awake()
+        // {
+        //     _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+        //     _diamondSpawner = GameObject.FindGameObjectWithTag("DiamondSpawner").GetComponent<DiamondSpawner>();
+        // }
 
         void Update()
         {
@@ -36,25 +37,6 @@ namespace Scenes.GamePlay
             MakeAPoint();
             ChangeDiamondPosition();
         }
-    
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            // if (other.gameObject.CompareTag("Diamond"))
-            // {
-            //     _soundEffectsPlayer.PlayClaim(_soundEffectsPlayer.claim);
-            //     _diamondSpawner.ChangeDiamondPosition();
-            //     Counter.AddScore();
-            //     Debug.Log("Collision - Diamond!");
-            // }
-        
-            if (other.gameObject.CompareTag("Meteor"))
-            {
-                _soundEffectsPlayer.PlayBoom(_soundEffectsPlayer.boom);
-                Destroy(this);
-                SceneManager.LoadScene("GameOver");
-                Debug.Log("Collision - Meteor!");
-            }
-        }
 
         private void MakeAPoint()
         {
@@ -68,12 +50,11 @@ namespace Scenes.GamePlay
 
         private void ChangeDiamondPosition()
         {
-            if (_starship.transform.position == _diamondSpawner._diamondPosition)
+            if (_starship.transform.position == _diamond.transform.position)
             {
                 _soundEffectsPlayer.PlayClaim(_soundEffectsPlayer.claim);
                 _diamondSpawner.ChangeDiamondPosition();
                 Counter.AddScore();
-                Debug.Log(_diamondSpawner._diamondPosition);
             }
         }
 
