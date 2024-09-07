@@ -18,6 +18,7 @@ namespace Scenes.GamePlay
             _rnd = new Random(2);
             _pos = new Vector3((_rnd.NextFloat(-(_camSizeW /2),(_camSizeW /2))), (_rnd.NextFloat(-(_camSizeH/2),(_camSizeH/2))), 0);
             _diamond.transform.position = _pos;
+            
             Debug.Log($"H - {_camSizeH}, W - {_camSizeW}");
         }
 
