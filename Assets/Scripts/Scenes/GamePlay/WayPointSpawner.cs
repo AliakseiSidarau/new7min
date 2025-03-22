@@ -5,7 +5,6 @@ namespace Scenes.GamePlay
     public class WayPointSpawner : MonoBehaviour
     {
         [SerializeField] private GameObject _currentWayPoint;
-        [SerializeField] private GameObject _starShip;
     
         private Camera _cam;
         private Vector3 _positionMouse;
