@@ -21,7 +21,7 @@ namespace Scenes.GamePlay
             {
                 _starshipGameObject = Instantiate(_starshipPrefab);
                 Debug.Log("starship game object was created!");
-
+        
                 if (!_starshipGameObject.TryGetComponent(out starship))
                 {
                     starship = _starshipGameObject.AddComponent<StarShip>();

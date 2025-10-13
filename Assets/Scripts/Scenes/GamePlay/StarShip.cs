@@ -9,7 +9,7 @@ public class StarShip: MonoBehaviour
    private float _speed;
    private bool _isDestroed;
    private bool _isShieldActive;
-
+   
    public int HealthPoints
    {
       get => _healthPoints;
