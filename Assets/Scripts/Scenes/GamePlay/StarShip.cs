@@ -1,29 +1,33 @@
+using System;
+using System.Collections.Generic;
+using Scenes;
 using Scenes.GamePlay;
 using UnityEngine;
 
-public class StarShip: MonoBehaviour
-
+public class StarShip: MonoBehaviour, ISubject
 {
    private int _healthPoints;
    private int _shieldPoints;
    private float _speed;
    private bool _isDestroed;
    private bool _isShieldActive;
+
+   private List<IObserver> _observers = new List<IObserver>();
+
+   public event Action HealthChanged;
    
    public int HealthPoints
    {
       get => _healthPoints;
       set
       {
-         if (_healthPoints > 0)
+         if (value >= 0 && value <= _healthPoints)
          {
             _healthPoints = value;
-            _isDestroed = false;
-         }
-         else
-         {
-            Debug.Log("HealthPoints < 0, starship was destroed!");
-            _isDestroed = true;
+            if (HealthChanged != null)
+            {
+               HealthChanged.Invoke();
+            }
          }
       }
    }
@@ -72,5 +76,17 @@ public class StarShip: MonoBehaviour
    {
       Speed = Speed - s;
       Debug.Log($"Speed was DOWN - {s}");
+   }
+
+   public void Attach(IObserver observer)
+   {
+      _observers.Add(observer);
+      Debug.Log($"New observer - {observer} was added.");
+   }
+
+   public void Detach(IObserver observer)
+   {
+      _observers.Remove(observer);
+      Debug.Log($"Observer - {observer} was removed.");
    }
 }
