@@ -9,11 +9,11 @@ namespace Scenes
     {
         [SerializeField] private List<Sprite> _hearths;
         [SerializeField] private Image _image;
-        private Player _starship;
+        [SerializeField] private Player _player;
 
         private void OnEnable()
         {
-            if (_starship != null)
+            if (_player != null)
             {
                 Subcribe();
             }
@@ -26,25 +26,41 @@ namespace Scenes
 
         private void Subcribe()
         {
-            _starship.HealthChanged += HealthChanged;
+            _player.HealthChanged += HealthChanged;
             Debug.Log("Subscribe on HealthChanged");
         }
 
         private void Unsubcribe()
         {
-            _starship.HealthChanged -= HealthChanged;
+            _player.HealthChanged -= HealthChanged;
             Debug.Log("Unsubscribe on HealthChanged");
         }
         private void UpdateUI(int health)
         {
-            _image.sprite = _hearths[health + 1];
+            if (health == 3)
+            {
+                _image.sprite = _hearths[0];
+            }
+            else if (health == 2)
+            {
+                _image.sprite = _hearths[1];
+            }
+            else if (health == 1)
+            {
+                _image.sprite = _hearths[2];
+            }
+            else if (health == 0)
+            {
+                _image.sprite = _hearths[0];
+            }
             Debug.Log("Health was changed!");
         }
         
-        public void HealthChanged()
+        void HealthChanged()
         {
-            var health = _starship.HealthPoints;
+            var health = _player.HealthPoints;
             UpdateUI(health);
+            Debug.Log("HealthBar - HealthChanged!");
         }
     }
 }

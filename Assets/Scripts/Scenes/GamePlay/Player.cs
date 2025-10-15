@@ -9,28 +9,20 @@ public class Player: MonoBehaviour
    [SerializeField] private int _healthPoints;
    [SerializeField] private int _shieldPoints;
    [SerializeField] private float _speed;
+   [SerializeField] private int _healthUpValue;
+   [SerializeField] private int _healthDownValue;
    
    private bool _isDestroed;
    private bool _isShieldActive;
    
    public event Action HealthChanged;
+   public event Action PlayerWasDied;
    public event Action ShieldChanged;
    
    public int HealthPoints
    {
       get => _healthPoints;
-      set
-      {
-         if (value >= 0 && value <= _healthPoints)
-         {
-            _healthPoints = value;
-            if (HealthChanged != null)
-            {
-               HealthChanged.Invoke();
-               Debug.Log($"Starsip health points = {value}");
-            }
-         }
-      }
+      set => _healthPoints = value;
    }
 
    public int ShieldPoints
@@ -71,6 +63,23 @@ public class Player: MonoBehaviour
    {
       transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.Target().position, Speed * Time.deltaTime);
       transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, Mathf.Atan2(currentWaypoint.Target().position.y - transform.position.y, currentWaypoint.Target().position.x - transform.position.x) * Mathf.Rad2Deg - 90);
+   }
+
+   public void HealthUp()
+   {
+      HealthPoints += _healthUpValue;
+      HealthChanged?.Invoke();
+   }
+
+   public void HealthDown()
+   {
+      HealthPoints -= _healthDownValue;
+      HealthChanged?.Invoke();
+      if (HealthPoints == 0)
+      {
+         PlayerWasDied?.Invoke();
+         Debug.Log("Player was died!");
+      }
    }
 
    public void SpeedUp(float s)

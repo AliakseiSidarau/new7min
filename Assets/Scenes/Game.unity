@@ -603,6 +603,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 605842253227944519, guid: b30655d4802ac48dfa67ce6ba177fa66, type: 3}
+      propertyPath: _healthUpValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 605842253227944519, guid: b30655d4802ac48dfa67ce6ba177fa66, type: 3}
+      propertyPath: _healthDownValue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2509582998737009082, guid: b30655d4802ac48dfa67ce6ba177fa66, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2057,6 +2065,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e3df8cdcab0be46478261c9f174f619d, type: 3}
   - {fileID: 21300000, guid: 08e066179a9f64ca8a563b3043f82cd2, type: 3}
   _image: {fileID: 1708645501}
+  _player: {fileID: 445392580}
 --- !u!1 &1736135617
 GameObject:
   m_ObjectHideFlags: 0

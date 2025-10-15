@@ -1,3 +1,4 @@
+using System;
 using DefaultNamespace;
 using Sound;
 using TMPro;
@@ -17,15 +18,23 @@ namespace Scenes.GamePlay
       [SerializeField] private TMP_Text _pauseText;
    
       private SoundEffectsPlayer _soundEffectsPlayer;
+      private Player _ps;
    
-      void Start()
+      void OnEnable()
       {
          _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+         _ps = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
          _pauseButton.onClick.AddListener(OpenPauseMenu);
          _exitButton.onClick.AddListener(ExitFromGamePlay);
          _loseGameButton.onClick.AddListener(LoseGame);
          _plusScoreButton.onClick.AddListener(PlusScore);
          Counter.Score = 0;
+         OnSubscribe();
+      }
+
+      private void OnDisable()
+      {
+         OnUnsubscribe();
       }
 
       void OpenPauseMenu()
@@ -41,6 +50,16 @@ namespace Scenes.GamePlay
             _pauseText.enabled = true;
          }
          _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
+      }
+
+      void OnSubscribe()
+      {
+         _ps.PlayerWasDied += LoseGame;
+      }
+
+      void OnUnsubscribe()
+      {
+         _ps.PlayerWasDied -= LoseGame;
       }
 
       void ExitFromGamePlay()

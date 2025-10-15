@@ -17,7 +17,7 @@ namespace Scenes.GameOver
 
         void RestartGame()
         {
-            SceneManager.LoadScene("SpaceGame");
+            SceneManager.LoadScene("Game");
         }
 
         void ExitGame()

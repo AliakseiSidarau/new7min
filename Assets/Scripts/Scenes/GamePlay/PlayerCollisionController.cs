@@ -8,14 +8,12 @@ public class PlayerCollisionController : MonoBehaviour
     private DiamondSpawner _diamondSpawner;
     private GameObject _player;
     [SerializeField] private Player _playerScript;
-    private int _health;
 
 
     private void OnEnable()
     {
         _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
         _diamondSpawner = GameObject.FindGameObjectWithTag("DiamondSpawner").GetComponent<DiamondSpawner>();
-        _health = _playerScript.HealthPoints;
     }
     
 
@@ -32,8 +30,9 @@ public class PlayerCollisionController : MonoBehaviour
         if (other.gameObject.CompareTag("Meteor"))
         {
             _soundEffectsPlayer.PlayBoom(_soundEffectsPlayer.boom);
-            _health -= 1;
+            _playerScript.HealthDown();
             Debug.Log("Collision - Meteor!");
+            Debug.Log($"health - {_playerScript.HealthPoints}");
         }
         Debug.Log($"{other.name}");
     }
