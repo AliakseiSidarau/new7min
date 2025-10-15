@@ -4,17 +4,17 @@ using Scenes;
 using Scenes.GamePlay;
 using UnityEngine;
 
-public class StarShip: MonoBehaviour, ISubject
+public class Player: MonoBehaviour
 {
-   private int _healthPoints;
-   private int _shieldPoints;
-   private float _speed;
+   [SerializeField] private int _healthPoints;
+   [SerializeField] private int _shieldPoints;
+   [SerializeField] private float _speed;
+   
    private bool _isDestroed;
    private bool _isShieldActive;
-
-   private List<IObserver> _observers = new List<IObserver>();
-
+   
    public event Action HealthChanged;
+   public event Action ShieldChanged;
    
    public int HealthPoints
    {
@@ -27,6 +27,7 @@ public class StarShip: MonoBehaviour, ISubject
             if (HealthChanged != null)
             {
                HealthChanged.Invoke();
+               Debug.Log($"Starsip health points = {value}");
             }
          }
       }
@@ -37,13 +38,19 @@ public class StarShip: MonoBehaviour, ISubject
       get => _shieldPoints;
       set
       {
-         if (_shieldPoints >= 0)
+         if (value >= 0 && value <= _shieldPoints)
          {
             _shieldPoints = value;
-            _isShieldActive = true;
+            if (_shieldPoints != 0)
+            {
+               _shieldPoints = value;
+               ShieldChanged.Invoke();
+               _isShieldActive = true;
+            }
          }
          else
          {
+            ShieldChanged.Invoke();
             Debug.Log("ShieldPoints < 0, starships shield inactive!");
             _isShieldActive = false;
          }
@@ -60,7 +67,7 @@ public class StarShip: MonoBehaviour, ISubject
       }
    }
 
-   public void MoveToPoint(WayPointSpawner currentWaypoint)
+   public void MoveToPoint(WayPointSpawner currentWaypoint, float Speed)
    {
       transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.Target().position, Speed * Time.deltaTime);
       transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, Mathf.Atan2(currentWaypoint.Target().position.y - transform.position.y, currentWaypoint.Target().position.x - transform.position.x) * Mathf.Rad2Deg - 90);
@@ -76,17 +83,5 @@ public class StarShip: MonoBehaviour, ISubject
    {
       Speed = Speed - s;
       Debug.Log($"Speed was DOWN - {s}");
-   }
-
-   public void Attach(IObserver observer)
-   {
-      _observers.Add(observer);
-      Debug.Log($"New observer - {observer} was added.");
-   }
-
-   public void Detach(IObserver observer)
-   {
-      _observers.Remove(observer);
-      Debug.Log($"Observer - {observer} was removed.");
    }
 }

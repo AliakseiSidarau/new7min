@@ -12,7 +12,7 @@ namespace Scenes.GamePlay
         
         private const string BestScoreKey = "bestScoreKey";
 
-        public static int BestScore { get; set; }
+        static int BestScore { get; set; }
   
         void Start()
         {

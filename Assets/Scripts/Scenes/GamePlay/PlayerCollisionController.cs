@@ -2,17 +2,20 @@ using Scenes.GamePlay;
 using Sound;
 using UnityEngine;
 
-public class StarshipCollisionController : MonoBehaviour
+public class PlayerCollisionController : MonoBehaviour
 {
     private SoundEffectsPlayer _soundEffectsPlayer;
     private DiamondSpawner _diamondSpawner;
-    private GameObject _starShipObj;
+    private GameObject _player;
+    [SerializeField] private Player _playerScript;
+    private int _health;
 
 
-    private void Start()
+    private void OnEnable()
     {
         _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
         _diamondSpawner = GameObject.FindGameObjectWithTag("DiamondSpawner").GetComponent<DiamondSpawner>();
+        _health = _playerScript.HealthPoints;
     }
     
 
@@ -29,6 +32,7 @@ public class StarshipCollisionController : MonoBehaviour
         if (other.gameObject.CompareTag("Meteor"))
         {
             _soundEffectsPlayer.PlayBoom(_soundEffectsPlayer.boom);
+            _health -= 1;
             Debug.Log("Collision - Meteor!");
         }
         Debug.Log($"{other.name}");

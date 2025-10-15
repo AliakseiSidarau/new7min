@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6359851377461815898}
   - component: {fileID: 9056692957745379748}
   - component: {fileID: 8640092595169022956}
-  - component: {fileID: -7430780907120864432}
+  - component: {fileID: 605842253227944519}
   m_Layer: 0
-  m_Name: StarShip
+  m_Name: Player
   m_TagString: StarShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +160,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-7430780907120864432
+--- !u!114 &605842253227944519
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,6 +169,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8545877366669896209}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49244cd218c14698892d9f27a690ec1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4da40008160f54f5a9950d76afc76b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthPoints: 3
+  _shieldPoints: 0
+  _speed: 3

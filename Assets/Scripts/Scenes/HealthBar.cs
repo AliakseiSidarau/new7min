@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,11 +5,11 @@ using UnityEngine.UI;
 
 namespace Scenes
 {
-    public class HealthBar: MonoBehaviour, IObserver
+    public class HealthBar: MonoBehaviour
     {
         [SerializeField] private List<Sprite> _hearths;
         [SerializeField] private Image _image;
-        private StarShip _starship;
+        private Player _starship;
 
         private void OnEnable()
         {
@@ -18,6 +17,11 @@ namespace Scenes
             {
                 Subcribe();
             }
+        }
+
+        private void OnDisable()
+        {
+            Unsubcribe();
         }
 
         private void Subcribe()
