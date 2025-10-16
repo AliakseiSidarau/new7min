@@ -13,6 +13,7 @@ namespace Scenes
 
         private void OnEnable()
         {
+            UpdateUI(_player.HealthPoints);
             if (_player != null)
             {
                 Subcribe();
@@ -51,6 +52,7 @@ namespace Scenes
             }
             else if (health == 0)
             {
+                Destroy(this);
                 _image.sprite = _hearths[0];
             }
             Debug.Log("Health was changed!");
