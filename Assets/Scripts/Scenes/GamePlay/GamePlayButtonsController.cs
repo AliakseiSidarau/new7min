@@ -18,12 +18,10 @@ namespace Scenes.GamePlay
       [SerializeField] private TMP_Text _pauseText;
    
       private SoundEffectsPlayer _soundEffectsPlayer;
-      private Player _ps;
    
       void OnEnable()
       {
          _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
-         _ps = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
          _pauseButton.onClick.AddListener(OpenPauseMenu);
          _exitButton.onClick.AddListener(ExitFromGamePlay);
          _loseGameButton.onClick.AddListener(LoseGame);
@@ -54,12 +52,12 @@ namespace Scenes.GamePlay
 
       void OnSubscribe()
       {
-         _ps.PlayerWasDied += LoseGame;
+         Player.OnPlayerWasDied += LoseGame;
       }
 
       void OnUnsubscribe()
       {
-         _ps.PlayerWasDied -= LoseGame;
+         Player.OnPlayerWasDied -= LoseGame;
       }
 
       void ExitFromGamePlay()

@@ -5,8 +5,8 @@ using Scenes.GamePlay;
 using UnityEngine;
 
 public class Player: MonoBehaviour
-{
-   [SerializeField] private int _healthPoints;
+{ 
+   private static int _healthPoints;
    [SerializeField] private int _shieldPoints;
    [SerializeField] private float _speed;
    [SerializeField] private int _healthUpValue;
@@ -15,11 +15,11 @@ public class Player: MonoBehaviour
    private bool _isDestroed;
    private bool _isShieldActive;
    
-   public event Action HealthChanged;
-   public event Action PlayerWasDied;
+   public static event Action OnHealthChanged;
+   public static event Action OnPlayerWasDied;
    public event Action ShieldChanged;
    
-   public int HealthPoints
+   public static int HealthPoints
    {
       get => _healthPoints;
       set => _healthPoints = value;
@@ -68,16 +68,16 @@ public class Player: MonoBehaviour
    public void HealthUp()
    {
       HealthPoints += _healthUpValue;
-      HealthChanged?.Invoke();
+      OnHealthChanged?.Invoke();
    }
 
    public void HealthDown()
    {
       HealthPoints -= _healthDownValue;
-      HealthChanged?.Invoke();
+      OnHealthChanged?.Invoke();
       if (HealthPoints == 0)
       {
-         PlayerWasDied?.Invoke();
+         OnPlayerWasDied?.Invoke();
          Debug.Log("Player was died!");
       }
    }

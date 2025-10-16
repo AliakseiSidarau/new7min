@@ -32,7 +32,7 @@ public class PlayerCollisionController : MonoBehaviour
             _soundEffectsPlayer.PlayBoom(_soundEffectsPlayer.boom);
             _playerScript.HealthDown();
             Debug.Log("Collision - Meteor!");
-            Debug.Log($"health - {_playerScript.HealthPoints}");
+            Debug.Log($"health - {Player.HealthPoints}");
         }
         Debug.Log($"{other.name}");
     }

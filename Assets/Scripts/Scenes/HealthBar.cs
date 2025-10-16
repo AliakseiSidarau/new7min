@@ -9,15 +9,13 @@ namespace Scenes
     {
         [SerializeField] private List<Sprite> _hearths;
         [SerializeField] private Image _image;
-        [SerializeField] private Player _player;
 
         private void OnEnable()
         {
-            UpdateUI(_player.HealthPoints);
-            if (_player != null)
-            {
-                Subcribe();
-            }
+            Player.HealthPoints = 3;
+            UpdateUI(Player.HealthPoints);
+            Subcribe();
+            
         }
 
         private void OnDisable()
@@ -27,13 +25,13 @@ namespace Scenes
 
         private void Subcribe()
         {
-            _player.HealthChanged += HealthChanged;
+            Player.OnHealthChanged += HealthChanged;
             Debug.Log("Subscribe on HealthChanged");
         }
 
         private void Unsubcribe()
         {
-            _player.HealthChanged -= HealthChanged;
+            Player.OnHealthChanged -= HealthChanged;
             Debug.Log("Unsubscribe on HealthChanged");
         }
         private void UpdateUI(int health)
@@ -60,7 +58,7 @@ namespace Scenes
         
         void HealthChanged()
         {
-            var health = _player.HealthPoints;
+            var health = Player.HealthPoints;
             UpdateUI(health);
             Debug.Log("HealthBar - HealthChanged!");
         }
