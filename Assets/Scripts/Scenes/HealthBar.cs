@@ -12,7 +12,6 @@ namespace Scenes
 
         private void OnEnable()
         {
-            Player.HealthPoints = 3;
             UpdateUI(Player.HealthPoints);
             Subcribe();
             

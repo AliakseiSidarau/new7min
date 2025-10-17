@@ -6,18 +6,19 @@ using UnityEngine;
 
 public class Player: MonoBehaviour
 { 
-   private static int _healthPoints;
-   [SerializeField] private int _shieldPoints;
-   [SerializeField] private float _speed;
-   [SerializeField] private int _healthUpValue;
-   [SerializeField] private int _healthDownValue;
+   
+   private static int _shieldPoints = 3;
+   private static float _speed = 3;
+   private static readonly int _healthUpValue = 1;
+   private static readonly int _healthDownValue = 1;
+   private static int _healthPoints = 3;
    
    private bool _isDestroed;
-   private bool _isShieldActive;
+   private static bool _isShieldActive;
    
    public static event Action OnHealthChanged;
    public static event Action OnPlayerWasDied;
-   public event Action ShieldChanged;
+   public static event Action ShieldChanged;
    
    public static int HealthPoints
    {
@@ -25,7 +26,7 @@ public class Player: MonoBehaviour
       set => _healthPoints = value;
    }
 
-   public int ShieldPoints
+   public static int ShieldPoints
    {
       get => _shieldPoints;
       set
@@ -49,7 +50,7 @@ public class Player: MonoBehaviour
       }
    }
 
-   public float Speed
+   public static float Speed
    {
       get => _speed;
       set
@@ -71,7 +72,7 @@ public class Player: MonoBehaviour
       OnHealthChanged?.Invoke();
    }
 
-   public void HealthDown()
+   public static void HealthDown()
    {
       HealthPoints -= _healthDownValue;
       OnHealthChanged?.Invoke();

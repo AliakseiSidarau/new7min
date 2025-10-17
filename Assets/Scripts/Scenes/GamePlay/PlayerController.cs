@@ -8,18 +8,18 @@ namespace Scenes.GamePlay
     {
         [SerializeField] private WayPointSpawner _currentWayPoint;
         [SerializeField] private GameObject _diamond;
-        [SerializeField] private GameObject _player;
-        [SerializeField] private Player _playerScript;
+        [SerializeField] private GameObject _playerGO;
 
        private SoundEffectsPlayer _soundEffectsPlayer;
        private DiamondSpawner _diamondSpawner;
        private Quaternion _angle;
        private float _speed;
+       private Player _playerClass;
 
-       void Start()
+       void Awake()
        {
-           _playerScript = _player.GetComponent<Player>();
-           _speed = _playerScript.Speed;
+           _playerClass = _playerGO.GetComponent<Player>();
+           _speed = Player.Speed;
        }
 
        void Update()
@@ -31,7 +31,7 @@ namespace Scenes.GamePlay
                     return;
                 }
 
-                _playerScript.MoveToPoint(_currentWayPoint, _speed);
+                _playerClass.MoveToPoint(_currentWayPoint, _speed);
             }
             
             CorrectAngle();
@@ -41,7 +41,7 @@ namespace Scenes.GamePlay
 
         private void MakeAPoint()
         {
-            if (_playerScript.transform.position == _currentWayPoint.Target().transform.position)
+            if (_playerClass.transform.position == _currentWayPoint.Target().transform.position)
             {
                 _currentWayPoint.CanMakeNextWayPoint = true;
                 
@@ -51,7 +51,7 @@ namespace Scenes.GamePlay
 
         private void ChangeDiamondPosition()
         {
-            if (_playerScript.transform.position == _diamond.transform.position)
+            if (_playerClass.transform.position == _diamond.transform.position)
             {
                 _soundEffectsPlayer.PlayClaim(_soundEffectsPlayer.claim);
                 _diamondSpawner.ChangeDiamondPosition();
@@ -61,14 +61,14 @@ namespace Scenes.GamePlay
 
         private void CorrectAngle()
         {
-            if (_playerScript.transform.position != _currentWayPoint.Target().position)
+            if (_playerClass.transform.position != _currentWayPoint.Target().position)
             {
-                _angle = Quaternion.Euler(_playerScript.transform.rotation.eulerAngles.x, _playerScript.transform.rotation.eulerAngles.y, Mathf.Atan2(_currentWayPoint.Target().position.y - _playerScript.transform.position.y, _currentWayPoint.Target().position.x - _playerScript.transform.position.x) * Mathf.Rad2Deg - 90);
+                _angle = Quaternion.Euler(_playerClass.transform.rotation.eulerAngles.x, _playerClass.transform.rotation.eulerAngles.y, Mathf.Atan2(_currentWayPoint.Target().position.y - _playerClass.transform.position.y, _currentWayPoint.Target().position.x - _playerClass.transform.position.x) * Mathf.Rad2Deg - 90);
             }
             
-            if (_playerScript.transform.position == _currentWayPoint.Target().position)
+            if (_playerClass.transform.position == _currentWayPoint.Target().position)
             {
-                _playerScript.transform.rotation = _angle;
+                _playerClass.transform.rotation = _angle;
             }
         }
     }
