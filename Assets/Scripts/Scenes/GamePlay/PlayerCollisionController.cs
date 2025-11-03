@@ -1,3 +1,4 @@
+using System;
 using Scenes.GamePlay;
 using Sound;
 using UnityEngine;
@@ -5,14 +6,13 @@ using UnityEngine;
 public class PlayerCollisionController : MonoBehaviour
 {
     private SoundEffectsPlayer _soundEffectsPlayer;
-    private DiamondSpawner _diamondSpawner;
     private GameObject _player;
-
+    
+    public static event Action OnDiamondWasReceived;
 
     private void OnEnable()
     {
         _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
-        _diamondSpawner = GameObject.FindGameObjectWithTag("DiamondSpawner").GetComponent<DiamondSpawner>();
     }
     
 
@@ -21,7 +21,7 @@ public class PlayerCollisionController : MonoBehaviour
         if (other.gameObject.CompareTag("Diamond"))
         {
             _soundEffectsPlayer.PlayClaim(_soundEffectsPlayer.claim);
-            _diamondSpawner.ChangeDiamondPosition();
+            OnDiamondWasReceived?.Invoke();
             Counter.AddScore();
             Debug.Log("Collision - Diamond!");
         }

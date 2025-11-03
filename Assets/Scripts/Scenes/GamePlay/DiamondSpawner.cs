@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = Unity.Mathematics.Random;
 
@@ -20,6 +21,16 @@ namespace Scenes.GamePlay
             _diamond.transform.position = _pos;
             
             Debug.Log($"H - {_camSizeH}, W - {_camSizeW}");
+        }
+
+        private void OnEnable()
+        {
+            PlayerCollisionController.OnDiamondWasReceived += ChangeDiamondPosition;
+        }
+
+        private void OnDisable()
+        {
+            PlayerCollisionController.OnDiamondWasReceived -= ChangeDiamondPosition;
         }
 
         public void ChangeDiamondPosition()

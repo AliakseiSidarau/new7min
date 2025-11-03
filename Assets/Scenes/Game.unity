@@ -695,17 +695,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 445392582}
   m_SourcePrefab: {fileID: 100100000, guid: b30655d4802ac48dfa67ce6ba177fa66, type: 3}
---- !u!114 &445392580 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 605842253227944519, guid: b30655d4802ac48dfa67ce6ba177fa66, type: 3}
-  m_PrefabInstance: {fileID: 445392579}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 445392581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4da40008160f54f5a9950d76afc76b53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &445392581 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8545877366669896209, guid: b30655d4802ac48dfa67ce6ba177fa66, type: 3}
@@ -723,7 +712,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49244cd218c14698892d9f27a690ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerScript: {fileID: 445392580}
 --- !u!1 &725602572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,8 +1095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentWayPoint: {fileID: 75331251}
   _diamond: {fileID: 2073476377}
-  _player: {fileID: 445392581}
-  _playerScript: {fileID: 445392580}
+  _playerGO: {fileID: 8545877366669896209, guid: b30655d4802ac48dfa67ce6ba177fa66, type: 3}
 --- !u!1 &989933878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,7 +2052,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e3df8cdcab0be46478261c9f174f619d, type: 3}
   - {fileID: 21300000, guid: 08e066179a9f64ca8a563b3043f82cd2, type: 3}
   _image: {fileID: 1708645501}
-  _player: {fileID: 445392580}
 --- !u!1 &1736135617
 GameObject:
   m_ObjectHideFlags: 0
