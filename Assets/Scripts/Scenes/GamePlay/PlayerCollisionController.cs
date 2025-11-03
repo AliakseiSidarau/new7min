@@ -22,7 +22,6 @@ public class PlayerCollisionController : MonoBehaviour
         {
             _soundEffectsPlayer.PlayClaim(_soundEffectsPlayer.claim);
             OnDiamondWasReceived?.Invoke();
-            Counter.AddScore();
             Debug.Log("Collision - Diamond!");
         }
         

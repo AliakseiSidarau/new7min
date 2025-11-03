@@ -75,7 +75,7 @@ namespace Scenes.GamePlay
       void PlusScore()
       {
          _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.claim);
-         Counter.AddScore();
+         Counter.Score++;
       }
    }
 }

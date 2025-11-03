@@ -1094,8 +1094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentWayPoint: {fileID: 75331251}
-  _diamond: {fileID: 2073476377}
-  _playerGO: {fileID: 8545877366669896209, guid: b30655d4802ac48dfa67ce6ba177fa66, type: 3}
+  _playerGO: {fileID: 445392581}
 --- !u!1 &989933878
 GameObject:
   m_ObjectHideFlags: 0

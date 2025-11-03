@@ -6,15 +6,11 @@ namespace Scenes.GamePlay
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private WayPointSpawner _currentWayPoint;
-        [SerializeField] private GameObject _diamond;
+        [SerializeField] private WayPointSpawner _currentWayPoint; 
         [SerializeField] private GameObject _playerGO;
-
-       private SoundEffectsPlayer _soundEffectsPlayer;
-       private DiamondSpawner _diamondSpawner;
-       private Quaternion _angle;
-       private float _speed;
-       private Player _playerClass;
+        private Quaternion _angle;
+        private float _speed;
+        private Player _playerClass;
 
        void Awake()
        {
@@ -36,7 +32,6 @@ namespace Scenes.GamePlay
             
             CorrectAngle();
             MakeAPoint();
-            ChangeDiamondPosition();
         }
 
         private void MakeAPoint()
@@ -48,17 +43,7 @@ namespace Scenes.GamePlay
                 Destroy(_currentWayPoint.Target().gameObject);
             }
         }
-
-        private void ChangeDiamondPosition()
-        {
-            if (_playerClass.transform.position == _diamond.transform.position)
-            {
-                _soundEffectsPlayer.PlayClaim(_soundEffectsPlayer.claim);
-                _diamondSpawner.ChangeDiamondPosition();
-                Counter.AddScore();
-            }
-        }
-
+        
         private void CorrectAngle()
         {
             if (_playerClass.transform.position != _currentWayPoint.Target().position)

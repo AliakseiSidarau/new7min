@@ -1,4 +1,6 @@
+using System;
 using TMPro;
+using UnityEditor.Experimental;
 using UnityEngine;
 
 namespace Scenes.GamePlay
@@ -13,7 +15,17 @@ namespace Scenes.GamePlay
         private const string BestScoreKey = "bestScoreKey";
 
         static int BestScore { get; set; }
-  
+
+        private void OnEnable()
+        {
+            PlayerCollisionController.OnDiamondWasReceived += AddScore;
+        }
+
+        private void OnDisable()
+        {
+            PlayerCollisionController.OnDiamondWasReceived -= AddScore;
+        }
+
         void Start()
         {
             if (PlayerPrefs.HasKey(BestScoreKey))
@@ -54,6 +66,11 @@ namespace Scenes.GamePlay
         public static int GetBestForLoseScreen()
         {
             return BestScore;
+        }
+
+        private void AddScore()
+        {
+            Counter.Score++;
         }
     }
 }
