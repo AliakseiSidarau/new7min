@@ -67,6 +67,7 @@ SpriteAtlas:
     - 9aa6d0b0c1eb6412a865e9164ff4c03f: 21300000
     - e637d5a1c0b6a49fa84e3cb96f175760: 21300000
     - 051602649fc894b68b05b8c06208d6d9: 21300000
+    - 2bd5c11626ceb44369f542877c4e6280: 21300000
     - 56591946eb526466b9be6cc2c57e1af6: 21300000
     - 08e066179a9f64ca8a563b3043f82cd2: 21300000
     - 1d144aa97a7c14db4b6675fea2183397: 21300000
@@ -80,6 +81,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9aa6d0b0c1eb6412a865e9164ff4c03f, type: 3}
   - {fileID: 21300000, guid: e637d5a1c0b6a49fa84e3cb96f175760, type: 3}
   - {fileID: 21300000, guid: 051602649fc894b68b05b8c06208d6d9, type: 3}
+  - {fileID: 21300000, guid: 2bd5c11626ceb44369f542877c4e6280, type: 3}
   - {fileID: 21300000, guid: 56591946eb526466b9be6cc2c57e1af6, type: 3}
   - {fileID: 21300000, guid: 08e066179a9f64ca8a563b3043f82cd2, type: 3}
   - {fileID: 21300000, guid: 1d144aa97a7c14db4b6675fea2183397, type: 3}
@@ -92,6 +94,7 @@ SpriteAtlas:
   - heart_half
   - low_shield_64
   - ship_32
+  - pixil-frame-0 (4)
   - half_shield_64
   - heart_empty
   - planet_64

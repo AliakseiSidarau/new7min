@@ -6,7 +6,7 @@ namespace Scenes.GamePlay
 {
     public class MeteorsSpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject[] _meteors;
+        [SerializeField] private Meteor[] _meteors;
         [SerializeField] private float _meteorsSpeed;
         private Vector3 _startPosition;
         private Vector3 _endPoint;
@@ -27,7 +27,7 @@ namespace Scenes.GamePlay
             GameObject[] meteor = GameObject.FindGameObjectsWithTag("Meteor");
             if(meteor.Length != _meteors.Length)
             {
-                foreach (GameObject meteors in _meteors)
+                foreach (Meteor meteors in _meteors)
                 {
                     _startPosition = new Vector3((_rnd.NextFloat(-3,3)), (_rnd.NextFloat(-5,5)), 0f);
                     Instantiate(meteors, _startPosition, quaternion.RotateZ(3));
