@@ -9,14 +9,14 @@ namespace Sound
         [SerializeField] private AudioSource _sfxSource;
 
         [Header("------------------ Audio Clip ------------------")]
-        public AudioClip click;
-        public AudioClip background;
-        public AudioClip claim;
-        public AudioClip boom;
+        [SerializeField] private AudioClip _click;
+        [SerializeField] private AudioClip _background;
+        [SerializeField] private AudioClip _claim;
+        [SerializeField] private AudioClip _boom;
 
         private void Start()
         {
-            _musicSource.clip = background;
+            _musicSource.clip = _background;
             _musicSource.Play();
         }
         
@@ -42,19 +42,19 @@ namespace Sound
             Debug.Log($"I've check! Music - {_musicSource.mute}");
         }
 
-        public void PlayClick(AudioClip click)
+        public void PlayClick()
         {
-           _sfxSource.PlayOneShot(click);
+           _sfxSource.PlayOneShot(_click);
         }
 
-        public void PlayClaim(AudioClip claim)
+        public void PlayClaim()
         {
-            _sfxSource.PlayOneShot(claim);
+            _sfxSource.PlayOneShot(_claim);
         }
 
-        public void PlayBoom(AudioClip boom)
+        public void PlayBoom()
         {
-            _sfxSource.PlayOneShot(boom);
+            _sfxSource.PlayOneShot(_boom);
         }
         public void SwitchSound()
         {

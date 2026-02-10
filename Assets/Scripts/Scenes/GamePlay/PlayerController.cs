@@ -53,7 +53,7 @@ namespace Scenes.GamePlay
         {
             if (_playerScript.transform.position == _diamond.transform.position)
             {
-                _soundEffectsPlayer.PlayClaim(_soundEffectsPlayer.claim);
+                _soundEffectsPlayer.PlayClaim();
                 _diamondSpawner.ChangeDiamondPosition();
                 Counter.AddScore();
             }

@@ -21,7 +21,7 @@ public class PlayerCollisionController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Diamond"))
         {
-            _soundEffectsPlayer.PlayClaim(_soundEffectsPlayer.claim);
+            _soundEffectsPlayer.PlayClaim();
             _diamondSpawner.ChangeDiamondPosition();
             Counter.AddScore();
             Debug.Log("Collision - Diamond!");
@@ -29,7 +29,7 @@ public class PlayerCollisionController : MonoBehaviour
         
         if (other.gameObject.CompareTag("Meteor"))
         {
-            _soundEffectsPlayer.PlayBoom(_soundEffectsPlayer.boom);
+            _soundEffectsPlayer.PlayBoom();
             _playerScript.HealthDown();
             Debug.Log("Collision - Meteor!");
             Debug.Log($"health - {Player.HealthPoints}");

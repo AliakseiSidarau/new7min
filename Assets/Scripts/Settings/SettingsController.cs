@@ -59,7 +59,7 @@ namespace Settings
 
         void CloseSettingsWindow()
         {
-            _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
+            _soundEffectsPlayer.PlayClick();
             Debug.Log("CloseSettings button clicked!");
             _settingsWindowPrefab.SetActive(false);
             _manuWindowPrefab.SetActive(true);
@@ -69,7 +69,7 @@ namespace Settings
         void SwitchSound()
         {
             _soundEffectsPlayer.SwitchSound();
-            _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
+            _soundEffectsPlayer.PlayClick();
             Sound = !Sound;
             Debug.Log($"Sound button clicked! - {Sound}");
         }
@@ -77,14 +77,14 @@ namespace Settings
         void SwitchMusic()
         {
             _soundEffectsPlayer.SwitchMusic();
-            _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
+            _soundEffectsPlayer.PlayClick();
             Music = !Music;
             Debug.Log($"Music button clicked! - {Music}");
         }
     
         void SwitchVibration()
         {
-            _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
+            _soundEffectsPlayer.PlayClick();
             Vibration = !Vibration;
             Debug.Log($"Vibration button clicked! - {Vibration}");
         }

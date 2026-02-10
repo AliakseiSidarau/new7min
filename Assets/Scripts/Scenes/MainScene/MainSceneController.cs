@@ -41,20 +41,20 @@ namespace Scenes.MainScene
 
         void ExitApplication()
         {
-            _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
+            _soundEffectsPlayer.PlayClick();
             Debug.Log("Exit button clicked!");
             Application.Quit();
         }
         void StartGame()
         {
-            _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
+            _soundEffectsPlayer.PlayClick();
             Debug.Log("Start Game button clicked!");
             SceneManager.LoadScene("2.Game");
         }
 
         void OpenSettings()
         {
-            _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
+            _soundEffectsPlayer.PlayClick();
             Debug.Log("Settings button clicked!");
             _manuWindowPrefab.SetActive(false);
             _settingsWindowPrefab.SetActive(true);
