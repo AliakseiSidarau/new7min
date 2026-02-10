@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCollisionController : MonoBehaviour
 {
-    private SoundEffectsPlayer _soundEffectsPlayer;
+    private AudioService _audioService;
     private DiamondSpawner _diamondSpawner;
     private GameObject _player;
     [SerializeField] private Player _playerScript;
@@ -12,7 +12,7 @@ public class PlayerCollisionController : MonoBehaviour
 
     private void OnEnable()
     {
-        _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+        _audioService = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioService>();
         _diamondSpawner = GameObject.FindGameObjectWithTag("DiamondSpawner").GetComponent<DiamondSpawner>();
     }
     
@@ -21,7 +21,7 @@ public class PlayerCollisionController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Diamond"))
         {
-            _soundEffectsPlayer.PlayClaim();
+            _audioService.PlayClaim();
             _diamondSpawner.ChangeDiamondPosition();
             Counter.AddScore();
             Debug.Log("Collision - Diamond!");
@@ -29,7 +29,7 @@ public class PlayerCollisionController : MonoBehaviour
         
         if (other.gameObject.CompareTag("Meteor"))
         {
-            _soundEffectsPlayer.PlayBoom();
+            _audioService.PlayBoom();
             _playerScript.HealthDown();
             Debug.Log("Collision - Meteor!");
             Debug.Log($"health - {Player.HealthPoints}");

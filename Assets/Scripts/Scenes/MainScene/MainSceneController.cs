@@ -19,14 +19,14 @@ namespace Scenes.MainScene
         [SerializeField] private GameObject _settingsWindowPrefab;
     
         [SerializeField] private string _versionText = "v 0.0.1";
-        private SoundEffectsPlayer _soundEffectsPlayer;
+        private AudioService _audioService;
     
         // [SerializeField] private SettingsController _settingsController;
 
     
         void Awake()
         {
-            _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+            _audioService = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioService>();
             //_settingsController = GetComponent<SettingsController>();
             // _settingsController.LoadSettings();
         }
@@ -41,20 +41,20 @@ namespace Scenes.MainScene
 
         void ExitApplication()
         {
-            _soundEffectsPlayer.PlayClick();
+            _audioService.PlayClick();
             Debug.Log("Exit button clicked!");
             Application.Quit();
         }
         void StartGame()
         {
-            _soundEffectsPlayer.PlayClick();
+            _audioService.PlayClick();
             Debug.Log("Start Game button clicked!");
             SceneManager.LoadScene("2.Game");
         }
 
         void OpenSettings()
         {
-            _soundEffectsPlayer.PlayClick();
+            _audioService.PlayClick();
             Debug.Log("Settings button clicked!");
             _manuWindowPrefab.SetActive(false);
             _settingsWindowPrefab.SetActive(true);

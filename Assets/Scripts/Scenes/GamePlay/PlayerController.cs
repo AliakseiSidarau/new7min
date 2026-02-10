@@ -11,7 +11,7 @@ namespace Scenes.GamePlay
         [SerializeField] private GameObject _player;
         [SerializeField] private Player _playerScript;
 
-       private SoundEffectsPlayer _soundEffectsPlayer;
+       private AudioService _audioService;
        private DiamondSpawner _diamondSpawner;
        private Quaternion _angle;
        private float _speed;
@@ -53,7 +53,7 @@ namespace Scenes.GamePlay
         {
             if (_playerScript.transform.position == _diamond.transform.position)
             {
-                _soundEffectsPlayer.PlayClaim();
+                _audioService.PlayClaim();
                 _diamondSpawner.ChangeDiamondPosition();
                 Counter.AddScore();
             }

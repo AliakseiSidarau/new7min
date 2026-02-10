@@ -17,11 +17,11 @@ namespace Scenes.GamePlay
    
       [SerializeField] private TMP_Text _pauseText;
    
-      private SoundEffectsPlayer _soundEffectsPlayer;
+      private AudioService _audioService;
    
       void OnEnable()
       {
-         _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+         _audioService = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioService>();
          _pauseButton.onClick.AddListener(OpenPauseMenu);
          _exitButton.onClick.AddListener(ExitFromGamePlay);
          _loseGameButton.onClick.AddListener(LoseGame);
@@ -47,7 +47,7 @@ namespace Scenes.GamePlay
             Time.timeScale = 0f;
             _pauseText.enabled = true;
          }
-         _soundEffectsPlayer.PlayClick();
+         _audioService.PlayClick();
       }
 
       void OnSubscribe()
@@ -62,19 +62,19 @@ namespace Scenes.GamePlay
 
       void ExitFromGamePlay()
       {
-         _soundEffectsPlayer.PlayClick();
+         _audioService.PlayClick();
          SceneManager.LoadScene("1.Menu");
       }
 
       void LoseGame()
       {
-         _soundEffectsPlayer.PlayClick();
+         _audioService.PlayClick();
          SceneManager.LoadScene("3.GameOver");
       }
 
       void PlusScore()
       {
-         _soundEffectsPlayer.PlayClick();
+         _audioService.PlayClick();
          Counter.AddScore();
       }
    }

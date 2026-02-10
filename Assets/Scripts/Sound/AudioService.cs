@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Sound
 {
-    public class SoundEffectsPlayer : MonoBehaviour
+    public class AudioService : MonoBehaviour
     {
         [Header("------------------ Audio Source ------------------")]
         [SerializeField] private AudioSource _musicSource;

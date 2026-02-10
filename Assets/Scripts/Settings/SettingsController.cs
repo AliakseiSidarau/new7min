@@ -15,7 +15,7 @@ namespace Settings
         [SerializeField] private GameObject _manuWindowPrefab;
         [SerializeField] private GameObject _settingsWindowPrefab;
 
-        private SoundEffectsPlayer _soundEffectsPlayer;
+        private AudioService _audioService;
     
         private bool _sound;
         private bool _music;
@@ -43,10 +43,10 @@ namespace Settings
 
         void Awake()
         {
-            _soundEffectsPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+            _audioService = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioService>();
             LoadSettings();
-            _soundEffectsPlayer.MusicCheaker(Music);
-            _soundEffectsPlayer.SoundCheaker(Sound);
+            _audioService.MusicCheaker(Music);
+            _audioService.SoundCheaker(Sound);
         }
 
         void Start()
@@ -59,7 +59,7 @@ namespace Settings
 
         void CloseSettingsWindow()
         {
-            _soundEffectsPlayer.PlayClick();
+            _audioService.PlayClick();
             Debug.Log("CloseSettings button clicked!");
             _settingsWindowPrefab.SetActive(false);
             _manuWindowPrefab.SetActive(true);
@@ -68,23 +68,23 @@ namespace Settings
 
         void SwitchSound()
         {
-            _soundEffectsPlayer.SwitchSound();
-            _soundEffectsPlayer.PlayClick();
+            _audioService.SwitchSound();
+            _audioService.PlayClick();
             Sound = !Sound;
             Debug.Log($"Sound button clicked! - {Sound}");
         }
     
         void SwitchMusic()
         {
-            _soundEffectsPlayer.SwitchMusic();
-            _soundEffectsPlayer.PlayClick();
+            _audioService.SwitchMusic();
+            _audioService.PlayClick();
             Music = !Music;
             Debug.Log($"Music button clicked! - {Music}");
         }
     
         void SwitchVibration()
         {
-            _soundEffectsPlayer.PlayClick();
+            _audioService.PlayClick();
             Vibration = !Vibration;
             Debug.Log($"Vibration button clicked! - {Vibration}");
         }
