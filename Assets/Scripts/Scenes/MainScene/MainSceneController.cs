@@ -49,7 +49,7 @@ namespace Scenes.MainScene
         {
             _soundEffectsPlayer.PlayClick(_soundEffectsPlayer.click);
             Debug.Log("Start Game button clicked!");
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("2.Game");
         }
 
         void OpenSettings()
