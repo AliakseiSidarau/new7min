@@ -45,8 +45,9 @@ namespace Settings
         {
             _audioService = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioService>();
             LoadSettings();
-            _audioService.MusicCheaker(Music);
-            _audioService.SoundCheaker(Sound);
+            
+            // _audioService.MusicCheaker(Music);
+            // _audioService.SoundCheaker(Sound);
         }
 
         void Start()

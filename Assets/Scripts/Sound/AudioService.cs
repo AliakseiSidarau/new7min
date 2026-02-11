@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Sound
 {
-    public class AudioService : MonoBehaviour
+    public sealed class AudioService : MonoBehaviour, IAudioService
     {
         [Header("------------------ Audio Source ------------------")]
         [SerializeField] private AudioSource _musicSource;
@@ -14,32 +14,24 @@ namespace Sound
         [SerializeField] private AudioClip _claim;
         [SerializeField] private AudioClip _boom;
 
-        private void Start()
+        public void PlayBackgroundMusic()
         {
             _musicSource.clip = _background;
             _musicSource.Play();
         }
         
-        public void SoundCheaker(bool soundState)
+        public bool SoundStateCheaker()
         {
-            Debug.Log($"Sound state -> {soundState}");
-            if (soundState == false)
-            {
-                _sfxSource.mute = true;
-            }
-            _sfxSource.mute = false;
-            Debug.Log($"I've check! SFX - {_sfxSource.mute}");
+            bool isSoundOn;
+            isSoundOn = _sfxSource.mute != true;
+            return isSoundOn;
         }
 
-        public void MusicCheaker(bool musicState)
+        public bool MusicStateCheaker()
         {
-            Debug.Log($"Music state -> {musicState}");
-            if (musicState == false)
-            {
-                _musicSource.mute = true;
-            }
-            _musicSource.mute = false;
-            Debug.Log($"I've check! Music - {_musicSource.mute}");
+            bool isMusicOn;
+            isMusicOn = _musicSource.mute != true;
+            return isMusicOn;
         }
 
         public void PlayClick()
