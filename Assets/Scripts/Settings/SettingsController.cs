@@ -14,6 +14,7 @@ namespace Settings
 
         [SerializeField] private GameObject _manuWindowPrefab;
         [SerializeField] private GameObject _settingsWindowPrefab;
+        [SerializeField] private SaveService _saveService;
 
         private AudioService _audioService;
     
@@ -27,16 +28,16 @@ namespace Settings
 
         public void SaveSettings()
         {
-            SaveSystem.SaveSettings(this);
+            _saveService.SaveSettingsData(this);
             Debug.LogWarning($"SAVED!!! Sound - {Sound}, music - {Music}, vibration - {Vibration}");
         }
 
         public void LoadSettings()
         {
-            SettingsData data = SaveSystem.LoadSettings();
-            Sound = data.sound;
-            Music = data.music;
-            Vibration = data.vibration;
+            _saveService.LoadSettingsData();
+            Sound = _sound;
+            Music = _music;
+            Vibration = _vibration;
             Debug.LogWarning($"LOADED!!! Sound - {Sound}, music - {Music}, vibration - {Vibration}");
 
         }

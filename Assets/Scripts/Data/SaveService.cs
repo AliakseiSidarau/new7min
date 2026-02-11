@@ -7,9 +7,11 @@ using UnityEngine;
 namespace DefaultNamespace
 
 {
-    public static class SaveSystem
+    public class SaveService : MonoBehaviour, ISaveService
     {
-        public static void SaveSettings(SettingsController settingsController)
+        private PlayerData _playerData;
+        private SettingsData _settingsData;
+        public void SaveSettingsData(SettingsController settingsController)
         {
             BinaryFormatter formatter = new BinaryFormatter();
             string path = Application.persistentDataPath + "/data.txt";
@@ -19,10 +21,9 @@ namespace DefaultNamespace
             
             formatter.Serialize(stream, data);
             stream.Close();
-            
         }
 
-        public static void SavePlayerData(PlayerDataController playerDataController)
+        public void SavePlayerData(PlayerDataController playerDataController)
         {
             BinaryFormatter formatter = new BinaryFormatter();
             string path = Application.persistentDataPath + "/player_data.txt";
@@ -33,8 +34,8 @@ namespace DefaultNamespace
             formatter.Serialize(stream,playerData);
             stream.Close();
         }
-
-        public static SettingsData LoadSettings()
+        
+        public void LoadSettingsData()
         {
             string path = Application.persistentDataPath + "/data.txt";
             if (File.Exists(path))
@@ -44,15 +45,14 @@ namespace DefaultNamespace
 
                 SettingsData data = formatter.Deserialize(stream) as SettingsData;
                 stream.Close();
-                
-                return data;
+                _settingsData = data;
             }
             
             Debug.LogError("Settings data file not found in " + path);
-            return null;
+            _settingsData = null;
         }
 
-        public static PlayerData LoadPlayerData()
+        public void LoadPlayerData()
         {
             string path = Application.persistentDataPath + "/player_data.txt";
             if (File.Exists(path))
@@ -60,14 +60,13 @@ namespace DefaultNamespace
                 BinaryFormatter formatter = new BinaryFormatter();
                 FileStream stream = new FileStream(path, FileMode.Open);
 
-                PlayerData playerData = formatter.Deserialize(stream) as PlayerData;
+                PlayerData data = formatter.Deserialize(stream) as PlayerData;
                 stream.Close();
-
-                return playerData;
+                _playerData = data;
             }
             
             Debug.LogError("Player data file not found in " + path);
-            return null;
+            _playerData = null;
         }
     }
 }
