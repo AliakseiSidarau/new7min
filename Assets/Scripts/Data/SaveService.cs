@@ -1,13 +1,13 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using Data;
+using DefaultNamespace;
 using Settings;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Data
 
 {
-    public class SaveService : MonoBehaviour, ISaveService
+    public class SaveService : ISaveService
     {
         private PlayerData _playerData;
         private SettingsData _settingsData;
@@ -46,6 +46,7 @@ namespace DefaultNamespace
                 SettingsData data = formatter.Deserialize(stream) as SettingsData;
                 stream.Close();
                 _settingsData = data;
+                Debug.Log("Settings data successful loaded");
             }
             
             Debug.LogError("Settings data file not found in " + path);

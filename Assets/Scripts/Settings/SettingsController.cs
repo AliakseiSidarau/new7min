@@ -1,7 +1,9 @@
+using System.Reflection.Emit;
 using DefaultNamespace;
 using Sound;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Settings
 {
@@ -14,7 +16,7 @@ namespace Settings
 
         [SerializeField] private GameObject _manuWindowPrefab;
         [SerializeField] private GameObject _settingsWindowPrefab;
-        [SerializeField] private SaveService _saveService;
+        private ISaveService _saveService;
 
         private AudioService _audioService;
     
@@ -25,6 +27,12 @@ namespace Settings
         public bool Sound { set; get; }
         public bool Music { set; get; }
         public bool Vibration { set; get; }
+
+        [Inject]
+        void Construct(ISaveService saveService)
+        {
+            _saveService = saveService;
+        }
 
         public void SaveSettings()
         {
@@ -45,10 +53,7 @@ namespace Settings
         void Awake()
         {
             _audioService = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioService>();
-            LoadSettings();
             
-            // _audioService.MusicCheaker(Music);
-            // _audioService.SoundCheaker(Sound);
         }
 
         void Start()
