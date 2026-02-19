@@ -3,6 +3,7 @@ using Sound;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 using Button = UnityEngine.UI.Button;
 
 namespace Scenes.MainScene
@@ -20,22 +21,20 @@ namespace Scenes.MainScene
     
         [SerializeField] private string _versionText = "v 0.0.1";
         private AudioService _audioService;
-    
-        // [SerializeField] private SettingsController _settingsController;
+        private ISceneManagerService _sceneManagerService;
 
-    
-        void Awake()
-        {
-            _audioService = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioService>();
-            //_settingsController = GetComponent<SettingsController>();
-            // _settingsController.LoadSettings();
-        }
+        // [Inject]
+        // void Construct(ISceneManagerService sceneManagerService)
+        // {
+        //     _sceneManagerService = sceneManagerService;
+        // }
 
         void Start()
         {
             _settingsButton.onClick.AddListener(OpenSettings);
             _startGameButton.onClick.AddListener(StartGame);
             _exitButton.onClick.AddListener(ExitApplication);
+            _audioService = FindObjectOfType<AudioService>();
             _versionLabel.text = _versionText;
         }
 
@@ -49,7 +48,7 @@ namespace Scenes.MainScene
         {
             _audioService.PlayClick();
             Debug.Log("Start Game button clicked!");
-            SceneManager.LoadScene("2.Game");
+            _sceneManagerService.LoadGameScene();
         }
 
         void OpenSettings()

@@ -1,3 +1,4 @@
+using System;
 using System.Reflection.Emit;
 using DefaultNamespace;
 using Sound;
@@ -16,17 +17,17 @@ namespace Settings
 
         [SerializeField] private GameObject _manuWindowPrefab;
         [SerializeField] private GameObject _settingsWindowPrefab;
+        
+        public bool Sound { get; private set; }
+        public bool Music { get; private set; }
+        public bool Vibration { get; private set; }
+
+        public event Action OnCloseClicked;
+        public event Action OnSoundClicked;
+        public event Action OnMusicCliced;
+        public event Action OnVibroClicked;
+        
         private ISaveService _saveService;
-
-        private AudioService _audioService;
-    
-        private bool _sound;
-        private bool _music;
-        private bool _vibration;
-
-        public bool Sound { set; get; }
-        public bool Music { set; get; }
-        public bool Vibration { set; get; }
 
         [Inject]
         void Construct(ISaveService saveService)
@@ -37,25 +38,12 @@ namespace Settings
         public void SaveSettings()
         {
             _saveService.SaveSettingsData(this);
-            Debug.LogWarning($"SAVED!!! Sound - {Sound}, music - {Music}, vibration - {Vibration}");
         }
 
         public void LoadSettings()
         {
             _saveService.LoadSettingsData();
-            Sound = _sound;
-            Music = _music;
-            Vibration = _vibration;
-            Debug.LogWarning($"LOADED!!! Sound - {Sound}, music - {Music}, vibration - {Vibration}");
-
         }
-
-        void Awake()
-        {
-            _audioService = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioService>();
-            
-        }
-
         void Start()
         {
             _closeSettingsButton.onClick.AddListener(CloseSettingsWindow);
@@ -66,8 +54,8 @@ namespace Settings
 
         void CloseSettingsWindow()
         {
-            _audioService.PlayClick();
             Debug.Log("CloseSettings button clicked!");
+            OnCloseClicked?.Invoke();
             _settingsWindowPrefab.SetActive(false);
             _manuWindowPrefab.SetActive(true);
             SaveSettings();
@@ -75,25 +63,20 @@ namespace Settings
 
         void SwitchSound()
         {
-            _audioService.SwitchSound();
-            _audioService.PlayClick();
             Sound = !Sound;
-            Debug.Log($"Sound button clicked! - {Sound}");
+            OnSoundClicked?.Invoke();
         }
     
         void SwitchMusic()
         {
-            _audioService.SwitchMusic();
-            _audioService.PlayClick();
             Music = !Music;
-            Debug.Log($"Music button clicked! - {Music}");
+            OnMusicCliced?.Invoke();
         }
     
         void SwitchVibration()
         {
-            _audioService.PlayClick();
             Vibration = !Vibration;
-            Debug.Log($"Vibration button clicked! - {Vibration}");
+            OnVibroClicked?.Invoke();
         }
     }
 }

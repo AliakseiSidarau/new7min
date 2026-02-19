@@ -1,18 +1,23 @@
 using Scenes.GamePlay;
 using Sound;
 using UnityEngine;
+using Zenject;
 
 public class PlayerCollisionController : MonoBehaviour
 {
-    private AudioService _audioService;
+    private IAudioService _audioService;
     private DiamondSpawner _diamondSpawner;
     private GameObject _player;
     [SerializeField] private Player _playerScript;
 
+    [Inject]
+    public void Construct(IAudioService audioService)
+    {
+        _audioService = audioService;
+    }
 
     private void OnEnable()
     {
-        _audioService = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioService>();
         _diamondSpawner = GameObject.FindGameObjectWithTag("DiamondSpawner").GetComponent<DiamondSpawner>();
     }
     

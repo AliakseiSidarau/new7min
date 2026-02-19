@@ -1,6 +1,7 @@
 using DefaultNamespace;
+using Scenes;
+using Sound;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Infrastracture
@@ -8,18 +9,22 @@ namespace Infrastracture
     public class BootstrapInitializeSystem : IInitializable
     {
         private ISaveService _saveService;
+        private ISceneManagerService _sceneManagerService;
 
-        public BootstrapInitializeSystem(ISaveService saveService)
+        public BootstrapInitializeSystem(ISaveService saveService, ISceneManagerService sceneManagerService)
         {
             _saveService = saveService;
+            _sceneManagerService = sceneManagerService;
         }
     
         public void Initialize()
         {
             _saveService.LoadSettingsData();
             _saveService.LoadPlayerData();
-            SceneManager.LoadScene("1.Menu");
+            
             Debug.Log("Initialized!");
+            _sceneManagerService.LoadMenuScene();
+
         }
     }
 }

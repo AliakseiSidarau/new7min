@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Scenes.GamePlay
 {
@@ -17,11 +18,16 @@ namespace Scenes.GamePlay
    
       [SerializeField] private TMP_Text _pauseText;
    
-      private AudioService _audioService;
-   
+      private IAudioService _audioService;
+
+      [Inject]
+      public void Construct(IAudioService audioService)
+      {
+         _audioService = audioService;
+      }
+      
       void OnEnable()
       {
-         _audioService = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioService>();
          _pauseButton.onClick.AddListener(OpenPauseMenu);
          _exitButton.onClick.AddListener(ExitFromGamePlay);
          _loseGameButton.onClick.AddListener(LoseGame);
@@ -32,6 +38,10 @@ namespace Scenes.GamePlay
 
       private void OnDisable()
       {
+         _pauseButton.onClick.RemoveAllListeners();
+         _exitButton.onClick.RemoveAllListeners();
+         _loseGameButton.onClick.RemoveAllListeners();
+         _plusScoreButton.onClick.RemoveAllListeners();
          OnUnsubscribe();
       }
 

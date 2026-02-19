@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Button = UnityEngine.UI.Button;
@@ -9,10 +10,16 @@ namespace Scenes.GameOver
         [SerializeField] private Button _restartGameButton;
         [SerializeField] private Button _exitGameButton;
 
-        void Start()
+        void OnEnable()
         {
             _restartGameButton.onClick.AddListener(RestartGame);
             _exitGameButton.onClick.AddListener(ExitGame);
+        }
+
+        private void OnDisable()
+        {
+            _restartGameButton.onClick.RemoveAllListeners();
+            _exitGameButton.onClick.RemoveAllListeners();
         }
 
         void RestartGame()
