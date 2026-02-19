@@ -20,21 +20,22 @@ namespace Scenes.MainScene
         [SerializeField] private GameObject _settingsWindowPrefab;
     
         [SerializeField] private string _versionText = "v 0.0.1";
-        private AudioService _audioService;
+        private IAudioService _audioService;
         private ISceneManagerService _sceneManagerService;
 
-        // [Inject]
-        // void Construct(ISceneManagerService sceneManagerService)
-        // {
-        //     _sceneManagerService = sceneManagerService;
-        // }
+        [Inject]
+        public void Construct(ISceneManagerService sceneManagerService, IAudioService audioService)
+        {
+            _audioService = audioService;
+            _sceneManagerService = sceneManagerService;
+        }
+        
 
         void Start()
         {
             _settingsButton.onClick.AddListener(OpenSettings);
             _startGameButton.onClick.AddListener(StartGame);
             _exitButton.onClick.AddListener(ExitApplication);
-            _audioService = FindObjectOfType<AudioService>();
             _versionLabel.text = _versionText;
         }
 
