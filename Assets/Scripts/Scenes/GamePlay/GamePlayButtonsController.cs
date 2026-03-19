@@ -19,11 +19,13 @@ namespace Scenes.GamePlay
       [SerializeField] private TMP_Text _pauseText;
    
       private IAudioService _audioService;
+      private ISceneManagerService _sceneManagerService;
 
       [Inject]
-      public void Construct(IAudioService audioService)
+      public void Construct(IAudioService audioService, ISceneManagerService sceneManagerService)
       {
          _audioService = audioService;
+         _sceneManagerService = sceneManagerService;
       }
       
       void OnEnable()
@@ -73,13 +75,13 @@ namespace Scenes.GamePlay
       void ExitFromGamePlay()
       {
          _audioService.PlayClick();
-         SceneManager.LoadScene("1.Menu");
+         _sceneManagerService.LoadMenuScene();
       }
 
       void LoseGame()
       {
          _audioService.PlayClick();
-         SceneManager.LoadScene("3.GameOver");
+         _sceneManagerService.LoadEndGameScene();
       }
 
       void PlusScore()

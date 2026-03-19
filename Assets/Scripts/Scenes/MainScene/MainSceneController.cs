@@ -1,4 +1,3 @@
-using DefaultNamespace;
 using Sound;
 using TMPro;
 using UnityEngine;
