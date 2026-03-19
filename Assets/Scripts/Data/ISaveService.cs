@@ -7,7 +7,9 @@ namespace DefaultNamespace
     {
         void SaveSettingsData(SettingsController settingsController);
         void LoadSettingsData();
+        void ResetSettingsData();
         void SavePlayerData(PlayerDataController playerDataController);
         void LoadPlayerData();
+        void ResetPlayerData();
     }
 }
