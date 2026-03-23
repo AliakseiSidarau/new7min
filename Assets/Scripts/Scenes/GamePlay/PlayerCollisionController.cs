@@ -8,7 +8,7 @@ public class PlayerCollisionController : MonoBehaviour
     private IAudioService _audioService;
     private DiamondSpawner _diamondSpawner;
     private GameObject _player;
-    [SerializeField] private Player _playerScript;
+    [SerializeField] private PlayerHealth _playerHealth;
 
     [Inject]
     public void Construct(IAudioService audioService)
@@ -35,9 +35,9 @@ public class PlayerCollisionController : MonoBehaviour
         if (other.gameObject.CompareTag("Meteor"))
         {
             _audioService.PlayBoom();
-            _playerScript.HealthDown();
+            _playerHealth.HealthDown();
             Debug.Log("Collision - Meteor!");
-            Debug.Log($"health - {Player.HealthPoints}");
+            Debug.Log($"health - {PlayerHealth.HealthPoints}");
         }
         Debug.Log($"{other.name}");
     }

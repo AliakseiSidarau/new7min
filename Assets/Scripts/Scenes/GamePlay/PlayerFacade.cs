@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace Scenes.GamePlay
 {
@@ -9,6 +10,13 @@ namespace Scenes.GamePlay
         
 
         public PlayerHealth PlayerHealth => _playerHealth;
+        
+        //[Inject]
+
+        public void Construct(IPlayerService playerService)
+        {
+            _playerService = playerService;
+        }
         
     }
 }

@@ -15,7 +15,10 @@ namespace Infrastracture.SaveLoad
 
         public void Save()
         {
-            
+            foreach (ISaveLoad saveLoad in _registry.GetSaveLoadServices())
+            {
+                
+            }
         }
 
         public void Load()

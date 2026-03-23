@@ -16,11 +16,12 @@ namespace Scenes.GamePlay
 
         public void Save(PlayerProgress progress)
         {
-            progress.PlayerData.CurrentHealth = _playerFacade.
+            progress.PlayerData.CurrentHealth = _playerFacade.PlayerHealth.GetCurrentHealth();
         }
 
         public void Load(PlayerProgress progress)
         {
+            _playerFacade.PlayerHealth.SetCurrentHealth(progress.PlayerData.CurrentHealth);
         }
 
         public void Reset(PlayerProgress progress)
