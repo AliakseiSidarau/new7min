@@ -1,5 +1,7 @@
 using Data;
 using DefaultNamespace;
+using Infrastracture.SaveLoad;
+using Infrastracture.SaveLoad.Progress;
 using Scenes;
 using Sound;
 using UnityEngine;
@@ -14,6 +16,7 @@ namespace Infrastracture
         public override void InstallBindings()
         {
             AudioServiceBiding();
+            SaveLoadServiceBiding();
             SaveServiceBiding();
             SceneManagerServiceBiding();
             BootstrapInitializeSystemBiding();
@@ -52,6 +55,16 @@ namespace Infrastracture
                 .NonLazy();
             
             Debug.Log("AudioService biding was finished!");
+        }
+
+        void SaveLoadServiceBiding()
+        {
+            Container.Bind<IProgressService>().To<ProgressService>()
+                .AsSingle();
+            Container.Bind<ISaveLoadRegistry>().To<SaveLoadRegistry>()
+                .AsSingle();
+            Container.Bind<ISaveLoadService>().To<SaveLoadService>()
+                .AsSingle();
         }
     }
 }

@@ -23,6 +23,11 @@ namespace Data
             stream.Close();
         }
 
+        public void ResetSettingsData()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void SavePlayerData(PlayerDataController playerDataController)
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -68,6 +73,11 @@ namespace Data
             
             Debug.LogError("Player data file not found in " + path);
             _playerData = null;
+        }
+
+        public void ResetPlayerData()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
