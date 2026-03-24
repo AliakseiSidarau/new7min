@@ -1,4 +1,5 @@
 using Infrastracture.SaveLoad.Progress;
+using UnityEngine;
 
 namespace Infrastracture.SaveLoad
 {
@@ -17,13 +18,24 @@ namespace Infrastracture.SaveLoad
         {
             foreach (ISaveLoad saveLoad in _registry.GetSaveLoadServices())
             {
-                
+                saveLoad.Save(_progress.Progress);
             }
+            _progress.SaveProgress();
         }
 
         public void Load()
         {
-            
+            if (_progress.HasLoadProgress)
+            {
+                foreach (ISaveLoad saveLoad in _registry.GetSaveLoadServices())
+                {
+                    saveLoad.Load(_progress.Progress);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("No Actual ProgressData");
+            }
         }
 
         public void Reset()

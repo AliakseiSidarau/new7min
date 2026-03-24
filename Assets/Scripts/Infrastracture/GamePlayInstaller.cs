@@ -6,6 +6,7 @@ public class GamePlayInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
+        Container.BindInterfacesAndSelfTo<PlayerService>().AsSingle();
         // Container.BindInterfacesAndSelfTo<GameStateService>()
         //     .AsSingle();
         // Container.BindInterfacesAndSelfTo<ScoreService>()

@@ -1,3 +1,4 @@
+using System;
 using Data;
 using DefaultNamespace;
 using Infrastracture.SaveLoad;
@@ -15,6 +16,7 @@ namespace Infrastracture
         [SerializeField] private AudioService _audioServicePrefab;
         public override void InstallBindings()
         {
+            DiServiceBiding();
             AudioServiceBiding();
             SaveLoadServiceBiding();
             SaveServiceBiding();
@@ -65,6 +67,11 @@ namespace Infrastracture
                 .AsSingle();
             Container.Bind<ISaveLoadService>().To<SaveLoadService>()
                 .AsSingle();
+        }
+
+        void DiServiceBiding()
+        {
+            Container.Bind<IDiService>().To<DiService>().AsSingle();
         }
     }
 }
