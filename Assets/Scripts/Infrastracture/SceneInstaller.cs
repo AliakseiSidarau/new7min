@@ -1,4 +1,3 @@
-using Infrastracture.SaveLoad;
 using Scenes.GamePlay;
 using UnityEngine;
 using Zenject;
@@ -14,20 +13,6 @@ namespace Infrastracture
             Container.Bind<PlayerFacade>().FromInstance(_playerFacade).AsSingle();
             Container.BindInterfacesAndSelfTo<SaveLoadSystem>().AsSingle();
             Debug.Log("SceneInstaller Install");
-        }
-    }
-
-    public class SaveLoadSystem: IInitializable
-    {
-        private readonly ISaveLoadService _saveLoad;
-        public SaveLoadSystem(ISaveLoadService saveLoad)
-        {
-            _saveLoad = saveLoad;
-        }
-
-        public void Initialize()
-        {
-            
         }
     }
 }

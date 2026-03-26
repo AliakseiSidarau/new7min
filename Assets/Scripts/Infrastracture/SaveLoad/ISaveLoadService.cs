@@ -4,5 +4,6 @@ namespace Infrastracture.SaveLoad
 {
     public interface ISaveLoadService
     {
+        void Load();
     }
 }

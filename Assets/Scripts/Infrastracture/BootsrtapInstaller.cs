@@ -19,7 +19,7 @@ namespace Infrastracture
             DiServiceBiding();
             AudioServiceBiding();
             SaveLoadServiceBiding();
-            SaveServiceBiding();
+            // SaveServiceBiding();
             SceneManagerServiceBiding();
             BootstrapInitializeSystemBiding();
         }

@@ -1,5 +1,6 @@
 using Infrastracture.SaveLoad;
 using Infrastracture.SaveLoad.Data;
+using UnityEngine;
 using Zenject.SpaceFighter;
 
 namespace Scenes.GamePlay
@@ -16,11 +17,13 @@ namespace Scenes.GamePlay
 
         public void Save(PlayerProgress progress)
         {
+            Debug.Log("PlayerService.Save");
             progress.PlayerData.CurrentHealth = _playerFacade.PlayerHealth.GetCurrentHealth();
         }
 
         public void Load(PlayerProgress progress)
         {
+            Debug.Log("PlayerService.Load");
             _playerFacade.PlayerHealth.SetCurrentHealth(progress.PlayerData.CurrentHealth);
         }
 
