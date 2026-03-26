@@ -1,6 +1,5 @@
 using System;
 using Data;
-using DefaultNamespace;
 using Infrastracture.SaveLoad;
 using Infrastracture.SaveLoad.Progress;
 using Scenes;
@@ -19,7 +18,6 @@ namespace Infrastracture
             DiServiceBiding();
             AudioServiceBiding();
             SaveLoadServiceBiding();
-            // SaveServiceBiding();
             SceneManagerServiceBiding();
             BootstrapInitializeSystemBiding();
         }
@@ -30,15 +28,6 @@ namespace Infrastracture
                 .AsSingle();
             
             Debug.Log("Bootstrap biding was finished!");
-        }
-
-        void SaveServiceBiding()
-        {
-            Container.BindInterfacesAndSelfTo<SaveService>()
-                .AsSingle()
-                .NonLazy();
-            
-            Debug.Log("SaveService biding was finished!");
         }
 
         void SceneManagerServiceBiding()

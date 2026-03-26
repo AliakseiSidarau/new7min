@@ -1,6 +1,7 @@
 using System;
 using System.Reflection.Emit;
-using DefaultNamespace;
+using Infrastracture.SaveLoad;
+using Infrastracture.SaveLoad.Data;
 using Sound;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ using Zenject;
 
 namespace Settings
 {
-    public class SettingsController : MonoBehaviour
+    public class SettingsController : MonoBehaviour, ISaveLoad
     {
         [SerializeField] private Button _closeSettingsButton;
         [SerializeField] private Button _soundSwitchButton;
@@ -27,29 +28,23 @@ namespace Settings
         public event Action OnMusicCliced;
         public event Action OnVibroClicked;
         
-        private ISaveService _saveService;
-
-        [Inject]
-        void Construct(ISaveService saveService)
-        {
-            _saveService = saveService;
-        }
-
-        public void SaveSettings()
-        {
-            _saveService.SaveSettingsData(this);
-        }
-
-        public void LoadSettings()
-        {
-            _saveService.LoadSettingsData();
-        }
-        void Start()
+        [Inject] 
+        private ISaveLoadService _saveLoadService;
+        
+        void OnEnable()
         {
             _closeSettingsButton.onClick.AddListener(CloseSettingsWindow);
             _soundSwitchButton.onClick.AddListener(SwitchSound);
             _musicSwitchButton.onClick.AddListener(SwitchMusic);
             _vibrationSwitchButton.onClick.AddListener(SwitchVibration);
+        }
+
+        void OnDisable()
+        {
+            _closeSettingsButton.onClick.RemoveListener(CloseSettingsWindow);
+            _soundSwitchButton.onClick.RemoveListener(SwitchSound);
+            _musicSwitchButton.onClick.RemoveListener(SwitchMusic);
+            _vibrationSwitchButton.onClick.RemoveListener(SwitchVibration);
         }
 
         void CloseSettingsWindow()
@@ -58,25 +53,50 @@ namespace Settings
             OnCloseClicked?.Invoke();
             _settingsWindowPrefab.SetActive(false);
             _manuWindowPrefab.SetActive(true);
-            SaveSettings();
         }
 
         void SwitchSound()
         {
             Sound = !Sound;
             OnSoundClicked?.Invoke();
+            _saveLoadService.Save();
         }
     
         void SwitchMusic()
         {
             Music = !Music;
             OnMusicCliced?.Invoke();
+            _saveLoadService.Save();
         }
     
         void SwitchVibration()
         {
             Vibration = !Vibration;
             OnVibroClicked?.Invoke();
+            _saveLoadService.Save();
+        }
+
+        public void Save(PlayerProgress progress)
+        {
+            Debug.Log("Player Settings data saved!");
+            progress.SettingsData.iSMusicOn = Music;
+            progress.SettingsData.iSSoundOn = Sound;
+            progress.SettingsData.isVibroOn = Vibration;
+        }
+
+        public void Load(PlayerProgress progress)
+        {
+            Music = progress.SettingsData.iSMusicOn;
+            Sound = progress.SettingsData.iSSoundOn;
+            Vibration = progress.SettingsData.isVibroOn;
+            Debug.Log($"Loaded Progress: {JsonUtility.ToJson(progress)}");
+        }
+
+        public void Reset(PlayerProgress progress)
+        {
+            progress.SettingsData.iSMusicOn = true;
+            progress.SettingsData.iSSoundOn = true;
+            progress.SettingsData.isVibroOn = true;
         }
     }
 }

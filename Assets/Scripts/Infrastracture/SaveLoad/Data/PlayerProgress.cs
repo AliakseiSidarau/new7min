@@ -1,10 +1,13 @@
+using System;
+
 namespace Infrastracture.SaveLoad.Data
 {
+    [Serializable]
     public class PlayerProgress
     {
-        public WorldData WorldData { get; private set; }
-        public PlayerData PlayerData {get; private set; }
-        public EnemyData EnemyData { get; private set; }
-        
+        public WorldData WorldData = new WorldData();
+        public PlayerData PlayerData = new PlayerData();
+        public EnemyData EnemyData = new EnemyData();
+        public SettingsData SettingsData =  new SettingsData();
     }
 }

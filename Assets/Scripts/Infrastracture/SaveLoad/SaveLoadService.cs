@@ -20,6 +20,7 @@ namespace Infrastracture.SaveLoad
             {
                 saveLoad.Save(_progress.Progress);
             }
+            Debug.Log("Saving Progress to PlayerPrefs...");
             _progress.SaveProgress();
         }
 
