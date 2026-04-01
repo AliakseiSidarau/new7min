@@ -66,12 +66,15 @@ SpriteAtlas:
     - e391e870176b1461a9362d1df38e1df5: 21300000
     - 9aa6d0b0c1eb6412a865e9164ff4c03f: 21300000
     - e637d5a1c0b6a49fa84e3cb96f175760: 21300000
+    - 8c0a4df28bc23435ebe368357a61bb78: 21300000
     - 051602649fc894b68b05b8c06208d6d9: 21300000
     - 56591946eb526466b9be6cc2c57e1af6: 21300000
     - 08e066179a9f64ca8a563b3043f82cd2: 21300000
+    - a65cb209143014a3dbc8f8ce9a3eb69e: 21300000
     - 1d144aa97a7c14db4b6675fea2183397: 21300000
     - 154f1e3aa5b20499eaaeaa7362db63b2: 21300000
     - e3df8cdcab0be46478261c9f174f619d: 21300000
+    - 1ed606dd0e86f4e7abf16be60c9dbc59: 21300000
     - b7207f3e6a05c457da2a01ca6b2d476d: 21300000
     - 4b27e34fe18a14b6b89af802dab28098: 21300000
   m_MasterAtlas: {fileID: 0}
@@ -79,24 +82,30 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e391e870176b1461a9362d1df38e1df5, type: 3}
   - {fileID: 21300000, guid: 9aa6d0b0c1eb6412a865e9164ff4c03f, type: 3}
   - {fileID: 21300000, guid: e637d5a1c0b6a49fa84e3cb96f175760, type: 3}
+  - {fileID: 21300000, guid: 8c0a4df28bc23435ebe368357a61bb78, type: 3}
   - {fileID: 21300000, guid: 051602649fc894b68b05b8c06208d6d9, type: 3}
   - {fileID: 21300000, guid: 56591946eb526466b9be6cc2c57e1af6, type: 3}
   - {fileID: 21300000, guid: 08e066179a9f64ca8a563b3043f82cd2, type: 3}
+  - {fileID: 21300000, guid: a65cb209143014a3dbc8f8ce9a3eb69e, type: 3}
   - {fileID: 21300000, guid: 1d144aa97a7c14db4b6675fea2183397, type: 3}
   - {fileID: 21300000, guid: 154f1e3aa5b20499eaaeaa7362db63b2, type: 3}
   - {fileID: 21300000, guid: e3df8cdcab0be46478261c9f174f619d, type: 3}
+  - {fileID: 21300000, guid: 1ed606dd0e86f4e7abf16be60c9dbc59, type: 3}
   - {fileID: 21300000, guid: b7207f3e6a05c457da2a01ca6b2d476d, type: 3}
   - {fileID: 21300000, guid: 4b27e34fe18a14b6b89af802dab28098, type: 3}
   m_PackedSpriteNamesToIndex:
   - heart_full
   - heart_half
   - low_shield_64
+  - gold
   - ship_32
   - half_shield_64
   - heart_empty
+  - wood
   - planet_64
   - empty_shield_64
   - heart_low
+  - iron
   - diamond_16
   - full_shield_64
   m_RenderDataMap: {}

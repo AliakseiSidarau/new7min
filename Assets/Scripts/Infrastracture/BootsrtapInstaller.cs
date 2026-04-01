@@ -1,9 +1,8 @@
+using Core;
 using Data;
-using DefaultNamespace;
 using Scenes;
 using Sound;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Infrastracture
@@ -52,6 +51,13 @@ namespace Infrastracture
                 .NonLazy();
             
             Debug.Log("AudioService biding was finished!");
+        }
+
+        void TimeServiceBiding()
+        {
+            Container.Bind<ITimeService>()
+                .To<DeviceTimeService>()
+                .AsSingle();
         }
     }
 }
