@@ -15,5 +15,5 @@ MonoBehaviour:
   Id: gold
   Name: Gold
   Reward: 100
-  DelaySeconds: 1000
+  DelaySeconds: 100
   Icon: {fileID: 21300000, guid: 8c0a4df28bc23435ebe368357a61bb78, type: 3}
