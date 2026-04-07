@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Scenes.GamePlay;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,8 +13,8 @@ namespace Scenes
 
         private void OnEnable()
         {
-            Player.HealthPoints = 3;
-            UpdateUI(Player.HealthPoints);
+            PlayerHealth.HealthPoints = 3;
+            UpdateUI(PlayerHealth.HealthPoints);
             Subcribe();
             
         }
@@ -25,13 +26,13 @@ namespace Scenes
 
         private void Subcribe()
         {
-            Player.OnHealthChanged += HealthChanged;
+            PlayerHealth.OnHealthChanged += HealthChanged;
             Debug.Log("Subscribe on HealthChanged");
         }
 
         private void Unsubcribe()
         {
-            Player.OnHealthChanged -= HealthChanged;
+            PlayerHealth.OnHealthChanged -= HealthChanged;
             Debug.Log("Unsubscribe on HealthChanged");
         }
         private void UpdateUI(int health)
@@ -58,7 +59,7 @@ namespace Scenes
         
         void HealthChanged()
         {
-            var health = Player.HealthPoints;
+            var health = PlayerHealth.HealthPoints;
             UpdateUI(health);
             Debug.Log("HealthBar - HealthChanged!");
         }

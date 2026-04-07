@@ -1,5 +1,4 @@
 using System;
-using DefaultNamespace;
 using Sound;
 using TMPro;
 using UnityEngine;
@@ -64,12 +63,12 @@ namespace Scenes.GamePlay
 
       void OnSubscribe()
       {
-         Player.OnPlayerWasDied += LoseGame;
+         PlayerHealth.OnPlayerWasDied += LoseGame;
       }
 
       void OnUnsubscribe()
       {
-         Player.OnPlayerWasDied -= LoseGame;
+         PlayerHealth.OnPlayerWasDied -= LoseGame;
       }
 
       void ExitFromGamePlay()

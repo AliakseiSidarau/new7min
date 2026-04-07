@@ -1,6 +1,4 @@
-﻿using DefaultNamespace;
-
-namespace Data
+﻿namespace Data
 {
     [System.Serializable]
     

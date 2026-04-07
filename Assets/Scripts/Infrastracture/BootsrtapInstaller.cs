@@ -1,5 +1,7 @@
+using System;
 using Data;
-using DefaultNamespace;
+using Infrastracture.SaveLoad;
+using Infrastracture.SaveLoad.Progress;
 using Scenes;
 using Sound;
 using UnityEngine;
@@ -13,8 +15,9 @@ namespace Infrastracture
         [SerializeField] private AudioService _audioServicePrefab;
         public override void InstallBindings()
         {
+            DiServiceBiding();
             AudioServiceBiding();
-            SaveServiceBiding();
+            SaveLoadServiceBiding();
             SceneManagerServiceBiding();
             BootstrapInitializeSystemBiding();
         }
@@ -25,15 +28,6 @@ namespace Infrastracture
                 .AsSingle();
             
             Debug.Log("Bootstrap biding was finished!");
-        }
-
-        void SaveServiceBiding()
-        {
-            Container.BindInterfacesAndSelfTo<SaveService>()
-                .AsSingle()
-                .NonLazy();
-            
-            Debug.Log("SaveService biding was finished!");
         }
 
         void SceneManagerServiceBiding()
@@ -52,6 +46,21 @@ namespace Infrastracture
                 .NonLazy();
             
             Debug.Log("AudioService biding was finished!");
+        }
+
+        void SaveLoadServiceBiding()
+        {
+            Container.Bind<IProgressService>().To<ProgressService>()
+                .AsSingle();
+            Container.Bind<ISaveLoadRegistry>().To<SaveLoadRegistry>()
+                .AsSingle();
+            Container.Bind<ISaveLoadService>().To<SaveLoadService>()
+                .AsSingle();
+        }
+
+        void DiServiceBiding()
+        {
+            Container.Bind<IDiService>().To<DiService>().AsSingle();
         }
     }
 }
