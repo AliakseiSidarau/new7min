@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Scenes.GamePlay
 {
@@ -23,23 +24,30 @@ namespace Scenes.GamePlay
 
         void Update()
         {
-            if (Input.touchCount > 0)
+            if (EventSystem.current.IsPointerOverGameObject())
             {
-                Touch touch = Input.GetTouch(0);
-                _positionMouse = touch.position;
-                _positionMouse.z = 2f;
+                return;
             }
-
             else
             {
-                _positionMouse = Input.mousePosition;
-                _positionMouse.z = 2f;
-            }
+                if (Input.touchCount > 0)
+                {
+                    Touch touch = Input.GetTouch(0);
+                    _positionMouse = touch.position;
+                    _positionMouse.z = 2f;
+                }
+
+                else
+                {
+                    _positionMouse = Input.mousePosition;
+                    _positionMouse.z = 2f;
+                }
         
-            if (Input.GetMouseButtonDown(0) && Time.timeScale != 0f && CanMakeNextWayPoint)
-            {
-                ClearWayPoints();
-                MakeWayPoints();
+                if (Input.GetMouseButtonDown(0) && Time.timeScale != 0f && CanMakeNextWayPoint)
+                {
+                    ClearWayPoints();
+                    MakeWayPoints();
+                }
             }
         }
     
