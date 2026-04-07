@@ -66,6 +66,7 @@ SpriteAtlas:
     - e391e870176b1461a9362d1df38e1df5: 21300000
     - 9aa6d0b0c1eb6412a865e9164ff4c03f: 21300000
     - e637d5a1c0b6a49fa84e3cb96f175760: 21300000
+    - 4221baf2906fb40dbaf199a58274d8c5: 21300000
     - 051602649fc894b68b05b8c06208d6d9: 21300000
     - 56591946eb526466b9be6cc2c57e1af6: 21300000
     - 08e066179a9f64ca8a563b3043f82cd2: 21300000
@@ -74,11 +75,13 @@ SpriteAtlas:
     - e3df8cdcab0be46478261c9f174f619d: 21300000
     - b7207f3e6a05c457da2a01ca6b2d476d: 21300000
     - 4b27e34fe18a14b6b89af802dab28098: 21300000
+    - 1ecf2c8fcef6d4eb0b87b2afd7a143a0: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: e391e870176b1461a9362d1df38e1df5, type: 3}
   - {fileID: 21300000, guid: 9aa6d0b0c1eb6412a865e9164ff4c03f, type: 3}
   - {fileID: 21300000, guid: e637d5a1c0b6a49fa84e3cb96f175760, type: 3}
+  - {fileID: 21300000, guid: 4221baf2906fb40dbaf199a58274d8c5, type: 3}
   - {fileID: 21300000, guid: 051602649fc894b68b05b8c06208d6d9, type: 3}
   - {fileID: 21300000, guid: 56591946eb526466b9be6cc2c57e1af6, type: 3}
   - {fileID: 21300000, guid: 08e066179a9f64ca8a563b3043f82cd2, type: 3}
@@ -87,10 +90,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e3df8cdcab0be46478261c9f174f619d, type: 3}
   - {fileID: 21300000, guid: b7207f3e6a05c457da2a01ca6b2d476d, type: 3}
   - {fileID: 21300000, guid: 4b27e34fe18a14b6b89af802dab28098, type: 3}
+  - {fileID: 21300000, guid: 1ecf2c8fcef6d4eb0b87b2afd7a143a0, type: 3}
   m_PackedSpriteNamesToIndex:
   - heart_full
   - heart_half
   - low_shield_64
+  - fuel
   - ship_32
   - half_shield_64
   - heart_empty
@@ -99,6 +104,7 @@ SpriteAtlas:
   - heart_low
   - diamond_16
   - full_shield_64
+  - rocket
   m_RenderDataMap: {}
   m_Tag: Sprtite_atlas
   m_IsVariant: 0
