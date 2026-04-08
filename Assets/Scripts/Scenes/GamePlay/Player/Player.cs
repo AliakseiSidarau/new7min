@@ -21,19 +21,19 @@ public class Player: MonoBehaviour
       get => _shieldPoints;
       set
       {
-         if (value >= 0 && value <= _shieldPoints)
+         if (value >= 0 )
          {
             _shieldPoints = value;
             if (_shieldPoints != 0)
             {
                _shieldPoints = value;
-               ShieldChanged.Invoke();
-               _isShieldActive = true;
+               ShieldChanged?.Invoke();
+               _isShieldActive = _shieldPoints > 0;
             }
          }
          else
          {
-            ShieldChanged.Invoke();
+            ShieldChanged?.Invoke();
             Debug.Log("ShieldPoints < 0, starships shield inactive!");
             _isShieldActive = false;
          }
