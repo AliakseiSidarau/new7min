@@ -28,5 +28,9 @@ public class GamePlayInstaller : MonoInstaller
         Container.Bind<InventoryWindow>()
             .FromInstance(InventoryWindow)
             .AsSingle();
+        
+        Container.Bind<IPlayerService>()
+            .To<PlayerService>()
+            .AsSingle();
     }
 }
