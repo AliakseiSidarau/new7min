@@ -5,10 +5,12 @@ using Zenject;
 
 public class PlayerCollisionController : MonoBehaviour
 {
+    [SerializeField] private PlayerHealth _playerHealth;
+    [SerializeField] private PlayerController _playerController;
+    
     private IAudioService _audioService;
     private DiamondSpawner _diamondSpawner;
     private GameObject _player;
-    [SerializeField] private PlayerHealth _playerHealth;
 
     [Inject]
     public void Construct(IAudioService audioService)
@@ -28,6 +30,7 @@ public class PlayerCollisionController : MonoBehaviour
         {
             _audioService.PlayClaim();
             _diamondSpawner.ChangeDiamondPosition();
+            _playerController.OnDiamondCollected();
             Counter.AddScore();
             Debug.Log("Collision - Diamond!");
         }

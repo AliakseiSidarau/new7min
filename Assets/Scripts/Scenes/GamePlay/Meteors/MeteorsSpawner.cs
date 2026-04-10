@@ -1,37 +1,33 @@
-using Unity.Mathematics;
 using UnityEngine;
-using Random = Unity.Mathematics.Random;
+using Zenject;
 
 namespace Scenes.GamePlay
 {
     public class MeteorsSpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject[] _meteors;
-        [SerializeField] private float _meteorsSpeed;
-        private Vector3 _startPosition;
-        private Vector3 _endPoint;
-        private Random _rnd;
+        [SerializeField] private Meteor meteorPrefab;
+        [SerializeField] private int count = 5;
+        [SerializeField] private float spawnRangeX = 8f;
+        [SerializeField] private float spawnRangeY = 5f;
+        
+        [Inject] private DiContainer _container;
 
-        public GameObject[] Meteors { get; set; }
-    
-    
-        void Start()
+        private void Start()
         {
-            _startPosition = new Vector3(0f,0f,0f);
-            _rnd = new Random(5);
-            MakeMetiorits();
+            SpawnMeteors();
         }
 
-        void MakeMetiorits()
+        private void SpawnMeteors()
         {
-            GameObject[] meteor = GameObject.FindGameObjectsWithTag("Meteor");
-            if(meteor.Length != _meteors.Length)
+            for (int i = 0; i < count; i++)
             {
-                foreach (GameObject meteors in _meteors)
-                {
-                    _startPosition = new Vector3((_rnd.NextFloat(-3,3)), (_rnd.NextFloat(-5,5)), 0f);
-                    Instantiate(meteors, _startPosition, quaternion.RotateZ(3));
-                }
+                Vector3 pos = new Vector3(
+                    Random.Range(-spawnRangeX, spawnRangeX),
+                    Random.Range(-spawnRangeY, spawnRangeY),
+                    0f
+                );
+
+                _container.InstantiatePrefab(meteorPrefab, pos, Quaternion.identity, null);
             }
         }
     }

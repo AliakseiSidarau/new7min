@@ -24,7 +24,10 @@ namespace Scenes.GamePlay
 
         public void ChangeDiamondPosition()
         {
-            _pos = new Vector3((_rnd.NextFloat(-(_camSizeW /2),(_camSizeW /2))), (_rnd.NextFloat(-(_camSizeH/2),(_camSizeH/2))), 0);
+            float x = UnityEngine.Random.Range(-_camSizeW / 2f, _camSizeW / 2f);
+            float y = UnityEngine.Random.Range(-_camSizeH / 2f, _camSizeH / 2f);
+
+            _pos = new Vector3(x, y, 0);
             _diamond.transform.position = _pos;
         }
 

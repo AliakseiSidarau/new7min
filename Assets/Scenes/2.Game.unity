@@ -572,13 +572,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bd0a3845f4e429e95f19773e28b59e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meteors:
-  - {fileID: 2217499735012253272, guid: 67e7dc9e02428481d9b4869a6a3d5bc9, type: 3}
-  - {fileID: 2217499735012253272, guid: 637cb9b59a395447c96719d54c1f7e02, type: 3}
-  - {fileID: 2217499735012253272, guid: 67e7dc9e02428481d9b4869a6a3d5bc9, type: 3}
-  - {fileID: 2217499735012253272, guid: 637cb9b59a395447c96719d54c1f7e02, type: 3}
-  - {fileID: 2217499735012253272, guid: 67e7dc9e02428481d9b4869a6a3d5bc9, type: 3}
-  _meteorsSpeed: 1
+  meteorPrefab: {fileID: 4989201268217019295, guid: 637cb9b59a395447c96719d54c1f7e02, type: 3}
+  count: 5
+  spawnRangeX: 8
+  spawnRangeY: 5
 --- !u!4 &412451921
 Transform:
   m_ObjectHideFlags: 0
@@ -761,6 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerHealth: {fileID: 445392584}
+  _playerController: {fileID: 789919130}
 --- !u!114 &445392583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1315,6 +1313,10 @@ MonoBehaviour:
   turnManager: {fileID: 2120899889}
   lineRenderer: {fileID: 789919131}
   moveMarker: {fileID: 1900163559}
+  diamond: {fileID: 9174359346316298918}
+  diamondSpawner: {fileID: 989933879}
+  collectDistance: 0.5
+  energyFromDiamond: 30
   arrivalThreshold: 0.05
   maxEnergyPerMove: 10
 --- !u!120 &789919131
@@ -4295,6 +4297,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8c16dd9d83794f3ab68d737e496d2d7, type: 3}
+--- !u!4 &9174359346316298918 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9111422172237666745, guid: e8c16dd9d83794f3ab68d737e496d2d7, type: 3}
+  m_PrefabInstance: {fileID: 9174359346316298917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

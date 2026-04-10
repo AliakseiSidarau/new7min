@@ -13,6 +13,10 @@ namespace Scenes.GamePlay
         [SerializeField] private TurnManager turnManager;
         [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private Transform moveMarker;
+        [SerializeField] private Transform diamond;
+        [SerializeField] private DiamondSpawner diamondSpawner;
+        [SerializeField] private float collectDistance = 0.5f;
+        [SerializeField] private float energyFromDiamond = 20f;
 
         [Header("Movement")]
         [SerializeField] private float arrivalThreshold = 0.05f;
@@ -177,6 +181,7 @@ namespace Scenes.GamePlay
             );
 
             RotateTowardsTarget();
+            // CheckDiamondCollection();
 
             if (Vector2.Distance(player.transform.position, _targetPosition) < arrivalThreshold)
             {
@@ -210,6 +215,34 @@ namespace Scenes.GamePlay
         {
             float pulse = 1f + Mathf.Sin(Time.time * 5f) * 0.2f;
             moveMarker.localScale = _baseScale * pulse;
+        }
+        
+        // private void CheckDiamondCollection()
+        // {
+        //     if (diamond == null) return;
+        //
+        //     float distance = Vector2.Distance(
+        //         player.transform.position,
+        //         diamond.position
+        //     );
+        //
+        //     if (distance <= collectDistance)
+        //     {
+        //         CollectDiamond();
+        //     }
+        // }
+        // private void CollectDiamond()
+        // {
+        //     Debug.Log("Diamond collected");
+        //
+        //     energy.Recharge(energyFromDiamond);
+        //
+        //     diamondSpawner.ChangeDiamondPosition();
+        // }
+        
+        public void OnDiamondCollected()
+        {
+            energy.Recharge(energyFromDiamond);
         }
     }
 }

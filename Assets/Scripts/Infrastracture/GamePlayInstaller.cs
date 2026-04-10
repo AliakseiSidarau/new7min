@@ -32,5 +32,9 @@ public class GamePlayInstaller : MonoInstaller
         Container.Bind<IPlayerService>()
             .To<PlayerService>()
             .AsSingle();
+        
+        Container.Bind<TurnManager>()
+            .FromComponentInHierarchy()
+            .AsSingle();
     }
 }
