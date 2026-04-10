@@ -26,7 +26,6 @@ namespace Scenes.GamePlay
                     Random.Range(-spawnRangeY, spawnRangeY),
                     0f
                 );
-
                 _container.InstantiatePrefab(meteorPrefab, pos, Quaternion.identity, null);
             }
         }
