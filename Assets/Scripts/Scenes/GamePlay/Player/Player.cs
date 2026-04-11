@@ -50,11 +50,11 @@ public class Player: MonoBehaviour
       }
    }
 
-   public void MoveToPoint(WayPointSpawner currentWaypoint, float Speed)
-   {
-      transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.Target().position, Speed * Time.deltaTime);
-      transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, Mathf.Atan2(currentWaypoint.Target().position.y - transform.position.y, currentWaypoint.Target().position.x - transform.position.x) * Mathf.Rad2Deg - 90);
-   }
+   // public void MoveToPoint(WayPointSpawner currentWaypoint, float Speed)
+   // {
+   //    transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.Target().position, Speed * Time.deltaTime);
+   //    transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, Mathf.Atan2(currentWaypoint.Target().position.y - transform.position.y, currentWaypoint.Target().position.x - transform.position.x) * Mathf.Rad2Deg - 90);
+   // }
 
    public void SpeedUp(float s)
    {

@@ -51,5 +51,10 @@ namespace Scenes.GamePlay
                 predictionLine.enabled = false;
             }
         }
+        
+        public void SetSpeed(float newSpeed)
+        {
+            speed = newSpeed;
+        }
     }
 }

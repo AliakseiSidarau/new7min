@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1338540268533402510}
   - component: {fileID: 1593665863326613798}
   - component: {fileID: 4989201268217019295}
-  - component: {fileID: 5079947332075985767}
+  - component: {fileID: 978236765182737901}
   m_Layer: 0
-  m_Name: MeteorSmall
+  m_Name: MeteorSmall2
   m_TagString: Meteor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0c88e2caf3b654d8899178b4f13912d5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6a76e617a49241b7a4556821db45c55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -235,8 +235,8 @@ MonoBehaviour:
   speed: 0.5
   predictionLine: {fileID: 1593665863326613798}
   predictionTime: 1.5
---- !u!58 &5079947332075985767
-CircleCollider2D:
+--- !u!68 &978236765182737901
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -268,8 +268,34 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 3.2
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 4.3761263, y: -4.7271223}
+  - {x: 1.1329782, y: -3.1919935}
+  - {x: 0.70467913, y: -3.7319238}
+  - {x: -0.4487269, y: -3.970662}
+  - {x: -1.9524875, y: -3.1877453}
+  - {x: -3.4049573, y: -1.5402542}
+  - {x: -4.8481073, y: 0.7058524}
+  - {x: -5.0056195, y: 2.3160343}
+  - {x: -4.4640584, y: 3.8593814}
+  - {x: -4.220546, y: 4.3854017}
+  - {x: -2.976024, y: 5.3153996}
+  - {x: -1.7777128, y: 5.6159835}
+  - {x: -0.93604505, y: 5.2405114}
+  - {x: -0.3934681, y: 4.20541}
+  - {x: 0.5422058, y: 4.266589}
+  - {x: 1.2883079, y: 3.0838158}
+  - {x: 1.8387654, y: 2.3427951}
+  - {x: 2.8886669, y: 1.8937703}
+  - {x: 3.5278995, y: -0.082749344}
+  - {x: 4.1388454, y: -1.4102488}
+  - {x: 2.6493273, y: -1.1253517}
+  - {x: 4.740519, y: -4.3016644}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &6885337376495815360
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +369,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 0c88e2caf3b654d8899178b4f13912d5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6a76e617a49241b7a4556821db45c55, type: 3}
   m_Color: {r: 0.8773585, g: 0.5494766, b: 0.45937166, a: 0.4}
   m_FlipX: 0
   m_FlipY: 0

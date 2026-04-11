@@ -35,10 +35,10 @@ namespace Scenes.GamePlay
             _player.ShieldPoints -= damage;
         }
 
-        public void MoveTo(WayPointSpawner wayPoint)
-        {
-            _player.MoveToPoint(wayPoint, _player.Speed);
-        }
+        // public void MoveTo(WayPointSpawner wayPoint)
+        // {
+        //     _player.MoveToPoint(wayPoint, _player.Speed);
+        // }
         
         public event Action ShieldChanged
         {
