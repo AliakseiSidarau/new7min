@@ -4,7 +4,6 @@ using UnityEngine;
 public class RadiusRenderer : MonoBehaviour
 {
     public int segments = 50;
-    public float radius = 5f;
     public Transform target;
 
     private LineRenderer line;

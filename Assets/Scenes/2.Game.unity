@@ -531,8 +531,14 @@ MonoBehaviour:
   - {fileID: 4989201268217019295, guid: 637cb9b59a395447c96719d54c1f7e02, type: 3}
   - {fileID: 4989201268217019295, guid: c98d5e6493ca840cca189fa20b3c7d47, type: 3}
   - {fileID: 4989201268217019295, guid: c7b8e0930b2e349f7ad90e50937b0181, type: 3}
-  count: 15
-  spawnRadius: 12
+  spawnInterval: 1.5
+  maxMeteors: 12
+  spawnRadius: 14
+  despawnDistance: 28
+  spaceDrift: {x: 0.8, y: 0.2}
+  dangerChance: 0.15
+  minScale: 0.03
+  maxScale: 0.3
   player: {fileID: 1677669026}
 --- !u!4 &412451921
 Transform:
@@ -1619,8 +1625,11 @@ MonoBehaviour:
   diamondSpawner: {fileID: 989933879}
   collectDistance: 0.5
   energyFromDiamond: 30
+  drawSphereRadius: 0
   arrivalThreshold: 0.05
   maxEnergyPerMove: 10
+  rotationSpeed: 0
+  maneuverability: 0
 --- !u!120 &789919131
 LineRenderer:
   serializedVersion: 2
@@ -2602,7 +2611,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segments: 50
-  radius: 5
   target: {fileID: 1677669026}
 --- !u!4 &1291057931
 Transform:

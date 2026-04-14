@@ -151,10 +151,10 @@ namespace Scenes.GamePlay
 
             if (_hasSelection)
             {
-                Gizmos.color = Color.yellow;
+                Gizmos.color = Color.red;
                 Gizmos.DrawLine(player.transform.position, _selectedPosition);
 
-                Gizmos.color = Color.green;
+                Gizmos.color = Color.grey;
                 Gizmos.DrawLine(player.transform.position, _previewPosition);
 
                 Gizmos.DrawSphere(_previewPosition, drawSphereRadius);
