@@ -15,12 +15,15 @@ namespace Scenes.GamePlay
         [SerializeField] private Transform moveMarker;
         [SerializeField] private Transform diamond;
         [SerializeField] private DiamondSpawner diamondSpawner;
-        [SerializeField] private float collectDistance = 0.5f;
-        [SerializeField] private float energyFromDiamond = 20f;
+        [SerializeField] private float collectDistance;
+        [SerializeField] private float energyFromDiamond;
+        [SerializeField] private float drawSphereRadius; 
 
         [Header("Movement")]
-        [SerializeField] private float arrivalThreshold = 0.05f;
-        [SerializeField] public float maxEnergyPerMove = 5f;
+        [SerializeField] private float arrivalThreshold;
+        [SerializeField] public float maxEnergyPerMove;
+        [SerializeField] private float rotationSpeed;
+        [SerializeField] private float maneuverability;
         
         private Vector2 _selectedPosition;
         private bool _hasSelection;
@@ -64,8 +67,6 @@ namespace Scenes.GamePlay
             if (Input.GetMouseButtonDown(0))
             {
                 Vector2 worldPos = cam.ScreenToWorldPoint(Input.mousePosition);
-
-                // просто выбираем точку, НЕ двигаемся
                 _selectedPosition = worldPos;
                 _hasSelection = true;
             }
@@ -92,8 +93,7 @@ namespace Scenes.GamePlay
             else
                 lineRenderer.startColor = lineRenderer.endColor = Color.yellow;
         }
-
-        // ВЫЗЫВАЕТСЯ КНОПКОЙ UI
+        
         public void ConfirmMove()
         {
             if (!_hasSelection)
@@ -101,16 +101,11 @@ namespace Scenes.GamePlay
 
             Vector2 currentPos = player.transform.position;
             float fullCost = energy.CalculateCost(currentPos, _selectedPosition);
-
-            // сколько расстояния можем пройти на текущей энергии
+            
             float usableEnergy = Mathf.Min(energy.currentEnergy, maxEnergyPerMove);
             float maxDistance = usableEnergy / energy.costPerUnit;
-            float distanceToTarget = Vector2.Distance(currentPos, _selectedPosition);
 
-            // если энергии хватает — летим в точку
-            float usableEnergyConfirm = Mathf.Min(energy.currentEnergy, maxEnergyPerMove);
-
-            if (fullCost <= usableEnergyConfirm)
+            if (fullCost <= usableEnergy)
             {
                 float cost = fullCost;
                 energy.SpendEnergy(cost);
@@ -118,12 +113,9 @@ namespace Scenes.GamePlay
             }
             else
             {
-                // иначе летим максимально возможное расстояние
                 Vector2 direction = (_selectedPosition - currentPos).normalized;
                 _targetPosition = currentPos + direction * maxDistance;
-
-                // тратим ВСЮ энергию
-                energy.SpendEnergy(usableEnergyConfirm);
+                energy.SpendEnergy(usableEnergy);
             }
 
             _isMoving = true;
@@ -165,7 +157,7 @@ namespace Scenes.GamePlay
                 Gizmos.color = Color.green;
                 Gizmos.DrawLine(player.transform.position, _previewPosition);
 
-                Gizmos.DrawSphere(_previewPosition, 0.2f);
+                Gizmos.DrawSphere(_previewPosition, drawSphereRadius);
             }
         }
 
@@ -174,32 +166,47 @@ namespace Scenes.GamePlay
             if (!_isMoving)
                 return;
 
-            player.transform.position = Vector2.MoveTowards(
-                player.transform.position,
-                _targetPosition,
-                player.Speed * Time.deltaTime
-            );
+            HandleSteering();
+            
+            player.transform.position += player.transform.up * player.Speed * Time.deltaTime;
 
-            RotateTowardsTarget();
-            // CheckDiamondCollection();
+            float distance = Vector2.Distance(player.transform.position, _targetPosition);
 
-            if (Vector2.Distance(player.transform.position, _targetPosition) < arrivalThreshold)
+            if (distance < arrivalThreshold)
             {
                 _isMoving = false;
                 turnManager.EnterPlanning();
             }
         }
-
-        private void RotateTowardsTarget()
+        
+        private void HandleSteering()
         {
-            Vector2 direction = _targetPosition - (Vector2)player.transform.position;
+            Vector2 directionToTarget = _targetPosition - (Vector2)player.transform.position;
 
-            if (direction.sqrMagnitude < 0.001f)
+            if (directionToTarget.sqrMagnitude < 0.001f)
                 return;
 
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-            player.transform.rotation = Quaternion.Euler(0, 0, angle);
+            float targetAngle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg - 90f;
+
+            float currentAngle = player.transform.eulerAngles.z;
+
+            float newAngle = Mathf.MoveTowardsAngle(
+                currentAngle,
+                targetAngle,
+                GetRotationSpeed() * Time.deltaTime
+            );
+
+            player.transform.rotation = Quaternion.Euler(0, 0, newAngle);
         }
+        
+        private float GetRotationSpeed()
+        {
+            float min = 60f;   // тяжёлый корабль
+            float max = 360f;  // супер манёвренный
+
+            return Mathf.Lerp(min, max, maneuverability);
+        }
+        
         private void UpdateMarker()
         {
             if (!_hasSelection)
@@ -216,29 +223,6 @@ namespace Scenes.GamePlay
             float pulse = 1f + Mathf.Sin(Time.time * 5f) * 0.2f;
             moveMarker.localScale = _baseScale * pulse;
         }
-        
-        // private void CheckDiamondCollection()
-        // {
-        //     if (diamond == null) return;
-        //
-        //     float distance = Vector2.Distance(
-        //         player.transform.position,
-        //         diamond.position
-        //     );
-        //
-        //     if (distance <= collectDistance)
-        //     {
-        //         CollectDiamond();
-        //     }
-        // }
-        // private void CollectDiamond()
-        // {
-        //     Debug.Log("Diamond collected");
-        //
-        //     energy.Recharge(energyFromDiamond);
-        //
-        //     diamondSpawner.ChangeDiamondPosition();
-        // }
         
         public void OnDiamondCollected()
         {
