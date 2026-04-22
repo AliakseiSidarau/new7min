@@ -13,6 +13,7 @@ namespace Infrastracture
     public class BootsrtapInstaller: MonoInstaller
     {
         [SerializeField] private AudioService _audioServicePrefab;
+        [SerializeField] private GameStats gameStats;
         public override void InstallBindings()
         {
             DiServiceBiding();
@@ -20,6 +21,7 @@ namespace Infrastracture
             SaveLoadServiceBiding();
             SceneManagerServiceBiding();
             BootstrapInitializeSystemBiding();
+            StatsServiceBiding();
         }
 
         void BootstrapInitializeSystemBiding()
@@ -61,6 +63,16 @@ namespace Infrastracture
         void DiServiceBiding()
         {
             Container.Bind<IDiService>().To<DiService>().AsSingle();
+        }
+
+        void StatsServiceBiding()
+        {
+            Container.Bind<StatsService>()
+                .AsSingle()
+                .NonLazy();
+            Container.Bind<GameStats>()
+                .FromInstance(gameStats)
+                .AsSingle();
         }
     }
 }

@@ -1,5 +1,6 @@
 using Scenes.GamePlay;
 using UnityEngine;
+using Zenject;
 
 public class RadiusRenderer : MonoBehaviour
 {
@@ -7,6 +8,10 @@ public class RadiusRenderer : MonoBehaviour
     public Transform target;
 
     private LineRenderer line;
+    
+    [Inject] private EnergySystem _energy;
+    [Inject] private PlayerController _playerController;
+    [Inject] private StatsService _statsService;
 
     private void Awake()
     {
@@ -20,11 +25,11 @@ public class RadiusRenderer : MonoBehaviour
         if (target == null) return;
 
         float usableEnergy = Mathf.Min(
-            FindObjectOfType<EnergySystem>().currentEnergy,
-            FindObjectOfType<PlayerController>().maxEnergyPerMove
+            _energy.currentEnergy,
+            _statsService.Stats.maxEnergyPerMove
         );
 
-        float actualRadius = usableEnergy / FindObjectOfType<EnergySystem>().costPerUnit;
+        float actualRadius = usableEnergy / _energy.costPerUnit;
 
         for (int i = 0; i <= segments; i++)
         {

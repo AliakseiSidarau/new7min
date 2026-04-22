@@ -21,8 +21,12 @@ namespace Scenes.GamePlay.Upgrade
             var result = new List<CardsModel>();
             var usedTypes = new HashSet<UpgradeType>();
 
-            while (result.Count < 3)
+            int maxIterations = 10;
+            int iterations = 0;
+
+            while (result.Count < 3 && iterations < maxIterations)
             {
+                iterations++;
                 var card = RandomCard();
 
                 if (usedTypes.Contains(card.Type))
@@ -37,8 +41,8 @@ namespace Scenes.GamePlay.Upgrade
 
         private CardsModel RandomCard()
         {
-            var values = System.Enum.GetValues(typeof(UpgradeType));
-            var type = (UpgradeType)values.GetValue(Random.Range(0, values.Length));
+            var values = (UpgradeType[])System.Enum.GetValues(typeof(UpgradeType));
+            var type = values[Random.Range(0, values.Length)];
             float value = type switch
             {
                 UpgradeType.MaxEnergy => 10f,

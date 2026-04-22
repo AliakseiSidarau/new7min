@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Zenject;
 
 namespace Scenes.GamePlay
 {
@@ -15,15 +16,6 @@ namespace Scenes.GamePlay
         [SerializeField] private Transform moveMarker;
         [SerializeField] private Transform diamond;
         [SerializeField] private DiamondSpawner diamondSpawner;
-        [SerializeField] private float collectDistance;
-        [SerializeField] private float energyFromDiamond;
-        [SerializeField] private float drawSphereRadius; 
-
-        [Header("Movement")]
-        [SerializeField] private float arrivalThreshold;
-        [SerializeField] public float maxEnergyPerMove;
-        [SerializeField] private float rotationSpeed;
-        [SerializeField] private float maneuverability;
         
         private Vector2 _selectedPosition;
         private bool _hasSelection;
@@ -33,8 +25,13 @@ namespace Scenes.GamePlay
         private bool _isMoving;
         private Vector2 _baseScale;
 
+        [Inject] private StatsService _statsService;
+        [Inject] private GameStats _config;
+
         private void Start()
         {
+            _statsService.Initialize(_config);
+            
             if (cam == null)
                 cam = Camera.main;
 
@@ -74,6 +71,7 @@ namespace Scenes.GamePlay
         
         private void UpdateLine()
         {
+            var stats = _statsService.Stats;
             if (!_hasSelection)
             {
                 lineRenderer.enabled = false;
@@ -86,7 +84,7 @@ namespace Scenes.GamePlay
             lineRenderer.SetPosition(1, _previewPosition);
 
             float distanceToTarget = Vector2.Distance(player.transform.position, _selectedPosition);
-            float maxDistance = Mathf.Min(energy.currentEnergy, maxEnergyPerMove) / energy.costPerUnit;
+            float maxDistance = Mathf.Min(energy.currentEnergy, stats.maxEnergyPerMove) / energy.costPerUnit;
 
             if (distanceToTarget <= maxDistance)
                 lineRenderer.startColor = lineRenderer.endColor = Color.green;
@@ -96,13 +94,14 @@ namespace Scenes.GamePlay
         
         public void ConfirmMove()
         {
+            var stats = _statsService.Stats;
             if (!_hasSelection)
                 return;
 
             Vector2 currentPos = player.transform.position;
             float fullCost = energy.CalculateCost(currentPos, _selectedPosition);
             
-            float usableEnergy = Mathf.Min(energy.currentEnergy, maxEnergyPerMove);
+            float usableEnergy = Mathf.Min(energy.currentEnergy, stats.maxEnergyPerMove);
             float maxDistance = usableEnergy / energy.costPerUnit;
 
             if (fullCost <= usableEnergy)
@@ -126,11 +125,12 @@ namespace Scenes.GamePlay
 
         private void CalculatePreview()
         {
+            var stats = _statsService.Stats;
             if (!_hasSelection)
                 return;
 
             Vector2 currentPos = player.transform.position;
-            float usableEnergy = Mathf.Min(energy.currentEnergy, maxEnergyPerMove);
+            float usableEnergy = Mathf.Min(energy.currentEnergy, stats.maxEnergyPerMove);
             float maxDistance = usableEnergy / energy.costPerUnit;
             float distanceToTarget = Vector2.Distance(currentPos, _selectedPosition);
 
@@ -147,6 +147,7 @@ namespace Scenes.GamePlay
 
         private void OnDrawGizmos()
         {
+            var stats = _statsService.Stats;
             if (player == null) return;
 
             if (_hasSelection)
@@ -157,22 +158,23 @@ namespace Scenes.GamePlay
                 Gizmos.color = Color.grey;
                 Gizmos.DrawLine(player.transform.position, _previewPosition);
 
-                Gizmos.DrawSphere(_previewPosition, drawSphereRadius);
+                Gizmos.DrawSphere(_previewPosition, stats.drawSphereRadius);
             }
         }
 
         private void HandleMovement()
         {
+            var stats = _statsService.Stats;
             if (!_isMoving)
                 return;
 
             HandleSteering();
             
-            player.transform.position += player.transform.up * player.Speed * Time.deltaTime;
+            player.transform.position += player.transform.up * (stats.speed * Time.deltaTime);
 
             float distance = Vector2.Distance(player.transform.position, _targetPosition);
 
-            if (distance < arrivalThreshold)
+            if (distance < stats.arrivalThreshold)
             {
                 _isMoving = false;
                 turnManager.EnterPlanning();
@@ -201,10 +203,11 @@ namespace Scenes.GamePlay
         
         private float GetRotationSpeed()
         {
+            var stats = _statsService.Stats;
             float min = 60f;   // тяжёлый корабль
             float max = 360f;  // супер манёвренный
 
-            return Mathf.Lerp(min, max, maneuverability);
+            return Mathf.Lerp(min, max, stats.maneuverability);
         }
         
         private void UpdateMarker()
@@ -226,7 +229,8 @@ namespace Scenes.GamePlay
         
         public void OnDiamondCollected()
         {
-            energy.Recharge(energyFromDiamond);
+            var stats = _statsService.Stats;
+            energy.Recharge(stats.energyPerDiamond);
         }
     }
 }
