@@ -5,20 +5,18 @@ namespace Scenes.GamePlay.Upgrade
 {
     public class UpgradeService
     {
-        private readonly IEventBus _eventBus;
         private readonly ShipModel _ship;
 
-        private CardsModel _selected;
+        private UpgradeCardModel _selected;
 
-        public UpgradeService(IEventBus eventBus, ShipModel ship)
+        public UpgradeService(ShipModel ship)
         {
-            _eventBus = eventBus;
             _ship = ship;
         }
 
-        public List<CardsModel> GenerateCards()
+        public List<UpgradeCardModel> GenerateCards()
         {
-            var result = new List<CardsModel>();
+            var result = new List<UpgradeCardModel>();
             var usedTypes = new HashSet<UpgradeType>();
 
             int maxIterations = 10;
@@ -39,7 +37,7 @@ namespace Scenes.GamePlay.Upgrade
             return result;
         }
 
-        private CardsModel RandomCard()
+        private UpgradeCardModel RandomCard()
         {
             var values = (UpgradeType[])System.Enum.GetValues(typeof(UpgradeType));
             var type = values[Random.Range(0, values.Length)];
@@ -53,11 +51,11 @@ namespace Scenes.GamePlay.Upgrade
                 _ => 1f
             };
 
-            return new CardsModel(type, value);
+            return new UpgradeCardModel(type, value);
         }
-        public void Select(CardsModel card)
+        public void Select(UpgradeCardModel upgradeCard)
         {
-            _selected = card;
+            _selected = upgradeCard;
         }
 
         public void Confirm()
@@ -66,8 +64,6 @@ namespace Scenes.GamePlay.Upgrade
                 return;
 
             _selected.Apply(_ship);
-
-            _eventBus.RaiseEvent(new UpgradeAppliedSignal());
 
             _selected = null;
         }

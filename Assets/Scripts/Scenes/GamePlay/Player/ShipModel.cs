@@ -2,9 +2,12 @@ namespace Scenes.GamePlay
 {
     public class ShipModel
     {
-        public int Attack;
-        public int Defense;
-        public int Energy;
-        public int Speed;
+        public float Speed;
+        public float MaxEnergy;
+        public float Maneuverability;
+        public float RotationSpeed;
+        public float MaxEnergyPerMove;
+        public float Shield;
+        public float WeaponPower;
     }
 }

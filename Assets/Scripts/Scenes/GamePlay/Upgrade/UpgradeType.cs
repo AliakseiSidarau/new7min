@@ -6,6 +6,8 @@ namespace Scenes.GamePlay.Upgrade
         Speed,
         MaxEnergyPerMove,
         RotationSpeed,
-        Maneuverability
+        Maneuverability,
+        Shield,
+        WeaponPower
     }
 }

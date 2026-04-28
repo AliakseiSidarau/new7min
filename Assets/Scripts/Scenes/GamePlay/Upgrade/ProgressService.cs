@@ -1,27 +1,33 @@
+using UnityEngine;
+
 namespace Scenes.GamePlay.Upgrade
 {
     public class ProgressService
     {
-        private readonly IEventBus _eventBus;
         private readonly StatsService _stats;
+        private readonly UpgradeService _upgradeService;
+        private readonly UpgradeView _upgradeView;
 
-        private int _diamondCollected;
+        private int _diamondsCollected;
 
-        public ProgressService(IEventBus eventBus, StatsService stats)
+        public ProgressService(StatsService stats, UpgradeService upgradeService, UpgradeView upgradeView)
         {
-            _eventBus = eventBus;
             _stats = stats;
+            _upgradeService = upgradeService;
+            _upgradeView = upgradeView;
         }
 
         public void AddDiamond()
         {
-            _diamondCollected++;
+            _diamondsCollected++;
 
-            if (_diamondCollected >= _stats.Stats.diamondForUpgrade)
+            if (_diamondsCollected >= _stats.Stats.diamondForUpgrade)
             {
-                _diamondCollected = 0;
+                _diamondsCollected = 0;
 
-                _eventBus.RaiseEvent(new ShowUpgradeSignal());
+                var cards = _upgradeService.GenerateCards();
+                _upgradeView.Show(cards);
+                Time.timeScale = 0f;
             }
         }
     }

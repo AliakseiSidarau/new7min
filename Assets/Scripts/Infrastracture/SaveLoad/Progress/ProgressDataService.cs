@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Infrastracture.SaveLoad.Progress
 {
-    public class ProgressService: IProgressService
+    public class ProgressDataService: IProgressDataService
     {
         public const string ProgressKey = "Progress";
         public PlayerProgress Progress { get; private set; }

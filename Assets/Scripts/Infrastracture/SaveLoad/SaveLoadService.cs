@@ -5,12 +5,12 @@ namespace Infrastracture.SaveLoad
 {
     public class SaveLoadService: ISaveLoadService
     {
-        private readonly IProgressService _progress;
+        private readonly IProgressDataService _progressData;
         private readonly ISaveLoadRegistry _registry;
 
-        public SaveLoadService(IProgressService progress, ISaveLoadRegistry registry)
+        public SaveLoadService(IProgressDataService progressData, ISaveLoadRegistry registry)
         {
-            _progress = progress;
+            _progressData = progressData;
             _registry = registry;
         }
 
@@ -18,19 +18,19 @@ namespace Infrastracture.SaveLoad
         {
             foreach (ISaveLoad saveLoad in _registry.GetSaveLoadServices())
             {
-                saveLoad.Save(_progress.Progress);
+                saveLoad.Save(_progressData.Progress);
             }
             Debug.Log("Saving Progress to PlayerPrefs...");
-            _progress.SaveProgress();
+            _progressData.SaveProgress();
         }
 
         public void Load()
         {
-            if (_progress.HasLoadProgress)
+            if (_progressData.HasLoadProgress)
             {
                 foreach (ISaveLoad saveLoad in _registry.GetSaveLoadServices())
                 {
-                    saveLoad.Load(_progress.Progress);
+                    saveLoad.Load(_progressData.Progress);
                 }
             }
             else

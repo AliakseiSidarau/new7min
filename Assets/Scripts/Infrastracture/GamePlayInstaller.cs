@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Scenes.GamePlay;
+using Scenes.GamePlay.Upgrade;
 using Scenes.Inventory;
 using UnityEngine;
 using Zenject;
@@ -36,5 +37,7 @@ public class GamePlayInstaller : MonoInstaller
         Container.Bind<TurnManager>()
             .FromComponentInHierarchy()
             .AsSingle();
+        
+        
     }
 }

@@ -10,7 +10,6 @@ public class RadiusRenderer : MonoBehaviour
     private LineRenderer line;
     
     [Inject] private EnergySystem _energy;
-    [Inject] private PlayerController _playerController;
     [Inject] private StatsService _statsService;
 
     private void Awake()
@@ -22,7 +21,12 @@ public class RadiusRenderer : MonoBehaviour
 
     private void Update()
     {
-        if (target == null) return;
+        if (target == null || line == null) return;
+
+        if (_energy == null || _statsService == null || _statsService.Stats == null)
+        {
+            return;
+        }
 
         float usableEnergy = Mathf.Min(
             _energy.currentEnergy,

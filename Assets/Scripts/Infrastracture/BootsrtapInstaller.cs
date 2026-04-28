@@ -52,7 +52,7 @@ namespace Infrastracture
 
         void SaveLoadServiceBiding()
         {
-            Container.Bind<IProgressService>().To<ProgressService>()
+            Container.Bind<IProgressDataService>().To<ProgressDataService>()
                 .AsSingle();
             Container.Bind<ISaveLoadRegistry>().To<SaveLoadRegistry>()
                 .AsSingle();

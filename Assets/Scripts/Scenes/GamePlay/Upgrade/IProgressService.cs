@@ -1,7 +1,6 @@
 namespace Scenes.GamePlay.Upgrade
 {
-    public class UpgradeSelectedSignal
+    public class IProgressService
     {
-        
     }
 }

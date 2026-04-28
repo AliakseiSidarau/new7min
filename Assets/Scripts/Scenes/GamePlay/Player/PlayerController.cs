@@ -24,14 +24,20 @@ namespace Scenes.GamePlay
         private Vector2 _previewPosition;
         private bool _isMoving;
         private Vector2 _baseScale;
+        private StatsService _statsService;
+        private GameStats _config;
 
-        [Inject] private StatsService _statsService;
-        [Inject] private GameStats _config;
+        [Inject]
+        public void Construct(StatsService statsService, GameStats config)
+        {
+            _statsService = statsService;
+            _config = config;
+            
+            _statsService.Initialize(_config);
+        }
 
         private void Start()
         {
-            _statsService.Initialize(_config);
-            
             if (cam == null)
                 cam = Camera.main;
 
@@ -71,6 +77,11 @@ namespace Scenes.GamePlay
         
         private void UpdateLine()
         {
+            if (_statsService == null || _statsService.Stats == null)
+            {
+                lineRenderer.enabled = false;
+                return;
+            }
             var stats = _statsService.Stats;
             if (!_hasSelection)
             {
@@ -125,6 +136,23 @@ namespace Scenes.GamePlay
 
         private void CalculatePreview()
         {
+            if (_statsService == null)
+            {
+                Debug.LogError("StatsService NULL");
+                return;
+            }
+
+            if (_statsService.Stats == null)
+            {
+                Debug.LogError("Stats NULL");
+                return;
+            }
+
+            if (player == null)
+            {
+                Debug.LogError("Player NULL");
+                return;
+            }
             var stats = _statsService.Stats;
             if (!_hasSelection)
                 return;
@@ -147,8 +175,10 @@ namespace Scenes.GamePlay
 
         private void OnDrawGizmos()
         {
+            if (_statsService == null || _statsService.Stats == null || player == null)
+                return;
+
             var stats = _statsService.Stats;
-            if (player == null) return;
 
             if (_hasSelection)
             {
@@ -164,6 +194,9 @@ namespace Scenes.GamePlay
 
         private void HandleMovement()
         {
+            if (_statsService == null || _statsService.Stats == null)
+                return;
+
             var stats = _statsService.Stats;
             if (!_isMoving)
                 return;
@@ -203,6 +236,9 @@ namespace Scenes.GamePlay
         
         private float GetRotationSpeed()
         {
+            if (_statsService == null || _statsService.Stats == null)
+                return 0f;
+
             var stats = _statsService.Stats;
             float min = 60f;   // тяжёлый корабль
             float max = 360f;  // супер манёвренный
@@ -234,4 +270,3 @@ namespace Scenes.GamePlay
         }
     }
 }
-

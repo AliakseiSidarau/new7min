@@ -5,16 +5,16 @@ namespace Infrastracture
 {
     public class SaveLoadInitSystem: IInitializable
     {
-        private readonly IProgressService _progress;
+        private readonly IProgressDataService _progressData;
 
-        public SaveLoadInitSystem(IProgressService progress)
+        public SaveLoadInitSystem(IProgressDataService progressData)
         {
-            _progress = progress;
+            _progressData = progressData;
         }
 
         public void Initialize()
         {
-            _progress.LoadProgressOrInitNew();
+            _progressData.LoadProgressOrInitNew();
         }
     }
 }
