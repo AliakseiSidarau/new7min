@@ -7,6 +7,7 @@ namespace Scenes.GamePlay
     {
         [SerializeField] private TMP_Text _counterText;
         [SerializeField] private TMP_Text _bestScoreText;
+        [SerializeField] private int _needScoresForUpgrade;
         private int _currentScore;
         private int _bestScore;
         private bool _upgradeTriggered;
@@ -34,15 +35,12 @@ namespace Scenes.GamePlay
         {
             _counterText.text = Counter.Score.ToString();
             _currentScore = Counter.ReturnScore();
-            if (!_upgradeTriggered && _currentScore >= 3)
+            if (!_upgradeTriggered && _currentScore >= _needScoresForUpgrade)
             {
                 _upgradeTriggered = true;
-
-                // TODO: replace with your EventBus
+                
                 Debug.Log("Trigger Upgrade Window");
-
-                // Example:
-                // _eventBus.RaiseEvent(new ShowUpgradeSignal());
+                
             }
             BestScore = GetBest(_currentScore);
             _bestScoreText.text = BestScore.ToString();
