@@ -4,7 +4,7 @@ namespace DefaultNamespace
 {
     public class AlienSensors: MonoBehaviour
     {
-        [SerializeField] private float detectionRadius = 6f;
+        [SerializeField] private float detectionRadius = 5f;
         [SerializeField] private LayerMask playerLayer;
 
         public Transform DetectPlayer()

@@ -6,9 +6,9 @@ namespace DefaultNamespace
 {
     public class AlienShipController: MonoBehaviour
     {
-        [SerializeField] private float speed = 1.8f;
+        [SerializeField] private float speed = 1f;
         [SerializeField] private float attackDistance = 0.3f;
-        [SerializeField] private float chaseDistance = 3.5f;
+        [SerializeField] private float chaseDistance = 4f;
         [SerializeField] private float rotationRadius = 5f;
         [SerializeField] private float rotationSpeed = 5f;
         
