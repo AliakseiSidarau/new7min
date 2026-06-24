@@ -50,5 +50,19 @@ namespace Infrastracture.SaveLoad.Progress
             Debug.Log($"Loaded Progress: {JsonUtility.ToJson(Progress)}");
             return Progress;
         }
+
+        public PlayerProgress ResetProgress()
+        {
+            var json = PlayerPrefs.GetString(ProgressKey, string.Empty);
+
+            if (string.IsNullOrEmpty(json))
+            {
+                Debug.LogWarning("No progress data found! ");
+                Debug.LogWarning("Creating new progress");
+                return CreateNewProgress();
+            }
+            PlayerPrefs.DeleteKey(ProgressKey);
+            return CreateNewProgress();
+        }
     }
 }

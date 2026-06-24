@@ -41,7 +41,13 @@ namespace Infrastracture.SaveLoad
 
         public void Reset()
         {
-            
+            if (_progress.HasLoadProgress)
+            {
+                foreach (ISaveLoad saveLoad in _registry.GetSaveLoadServices())
+                {
+                    saveLoad.Reset(_progress.Progress);
+                }
+            }
         }
     }
 }

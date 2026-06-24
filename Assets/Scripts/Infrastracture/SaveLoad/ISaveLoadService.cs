@@ -6,5 +6,6 @@ namespace Infrastracture.SaveLoad
     {
         void Load();
         void Save();
+        void Reset();
     }
 }
