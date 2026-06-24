@@ -48,6 +48,10 @@ namespace Infrastracture.SaveLoad
                     saveLoad.Reset(_progress.Progress);
                 }
             }
+			else
+            {
+                Debug.LogWarning("No Actual ProgressData");
+            }
         }
     }
 }

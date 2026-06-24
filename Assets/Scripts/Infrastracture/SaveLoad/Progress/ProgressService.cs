@@ -62,6 +62,7 @@ namespace Infrastracture.SaveLoad.Progress
                 return CreateNewProgress();
             }
             PlayerPrefs.DeleteKey(ProgressKey);
+			PlayerPrefs.Save();
             return CreateNewProgress();
         }
     }
