@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -42,8 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
-  m_GIWorkflowMode: 1
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -66,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -319,6 +316,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -852,12 +850,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 425890300}
     m_Modifications:
     - target: {fileID: 3596228180643558917, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
+      propertyPath: m_text
+      value: Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596228180643558917, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
       propertyPath: m_fontSize
-      value: 62.1
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 3596228180643558917, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596228180643558917, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 3596228180750696088, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
       propertyPath: m_AnchorMax.y
@@ -949,11 +955,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4090984721806521928, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
       propertyPath: m_text
-      value: StarShip
+      value: VoidShift
       objectReference: {fileID: 0}
     - target: {fileID: 4090984721806521928, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
       propertyPath: m_fontSize
       value: 106
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090984721806521928, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090984721806521928, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.037246227
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090984721806521928, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090984721806521928, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4090984721806521928, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
       propertyPath: m_fontSizeBase
@@ -962,6 +984,14 @@ PrefabInstance:
     - target: {fileID: 4090984721806521928, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
       propertyPath: m_enableAutoSizing
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090984721806521928, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278780159
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090984721806521928, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 5295820540558322915, guid: 84c4c544c03404844859d7b0f039f055, type: 3}
       propertyPath: m_Pivot.x

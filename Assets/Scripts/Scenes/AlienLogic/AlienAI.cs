@@ -25,8 +25,8 @@ namespace DefaultNamespace
         }
 
         private void Update()
-        {
-                _state?.Update();
+        { 
+            _state?.Update();
         }
 
         public void ChangeState(AlienState newState)
