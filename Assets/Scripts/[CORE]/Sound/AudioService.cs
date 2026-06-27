@@ -17,10 +17,10 @@ namespace Sound
 
         public void Initialize()
         {
-            _click = Resources.Load<AudioClip>("Music/click");
-            _background = Resources.Load<AudioClip>("Music/music");
-            _claim = Resources.Load<AudioClip>("Music/claim");
-            _boom = Resources.Load<AudioClip>("Music/boom");
+            _click = Resources.Load<AudioClip>("Audio/SFX/click");
+            _claim = Resources.Load<AudioClip>("Audio/SFX/claim");
+            _boom = Resources.Load<AudioClip>("Audio/SFX/boom");
+            _background = Resources.Load<AudioClip>("Audio/Music/music");
 
             MakeSfxSource();
             MakeMusicSource();
