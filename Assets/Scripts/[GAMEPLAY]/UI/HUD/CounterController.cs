@@ -1,3 +1,5 @@
+using Infrastracture.SaveLoad;
+using Infrastracture.SaveLoad.Progress;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -17,9 +19,16 @@ namespace Scenes.GamePlay
 
         static int BestScore { get; set; }
         
-        [Inject]
         private ISaveLoadService _saveLoadService;
         private IProgressService _progressService;
+        
+        [Inject]
+        public void Construct(ISaveLoadService saveLoadService, IProgressService progressService)
+        {
+            _saveLoadService = saveLoadService;
+            _progressService = progressService;
+        }
+
         /*void Start()
         {
             if (PlayerPrefs.HasKey(BestScoreKey))
@@ -37,7 +46,7 @@ namespace Scenes.GamePlay
 
         void Update()
         {
-            _counterText.text = "Score: " + playerProgress.CurrentScore.ToString();
+            _counterText.text = "Score: " + _progressService.Progress.WorldData.BestScore.ToString();
             _currentScore = Counter.ReturnScore();
             BestScore = GetBest(_currentScore);
             _bestScoreText.text = BestScore.ToString();
