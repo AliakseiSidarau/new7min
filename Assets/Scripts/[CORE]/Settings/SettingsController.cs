@@ -9,12 +9,13 @@ using Zenject;
 
 namespace Settings
 {
-    public class SettingsController : MonoBehaviour, ISaveLoad
+    public class SettingsController : MonoBehaviour
     {
         [SerializeField] private Button _closeSettingsButton;
         [SerializeField] private Button _soundSwitchButton;
         [SerializeField] private Button _musicSwitchButton;
         [SerializeField] private Button _vibrationSwitchButton;
+        [SerializeField] private Button _deleteMyProgressButton;
 
         [SerializeField] private GameObject _manuWindowPrefab;
         [SerializeField] private GameObject _settingsWindowPrefab;
@@ -37,6 +38,7 @@ namespace Settings
             _soundSwitchButton.onClick.AddListener(SwitchSound);
             _musicSwitchButton.onClick.AddListener(SwitchMusic);
             _vibrationSwitchButton.onClick.AddListener(SwitchVibration);
+            _deleteMyProgressButton.onClick.AddListener(Reset);
         }
 
         void OnDisable()
@@ -45,6 +47,7 @@ namespace Settings
             _soundSwitchButton.onClick.RemoveListener(SwitchSound);
             _musicSwitchButton.onClick.RemoveListener(SwitchMusic);
             _vibrationSwitchButton.onClick.RemoveListener(SwitchVibration);
+            _deleteMyProgressButton.onClick.RemoveListener(Reset);
         }
 
         void CloseSettingsWindow()
@@ -92,11 +95,10 @@ namespace Settings
             Debug.Log($"Loaded Progress: {JsonUtility.ToJson(progress)}");
         }
 
-        public void Reset(PlayerProgress progress)
+        public void Reset()
         {
-            progress.SettingsData.iSMusicOn = true;
-            progress.SettingsData.iSSoundOn = true;
-            progress.SettingsData.isVibroOn = true;
+            Debug.Log("Player data reset!");
+            _saveLoadService.Reset();
         }
     }
 }

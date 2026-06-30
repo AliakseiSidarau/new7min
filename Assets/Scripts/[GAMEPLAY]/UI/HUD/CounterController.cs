@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace Scenes.GamePlay
 {
@@ -9,12 +10,17 @@ namespace Scenes.GamePlay
         [SerializeField] private TMP_Text _bestScoreText;
         private int _currentScore;
         private int _bestScore;
+
+        
         
         private const string BestScoreKey = "bestScoreKey";
 
         static int BestScore { get; set; }
-  
-        void Start()
+        
+        [Inject]
+        private ISaveLoadService _saveLoadService;
+        private IProgressService _progressService;
+        /*void Start()
         {
             if (PlayerPrefs.HasKey(BestScoreKey))
             {
@@ -27,11 +33,11 @@ namespace Scenes.GamePlay
 
             _bestScoreText.text = PlayerPrefs.GetInt(BestScoreKey).ToString();
             _counterText.text = "0";
-        }
+        }*/
 
         void Update()
         {
-            _counterText.text = Counter.Score.ToString();
+            _counterText.text = "Score: " + playerProgress.CurrentScore.ToString();
             _currentScore = Counter.ReturnScore();
             BestScore = GetBest(_currentScore);
             _bestScoreText.text = BestScore.ToString();
