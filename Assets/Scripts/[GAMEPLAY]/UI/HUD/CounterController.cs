@@ -46,24 +46,20 @@ namespace Scenes.GamePlay
 
         void Update()
         {
-            _counterText.text = "Score: " + _progressService.Progress.WorldData.BestScore.ToString();
             _currentScore = Counter.ReturnScore();
+            _counterText.text = "Score: " + _currentScore;
+            
             BestScore = GetBest(_currentScore);
-            _bestScoreText.text = BestScore.ToString();
+            _bestScoreText.text = "Best Score: " + BestScore;
         }
 
         private int GetBest( int curScore)
         {
-            if (curScore >= BestScore)
-            {
-                BestScore = curScore;
-                PlayerPrefs.SetInt(BestScoreKey, curScore);
-                return curScore;
-            }
-            else
-            {
-                return BestScore;
-            } 
+            if (curScore < BestScore) return BestScore;
+            BestScore = curScore;
+            PlayerPrefs.SetInt(BestScoreKey, curScore);
+            return curScore;
+
         }
 
         public static int GetBestForLoseScreen()

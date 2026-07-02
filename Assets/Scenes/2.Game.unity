@@ -1369,8 +1369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95919265d518245c69015ed43a8a4f2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _counterText: {fileID: 0}
-  _bestScoreText: {fileID: 0}
+  _counterText: {fileID: 1095365078}
+  _bestScoreText: {fileID: 725602574}
 --- !u!114 &749270037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2129,7 +2129,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1095410399
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2186,6 +2186,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!1 &1158060632
 GameObject:
   m_ObjectHideFlags: 0
@@ -3152,7 +3153,7 @@ MonoBehaviour:
   parallaxMultiplier: 0.3
 --- !u!212 &1655579052
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3209,6 +3210,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!1 &1657464142
 GameObject:
   m_ObjectHideFlags: 0
@@ -4025,7 +4027,7 @@ MonoBehaviour:
   parallaxMultiplier: 0.6
 --- !u!212 &1764550993
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4082,6 +4084,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!1 &1862544270
 GameObject:
   m_ObjectHideFlags: 0
@@ -4375,7 +4378,7 @@ GameObject:
   m_IsActive: 1
 --- !u!212 &1900163558
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4432,6 +4435,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!4 &1900163559
 Transform:
   m_ObjectHideFlags: 0
@@ -4500,7 +4504,7 @@ MonoBehaviour:
   parallaxMultiplier: 0.1
 --- !u!212 &1913329854
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4557,6 +4561,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!1 &1933094866
 GameObject:
   m_ObjectHideFlags: 0

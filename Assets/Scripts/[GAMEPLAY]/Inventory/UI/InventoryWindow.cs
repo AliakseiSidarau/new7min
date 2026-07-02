@@ -28,7 +28,7 @@ public class InventoryWindow : MonoBehaviour
     {
         Debug.Log("Window open method!");
         gameObject.SetActive(true);
-        Debug.Log("Instance ID: " + GetInstanceID());
+        Debug.Log("Instance ID: " + GetEntityId());
         Debug.Log("Name: " + gameObject.name);
     }
 
