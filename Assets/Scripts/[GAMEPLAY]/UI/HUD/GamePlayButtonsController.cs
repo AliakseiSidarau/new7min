@@ -33,7 +33,6 @@ namespace Scenes.GamePlay
          _exitButton.onClick.AddListener(ExitFromGamePlay);
          _loseGameButton.onClick.AddListener(LoseGame);
          _plusScoreButton.onClick.AddListener(PlusScore);
-         Counter.Score = 0;
          OnSubscribe();
       }
 

@@ -1,6 +1,8 @@
-﻿using Scenes.GamePlay;
+﻿using Infrastracture.SaveLoad.Progress;
+using Scenes.GamePlay;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace Scenes.GameOver
 {
@@ -8,12 +10,20 @@ namespace Scenes.GameOver
     {
         [SerializeField] private TMP_Text _yourScore;
         [SerializeField] private TMP_Text _bestScore;
+        private IProgressService _progressService;
+        
+        [Inject]
+        public void Construct( IProgressService progressService)
+        {
+            Debug.Log("Construct called");
+            _progressService = progressService;
+        }
         
         
-        // void Update()
-        // {
-        //     _yourScore.text = Counter.Score.ToString();
-        //     _bestScore.text = CounterController.GetBestForLoseScreen().ToString();
-        // }
+        private void Update()
+        {
+            _yourScore.text = Counter.Score.ToString();
+            _bestScore.text = _progressService.Progress.WorldData.BestScore.ToString();
+        }
     }
 }

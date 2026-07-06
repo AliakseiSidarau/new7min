@@ -1,9 +1,6 @@
-using System;
 using Infrastracture.SaveLoad;
 using Infrastracture.SaveLoad.Progress;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Experimental;
 using UnityEngine;
 using Zenject;
 
@@ -26,6 +23,7 @@ namespace Scenes.GamePlay
 
         void OnEnable()
         {
+            Counter.BestScore = _progressService.Progress.WorldData.BestScore;
             Counter.OnBestScoreChanged += SaveBestScore;
         }
 

@@ -8,7 +8,7 @@ namespace Scenes.GamePlay
     {
 
         public static int Score { get; set; }
-        public static int BestScore { get; private set; }
+        public static int BestScore { get; set; }
         public static event Action OnBestScoreChanged;
         public static void AddScore()
         {
