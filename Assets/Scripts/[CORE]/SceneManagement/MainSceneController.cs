@@ -1,7 +1,6 @@
 using Sound;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 using Button = UnityEngine.UI.Button;
 

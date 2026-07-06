@@ -1,6 +1,9 @@
+using System;
 using Infrastracture.SaveLoad;
 using Infrastracture.SaveLoad.Progress;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.Experimental;
 using UnityEngine;
 using Zenject;
 
@@ -10,14 +13,6 @@ namespace Scenes.GamePlay
     {
         [SerializeField] private TMP_Text _counterText;
         [SerializeField] private TMP_Text _bestScoreText;
-        private int _currentScore;
-        private int _bestScore;
-
-        
-        
-        private const string BestScoreKey = "bestScoreKey";
-
-        static int BestScore { get; set; }
         
         private ISaveLoadService _saveLoadService;
         private IProgressService _progressService;
@@ -29,42 +24,26 @@ namespace Scenes.GamePlay
             _progressService = progressService;
         }
 
-        /*void Start()
+        void OnEnable()
         {
-            if (PlayerPrefs.HasKey(BestScoreKey))
-            {
-                BestScore = PlayerPrefs.GetInt(BestScoreKey);
-            }
-            else
-            {
-                BestScore = 0;
-            }
+            Counter.OnBestScoreChanged += SaveBestScore;
+        }
 
-            _bestScoreText.text = PlayerPrefs.GetInt(BestScoreKey).ToString();
-            _counterText.text = "0";
-        }*/
+        private void OnDisable()
+        {
+            Counter.OnBestScoreChanged -= SaveBestScore;
+        }
 
         void Update()
         {
-            _currentScore = Counter.ReturnScore();
-            _counterText.text = "Score: " + _currentScore;
-            
-            BestScore = GetBest(_currentScore);
-            _bestScoreText.text = "Best Score: " + BestScore;
+            _counterText.text = $"Score: {Counter.ReturnScore()}";
+            _bestScoreText.text = $"Best Score: {Counter.ReturnBestScore()}";
         }
 
-        private int GetBest( int curScore)
+        void SaveBestScore()
         {
-            if (curScore < BestScore) return BestScore;
-            BestScore = curScore;
-            PlayerPrefs.SetInt(BestScoreKey, curScore);
-            return curScore;
-
-        }
-
-        public static int GetBestForLoseScreen()
-        {
-            return BestScore;
+            _progressService.Progress.WorldData.BestScore = Counter.ReturnBestScore();
+            _saveLoadService.Save();
         }
     }
 }

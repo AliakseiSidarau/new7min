@@ -10,9 +10,18 @@ namespace Infrastracture
 
         public override void InstallBindings()
         {
-            Container.Bind<PlayerFacade>().FromInstance(_playerFacade).AsSingle();
-            Container.BindInterfacesAndSelfTo<SaveLoadSystem>().AsSingle();
+            Container.Bind<PlayerFacade>()
+                .FromInstance(_playerFacade)
+                .AsSingle();
+            Container.BindInterfacesAndSelfTo<SaveLoadSystem>()
+                .AsSingle();
+            Container.Bind<DiamondSpawner>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+            
             Debug.Log("SceneInstaller Install");
+            
+           
         }
     }
 }

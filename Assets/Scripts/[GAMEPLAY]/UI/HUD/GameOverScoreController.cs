@@ -10,10 +10,10 @@ namespace Scenes.GameOver
         [SerializeField] private TMP_Text _bestScore;
         
         
-        void Update()
-        {
-            _yourScore.text = Counter.Score.ToString();
-            _bestScore.text = CounterController.GetBestForLoseScreen().ToString();
-        }
+        // void Update()
+        // {
+        //     _yourScore.text = Counter.Score.ToString();
+        //     _bestScore.text = CounterController.GetBestForLoseScreen().ToString();
+        // }
     }
 }

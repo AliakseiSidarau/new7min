@@ -40,14 +40,15 @@ namespace Scenes.GamePlay
         
         public void HealthDown()
         {
+            HealthPoints -= _healthDownValue;
+            OnHealthChanged?.Invoke();
+            _saveLoadService.Save();
+            
             if (HealthPoints == 0)
             {
                 OnPlayerWasDied?.Invoke();
                 Debug.Log("Player was died!");
             }
-            HealthPoints -= _healthDownValue;
-            OnHealthChanged?.Invoke();
-            _saveLoadService.Save();
         }
     }
 }

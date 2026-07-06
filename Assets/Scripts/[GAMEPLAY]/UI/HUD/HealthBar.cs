@@ -37,23 +37,23 @@ namespace Scenes
         }
         private void UpdateUI(int health)
         {
-            if (health == 3)
+            switch (health)
             {
-                _image.sprite = _hearths[0];
+                case 3:
+                    _image.sprite = _hearths[0];
+                    break;
+                case 2:
+                    _image.sprite = _hearths[1];
+                    break;
+                case 1:
+                    _image.sprite = _hearths[2];
+                    break;
+                case 0:
+                    Destroy(this);
+                    _image.sprite = _hearths[0];
+                    break;
             }
-            else if (health == 2)
-            {
-                _image.sprite = _hearths[1];
-            }
-            else if (health == 1)
-            {
-                _image.sprite = _hearths[2];
-            }
-            else if (health == 0)
-            {
-                Destroy(this);
-                _image.sprite = _hearths[0];
-            }
+
             Debug.Log("Health was changed!");
         }
         
