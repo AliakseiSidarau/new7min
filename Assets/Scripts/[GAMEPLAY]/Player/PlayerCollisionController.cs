@@ -18,11 +18,6 @@ public class PlayerCollisionController : MonoBehaviour
         _audioService = audioService;
         _diamondSpawner = diamondSpawner;
     }
-
-    // private void OnEnable()
-    // {
-    //     _diamondSpawner = GameObject.FindGameObjectWithTag("DiamondSpawner").GetComponent<DiamondSpawner>();
-    // }
     
 
     private void OnTriggerEnter2D(Collider2D other)

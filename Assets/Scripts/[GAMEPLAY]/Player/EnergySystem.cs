@@ -29,6 +29,11 @@ public class EnergySystem : MonoBehaviour
         currentEnergy = Mathf.Max(0, currentEnergy);
     }
 
+    public float CurrentEnergyValue()
+    {
+        return currentEnergy;
+    }
+
     public void Recharge(float amount)
     {
         currentEnergy = Mathf.Min(maxEnergy, currentEnergy + amount);
