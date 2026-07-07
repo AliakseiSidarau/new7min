@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49244cd218c14698892d9f27a690ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerHealth: {fileID: 445392584}
+  _playerFacade: {fileID: 445392583}
   _playerController: {fileID: 789919130}
 --- !u!114 &445392583
 MonoBehaviour:
@@ -1013,8 +1013,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ced5a49c82940f3b1b697ae3b7a65dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerHealth: {fileID: 445392584}
   _player: {fileID: 445392580}
+  _startHp: 100
 --- !u!114 &445392584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1407,7 +1407,9 @@ MonoBehaviour:
   _counterText: {fileID: 1095365078}
   _bestScoreText: {fileID: 725602574}
   _energyText: {fileID: 1353110563}
+  _healthText: {fileID: 2050129924}
   _energySystem: {fileID: 1158060633}
+  _playerFacade: {fileID: 445392583}
 --- !u!114 &749270037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1628,6 +1630,8 @@ MonoBehaviour:
   _loseGameButton: {fileID: 202471689}
   _plusScoreButton: {fileID: 1706511122}
   _pauseText: {fileID: 1736135619}
+  _playerFacade: {fileID: 445392583}
+  _energySystem: {fileID: 1158060633}
 --- !u!114 &789919130
 MonoBehaviour:
   m_ObjectHideFlags: 0

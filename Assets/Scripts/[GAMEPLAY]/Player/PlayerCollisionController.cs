@@ -5,7 +5,7 @@ using Zenject;
 
 public class PlayerCollisionController : MonoBehaviour
 {
-    [SerializeField] private PlayerHealth _playerHealth;
+    [SerializeField] private PlayerFacade _playerFacade;
     [SerializeField] private PlayerController _playerController;
     
     private IAudioService _audioService;
@@ -33,10 +33,11 @@ public class PlayerCollisionController : MonoBehaviour
         
         if (other.gameObject.CompareTag("Meteor"))
         {
+            var damage = Random.Range(1, 21);
             _audioService.PlayBoom();
-            _playerHealth.HealthDown();
+            _playerFacade.TakeDamage(damage);
             Debug.Log("Collision - Meteor!");
-            Debug.Log($"health - {PlayerHealth.HealthPoints}");
+            Debug.Log($"Health - {_playerFacade.CurrentHP}/{_playerFacade.MaxHP}");
         }
         Debug.Log($"{other.name}");
     }

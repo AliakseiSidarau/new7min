@@ -17,12 +17,10 @@ public class PlayerInput : MonoBehaviour
         {
             Vector2 worldPos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-            if (energy.CanMove(ship.transform.position, worldPos))
+            float estimatedDistance = Vector2.Distance(ship.transform.position, worldPos);
+
+            if (energy.CanMove(estimatedDistance))
             {
-                float cost = energy.CalculateCost(ship.transform.position, worldPos);
-
-                energy.SpendEnergy(cost);
-
                 ship.MoveTo(worldPos);
                 turnManager.EnterExecution();
             }

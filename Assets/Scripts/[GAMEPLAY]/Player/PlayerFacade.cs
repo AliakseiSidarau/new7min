@@ -4,20 +4,23 @@ using Zenject;
 
 namespace Scenes.GamePlay
 {
-    public class PlayerFacade: MonoBehaviour
+    [RequireComponent(typeof(Player))]
+    public class PlayerFacade : MonoBehaviour
+
     {
-        [SerializeField] private PlayerHealth _playerHealth;
         [SerializeField] private Player _player;
-        
+        [SerializeField] private int _startHp = 100;
+        private PlayerHealthSystem _playerHealth;
         private IPlayerService _playerService;
-        
-        public PlayerHealth PlayerHealth => _playerHealth;
+        public PlayerHealthSystem PlayerHealth => _playerHealth;
+        public int CurrentHP => _playerHealth.CurrentPlayerHP;
+        public int MaxHP => _playerHealth.MaxPlayerHP;
         public int Shield => _player.ShieldPoints;
-        
-        [Inject]
-        public void Construct(IPlayerService playerService)
+
+        private void Awake()
         {
-            _playerService = playerService;
+            _player ??= GetComponent<Player>();
+            _playerHealth = new PlayerHealthSystem(_startHp);
         }
 
         public void SpeedUp(float value)
@@ -32,13 +35,32 @@ namespace Scenes.GamePlay
 
         public void TakeDamage(int damage)
         {
-            _player.ShieldPoints -= damage;
+            _playerHealth.ReducePlayerHP(damage);
         }
-        
+
+        public void Heal(int value)
+        {
+            _playerHealth.IncreasePlayerHP(value);
+        }
+
         public event Action ShieldChanged
+
         {
             add => _player.ShieldChanged += value;
             remove => _player.ShieldChanged -= value;
         }
+
+        public event Action<int, int> HealthChanged
+        {
+            add => _playerHealth.OnHealthChanged += value;
+            remove => _playerHealth.OnHealthChanged -= value;
+        }
+
+        public event Action PlayerDead
+        {
+            add => _playerHealth.OnPlayerDead += value;
+            remove => _playerHealth.OnPlayerDead -= value;
+        }
+
     }
 }

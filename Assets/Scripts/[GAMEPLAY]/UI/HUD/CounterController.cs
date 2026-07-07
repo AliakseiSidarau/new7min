@@ -11,13 +11,12 @@ namespace Scenes.GamePlay
         [SerializeField] private TMP_Text _counterText;
         [SerializeField] private TMP_Text _bestScoreText;
         [SerializeField] private TMP_Text _energyText;
+        [SerializeField] private TMP_Text _healthText;
         [SerializeField] private EnergySystem _energySystem;
+        [SerializeField] private PlayerFacade _playerFacade;
         
         private ISaveLoadService _saveLoadService;
         private IProgressService _progressService;
-
-        private float _MaxEnergy;
-        private float _CurrentEnergy;
         
         [Inject]
         public void Construct(ISaveLoadService saveLoadService, IProgressService progressService)
@@ -28,8 +27,6 @@ namespace Scenes.GamePlay
 
         void OnEnable()
         {
-            _CurrentEnergy = _energySystem.currentEnergy;
-            _MaxEnergy = _energySystem.maxEnergy;
             Counter.BestScore = _progressService.Progress.WorldData.BestScore;
             Counter.OnBestScoreChanged += SaveBestScore;
         }
@@ -41,7 +38,8 @@ namespace Scenes.GamePlay
 
         void Update()
         {
-            _energyText.text = $"{Mathf.RoundToInt(_energySystem.CurrentEnergyValue())} / {_MaxEnergy}";
+            _energyText.text = $"{Mathf.RoundToInt(_energySystem.CurrentEnergyValue())} / {_energySystem.maxEnergy}";
+            _healthText.text = $"{_playerFacade.CurrentHP} / {_playerFacade.MaxHP}";
             _counterText.text = $"Score: {Counter.ReturnScore()}";
             _bestScoreText.text = $"Best Score: {Counter.ReturnBestScore()}";
         }

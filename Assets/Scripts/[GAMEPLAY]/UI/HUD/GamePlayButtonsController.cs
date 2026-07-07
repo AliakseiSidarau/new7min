@@ -16,6 +16,8 @@ namespace Scenes.GamePlay
       [SerializeField] private Button _plusScoreButton;
    
       [SerializeField] private TMP_Text _pauseText;
+      [SerializeField] private PlayerFacade _playerFacade;
+      [SerializeField] private EnergySystem _energySystem;
    
       private IAudioService _audioService;
       private ISceneManagerService _sceneManagerService;
@@ -62,12 +64,18 @@ namespace Scenes.GamePlay
 
       void OnSubscribe()
       {
-         PlayerHealth.OnPlayerWasDied += LoseGame;
+         if (_playerFacade != null)
+            _playerFacade.PlayerDead += LoseGame;
+         if (_energySystem != null)
+            _energySystem.OnEnergyDepleted += LoseGame;
       }
 
       void OnUnsubscribe()
       {
-         PlayerHealth.OnPlayerWasDied -= LoseGame;
+         if (_playerFacade != null)
+            _playerFacade.PlayerDead -= LoseGame;
+         if (_energySystem != null)
+            _energySystem.OnEnergyDepleted -= LoseGame;
       }
 
       void ExitFromGamePlay()

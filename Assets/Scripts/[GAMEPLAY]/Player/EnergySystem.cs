@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnergySystem : MonoBehaviour
 {
+    public event System.Action OnEnergyDepleted;
+
     public float maxEnergy = 100f;
     public float currentEnergy;
 
@@ -12,21 +14,25 @@ public class EnergySystem : MonoBehaviour
         currentEnergy = maxEnergy;
     }
 
-    public float CalculateCost(Vector2 from, Vector2 to)
+    public bool CanMove(float estimatedDistance)
     {
-        float distance = Vector2.Distance(from, to);
-        return distance * costPerUnit;
+        return estimatedDistance * costPerUnit <= currentEnergy;
     }
 
-    public bool CanMove(Vector2 from, Vector2 to)
+    public void SpendDistance(float distance)
     {
-        return CalculateCost(from, to) <= currentEnergy;
+        SpendEnergy(distance * costPerUnit);
     }
 
     public void SpendEnergy(float amount)
     {
         currentEnergy -= amount;
         currentEnergy = Mathf.Max(0, currentEnergy);
+
+        if (Mathf.Approximately(currentEnergy, 0f))
+        {
+            OnEnergyDepleted?.Invoke();
+        }
     }
 
     public float CurrentEnergyValue()

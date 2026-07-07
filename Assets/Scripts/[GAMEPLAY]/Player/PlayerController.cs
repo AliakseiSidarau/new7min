@@ -32,6 +32,7 @@ namespace Scenes.GamePlay
         private Vector2 _previewPosition;
         private bool _isMoving;
         private Vector2 _baseScale;
+        private Vector2 _lastPosition;
 
         private void Start()
         {
@@ -100,23 +101,22 @@ namespace Scenes.GamePlay
                 return;
 
             Vector2 currentPos = player.transform.position;
-            float fullCost = energy.CalculateCost(currentPos, _selectedPosition);
-            
+
             float usableEnergy = Mathf.Min(energy.currentEnergy, maxEnergyPerMove);
             float maxDistance = usableEnergy / energy.costPerUnit;
+            float distanceToTarget = Vector2.Distance(currentPos, _selectedPosition);
 
-            if (fullCost <= usableEnergy)
+            if (distanceToTarget <= maxDistance)
             {
-                float cost = fullCost;
-                energy.SpendEnergy(cost);
                 _targetPosition = _selectedPosition;
             }
             else
             {
                 Vector2 direction = (_selectedPosition - currentPos).normalized;
                 _targetPosition = currentPos + direction * maxDistance;
-                energy.SpendEnergy(usableEnergy);
             }
+
+            _lastPosition = currentPos;
 
             _isMoving = true;
             _hasSelection = false;
@@ -169,6 +169,16 @@ namespace Scenes.GamePlay
             HandleSteering();
             
             player.transform.position += player.transform.up * player.Speed * Time.deltaTime;
+
+            float travelled = Vector2.Distance(_lastPosition, player.transform.position);
+            energy.SpendDistance(travelled);
+            _lastPosition = player.transform.position;
+
+            if (energy.CurrentEnergyValue() <= 0f)
+            {
+                _isMoving = false;
+                return;
+            }
 
             float distance = Vector2.Distance(player.transform.position, _targetPosition);
 
@@ -230,4 +240,3 @@ namespace Scenes.GamePlay
         }
     }
 }
-
