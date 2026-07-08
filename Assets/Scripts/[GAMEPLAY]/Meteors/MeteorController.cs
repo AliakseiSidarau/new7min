@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Scenes.GamePlay
 {
-    public class Meteor : MonoBehaviour
+    public class MeteorController : MonoBehaviour
     {
         [SerializeField] private float speed = 1f;
         [SerializeField] private LineRenderer predictionLine;
@@ -70,6 +70,17 @@ namespace Scenes.GamePlay
         {
             direction = dir.normalized;
             directionInitialized = true;
+        }
+
+        public void DealDamage(IDamageable target)
+        {
+            if (target == null)
+                return;
+
+            int damage = Random.Range(3, 33);
+            target.TakeDamage(damage);
+
+            Debug.Log($"Meteor dealt {damage} damage to {target.GetType().Name}");
         }
     }
 }

@@ -30,11 +30,11 @@ public class PlayerCollisionController : MonoBehaviour
             Counter.AddScore();
         }
         
-        if (other.gameObject.CompareTag("Meteor"))
+        if (other.TryGetComponent<MeteorController>(out var meteor))
         {
-            var damage = Random.Range(1, 21);
             _audioService.PlayBoom();
-            _playerFacade.TakeDamage(damage);
+            meteor.DealDamage(_playerFacade);
+
             Debug.Log($"Health - {_playerFacade.CurrentHP}/{_playerFacade.MaxHP}");
         }
         Debug.Log($"{other.name}");

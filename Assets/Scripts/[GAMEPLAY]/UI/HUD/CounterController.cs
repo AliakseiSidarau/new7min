@@ -27,6 +27,7 @@ namespace Scenes.GamePlay
 
         void OnEnable()
         {
+            _counterText.text = "Score: 0";
             Counter.BestScore = _progressService.Progress.WorldData.BestScore;
             Counter.OnBestScoreChanged += SaveBestScore;
         }

@@ -7,12 +7,13 @@ namespace Scenes.GamePlay
     public class MeteorsSpawner : MonoBehaviour
     {
         [Header("Prefabs")]
-        [SerializeField] private Meteor[] meteorPrefabs;
+        [SerializeField] private MeteorController[] meteorPrefabs;
 
         [Header("Spawn Settings")]
         [SerializeField] private float spawnInterval;
         [SerializeField] private int maxMeteors;
         [SerializeField] private float spawnRadius;
+        [SerializeField] private float safeRadius = 3f;
         [SerializeField] private float despawnDistance;
 
         [Header("Movement")]
@@ -58,17 +59,28 @@ namespace Scenes.GamePlay
             float baseSpeed = Random.Range(1f, 3f);
             float speedMultiplier = 1f / scale;
 
-            Meteor prefab = GetRandomMeteor();
+            MeteorController prefab = GetRandomMeteor();
 
             Vector2 center = player != null ? (Vector2)player.position : Vector2.zero;
             
-            Vector2 offset = Random.insideUnitCircle * spawnRadius;
+            Vector2 offset = Random.insideUnitCircle.normalized * spawnRadius;
+
+            for (int i = 0; i < 8; i++)
+            {
+                if (offset.magnitude >= safeRadius)
+                    break;
+
+                offset = Random.insideUnitCircle.normalized * spawnRadius;
+            }
 
             Vector3 pos = new Vector3(
                 center.x + offset.x,
                 center.y + offset.y,
                 0f
             );
+
+            if (Vector2.Distance(center, pos) < safeRadius)
+                return;
 
             GameObject meteorGO = _container.InstantiatePrefab(prefab, pos, Quaternion.identity, null);
             
@@ -84,11 +96,11 @@ namespace Scenes.GamePlay
                 direction = (randomDir + spaceDrift).normalized;
             }
             
-            Meteor meteor = meteorGO.GetComponent<Meteor>();
-            if (meteor != null)
+            MeteorController meteorController = meteorGO.GetComponent<MeteorController>();
+            if (meteorController != null)
             {
-                meteor.SetDirection(direction);
-                meteor.SetSpeed(baseSpeed * speedMultiplier);
+                meteorController.SetDirection(direction);
+                meteorController.SetSpeed(baseSpeed * speedMultiplier);
             }
             
             meteorGO.transform.localScale = Vector3.one * scale;
@@ -120,7 +132,7 @@ namespace Scenes.GamePlay
             }
         }
 
-        private Meteor GetRandomMeteor()
+        private MeteorController GetRandomMeteor()
         {
             int index = Random.Range(0, meteorPrefabs.Length);
             return meteorPrefabs[index];
