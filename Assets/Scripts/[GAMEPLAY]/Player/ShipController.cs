@@ -3,32 +3,49 @@ using System;
 
 public class ShipController : MonoBehaviour
 {
-    public float speed = 5f;
+    [SerializeField] private float _speed = 5f;
 
-    private Vector2 target;
-    private bool isMoving;
+    private const float ArrivalThreshold = 0.05f;
 
-    public Action OnArrived;
+    private Transform _cachedTransform;
+    private Vector2 _targetPosition;
+    private bool _isMoving;
+
+    public event Action OnArrived;
+
+    private void Awake()
+    {
+        _cachedTransform = transform;
+    }
 
     public void MoveTo(Vector2 targetPosition)
     {
-        target = targetPosition;
-        isMoving = true;
+        if (((Vector2)_cachedTransform.position - targetPosition).sqrMagnitude < 0.0001f)
+            return;
+
+        _targetPosition = targetPosition;
+        _isMoving = true;
+    }
+
+    public void Stop()
+    {
+        _isMoving = false;
     }
 
     private void Update()
     {
-        if (!isMoving) return;
+        if (!_isMoving) return;
 
-        transform.position = Vector2.MoveTowards(
-            transform.position,
-            target,
-            speed * Time.deltaTime
+        _cachedTransform.position = Vector2.MoveTowards(
+            _cachedTransform.position,
+            _targetPosition,
+            _speed * Time.deltaTime
         );
 
-        if (Vector2.Distance(transform.position, target) < 0.05f)
+        Vector2 delta = _targetPosition - (Vector2)_cachedTransform.position;
+        if (delta.sqrMagnitude < ArrivalThreshold * ArrivalThreshold)
         {
-            isMoving = false;
+            _isMoving = false;
             OnArrived?.Invoke();
         }
     }
