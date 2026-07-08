@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
 namespace Scenes.GamePlay
 {
@@ -16,7 +17,6 @@ namespace Scenes.GamePlay
         [SerializeField] private Transform diamond;
         [SerializeField] private DiamondSpawner diamondSpawner;
         [SerializeField] private float collectDistance;
-        [SerializeField] private float energyFromDiamond;
         [SerializeField] private float drawSphereRadius; 
 
         [Header("Movement")]
@@ -33,6 +33,7 @@ namespace Scenes.GamePlay
         private bool _isMoving;
         private Vector2 _baseScale;
         private Vector2 _lastPosition;
+        private const float SpriteForwardOffset = -90f;
 
         private void Start()
         {
@@ -87,12 +88,29 @@ namespace Scenes.GamePlay
             lineRenderer.SetPosition(1, _previewPosition);
 
             float distanceToTarget = Vector2.Distance(player.transform.position, _selectedPosition);
-            float maxDistance = Mathf.Min(energy.currentEnergy, maxEnergyPerMove) / energy.costPerUnit;
+            float maxDistance = GetMaxMoveDistance();
 
             if (distanceToTarget <= maxDistance)
                 lineRenderer.startColor = lineRenderer.endColor = Color.green;
             else
                 lineRenderer.startColor = lineRenderer.endColor = Color.yellow;
+        }
+
+        private float GetMaxMoveDistance()
+        {
+            float usableEnergy = Mathf.Min(energy.currentEnergy, maxEnergyPerMove);
+            return usableEnergy / energy.costPerUnit;
+        }
+
+        private Vector2 GetReachablePosition(Vector2 from, Vector2 target)
+        {
+            float maxDistance = GetMaxMoveDistance();
+            float distance = Vector2.Distance(from, target);
+
+            if (distance <= maxDistance)
+                return target;
+
+            return from + (target - from).normalized * maxDistance;
         }
         
         public void ConfirmMove()
@@ -102,25 +120,10 @@ namespace Scenes.GamePlay
 
             Vector2 currentPos = player.transform.position;
 
-            float usableEnergy = Mathf.Min(energy.currentEnergy, maxEnergyPerMove);
-            float maxDistance = usableEnergy / energy.costPerUnit;
-            float distanceToTarget = Vector2.Distance(currentPos, _selectedPosition);
-
-            if (distanceToTarget <= maxDistance)
-            {
-                _targetPosition = _selectedPosition;
-            }
-            else
-            {
-                Vector2 direction = (_selectedPosition - currentPos).normalized;
-                _targetPosition = currentPos + direction * maxDistance;
-            }
-
+            _targetPosition = GetReachablePosition(currentPos, _selectedPosition);
             _lastPosition = currentPos;
-
             _isMoving = true;
             _hasSelection = false;
-
             turnManager.EnterExecution();
         }
 
@@ -130,19 +133,7 @@ namespace Scenes.GamePlay
                 return;
 
             Vector2 currentPos = player.transform.position;
-            float usableEnergy = Mathf.Min(energy.currentEnergy, maxEnergyPerMove);
-            float maxDistance = usableEnergy / energy.costPerUnit;
-            float distanceToTarget = Vector2.Distance(currentPos, _selectedPosition);
-
-            if (distanceToTarget <= maxDistance)
-            {
-                _previewPosition = _selectedPosition;
-            }
-            else
-            {
-                Vector2 direction = (_selectedPosition - currentPos).normalized;
-                _previewPosition = currentPos + direction * maxDistance;
-            }
+            _previewPosition = GetReachablePosition(currentPos, _selectedPosition);
         }
 
         private void OnDrawGizmos()
@@ -166,13 +157,15 @@ namespace Scenes.GamePlay
             if (!_isMoving)
                 return;
 
+            Transform playerTransform = player.transform;
+
             HandleSteering();
             
-            player.transform.position += player.transform.up * player.Speed * Time.deltaTime;
+            playerTransform.position += playerTransform.up * player.Speed * Time.deltaTime;
 
-            float travelled = Vector2.Distance(_lastPosition, player.transform.position);
+            float travelled = Vector2.Distance(_lastPosition, playerTransform.position);
             energy.SpendDistance(travelled);
-            _lastPosition = player.transform.position;
+            _lastPosition = playerTransform.position;
 
             if (energy.CurrentEnergyValue() <= 0f)
             {
@@ -180,7 +173,7 @@ namespace Scenes.GamePlay
                 return;
             }
 
-            float distance = Vector2.Distance(player.transform.position, _targetPosition);
+            float distance = Vector2.Distance(playerTransform.position, _targetPosition);
 
             if (distance < arrivalThreshold)
             {
@@ -196,7 +189,7 @@ namespace Scenes.GamePlay
             if (directionToTarget.sqrMagnitude < 0.001f)
                 return;
 
-            float targetAngle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg - 90f;
+            float targetAngle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg + SpriteForwardOffset;
 
             float currentAngle = player.transform.eulerAngles.z;
 
@@ -211,8 +204,8 @@ namespace Scenes.GamePlay
         
         private float GetRotationSpeed()
         {
-            float min = 60f;   // тяжёлый корабль
-            float max = 360f;  // супер манёвренный
+            float min = 60f;
+            float max = 360f;
 
             return Mathf.Lerp(min, max, maneuverability);
         }
@@ -236,7 +229,7 @@ namespace Scenes.GamePlay
         
         public void OnDiamondCollected()
         {
-            energy.Recharge(energyFromDiamond);
+            energy.Recharge(Random.Range(10, 31));
         }
     }
 }
