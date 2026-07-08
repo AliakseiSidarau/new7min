@@ -5,7 +5,7 @@ using Zenject;
 namespace Scenes.GamePlay
 {
     [RequireComponent(typeof(Player))]
-    public class PlayerFacade : MonoBehaviour
+    public class PlayerFacade : MonoBehaviour, IDamageable
 
     {
         [SerializeField] private Player _player;
@@ -33,11 +33,6 @@ namespace Scenes.GamePlay
             _player.SpeedDown(value);
         }
 
-        public void TakeDamage(int damage)
-        {
-            _playerHealth.ReducePlayerHP(damage);
-        }
-
         public void Heal(int value)
         {
             _playerHealth.IncreasePlayerHP(value);
@@ -60,6 +55,11 @@ namespace Scenes.GamePlay
         {
             add => _playerHealth.OnPlayerDead += value;
             remove => _playerHealth.OnPlayerDead -= value;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            _playerHealth.ReducePlayerHP(damage);
         }
 
     }

@@ -28,7 +28,6 @@ public class PlayerCollisionController : MonoBehaviour
             _diamondSpawner.ChangeDiamondPosition();
             _playerController.OnDiamondCollected();
             Counter.AddScore();
-            Debug.Log("Collision - Diamond!");
         }
         
         if (other.gameObject.CompareTag("Meteor"))
@@ -36,7 +35,6 @@ public class PlayerCollisionController : MonoBehaviour
             var damage = Random.Range(1, 21);
             _audioService.PlayBoom();
             _playerFacade.TakeDamage(damage);
-            Debug.Log("Collision - Meteor!");
             Debug.Log($"Health - {_playerFacade.CurrentHP}/{_playerFacade.MaxHP}");
         }
         Debug.Log($"{other.name}");

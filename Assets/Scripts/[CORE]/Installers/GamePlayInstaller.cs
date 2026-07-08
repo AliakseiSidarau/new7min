@@ -36,5 +36,9 @@ public class GamePlayInstaller : MonoInstaller
         Container.Bind<TurnManager>()
             .FromComponentInHierarchy()
             .AsSingle();
+
+        Container.Bind<IDamageable>()
+            .To<PlayerFacade>()
+            .FromResolve();
     }
 }
