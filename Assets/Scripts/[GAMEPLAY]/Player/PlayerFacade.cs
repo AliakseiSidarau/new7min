@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using Zenject;
-
 namespace Scenes.GamePlay
 {
     [RequireComponent(typeof(Player))]

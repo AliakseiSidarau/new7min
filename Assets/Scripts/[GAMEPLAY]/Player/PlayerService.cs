@@ -1,7 +1,6 @@
 using Infrastracture.SaveLoad;
 using Infrastracture.SaveLoad.Data;
 using UnityEngine;
-using Zenject.SpaceFighter;
 
 namespace Scenes.GamePlay
 {

@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using Scenes;
-using Scenes.GamePlay;
 using UnityEngine;
 
 public class Player: MonoBehaviour
