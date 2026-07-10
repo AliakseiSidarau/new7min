@@ -1,5 +1,3 @@
-using UnityEditor;
-
 namespace Scenes.Inventory.Items
 {
     public class Item

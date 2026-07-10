@@ -3,7 +3,6 @@ using Infrastracture.SaveLoad.Progress;
 using Sound;
 using UnityEngine;
 using Zenject;
-using Core.Di;
 
 namespace Infrastracture
 {
@@ -12,17 +11,9 @@ namespace Infrastracture
         [SerializeField] private AudioService _audioServicePrefab;
         public override void InstallBindings()
         {
-            BindDiService();
             BindProgressService();
             BindSaveLoad();
             BindAudioService();
-        }
-        
-        void BindDiService()
-        {
-            Container.Bind<IDiService>()
-                .To<DiService>()
-                .AsSingle();
         }
 
         void BindSaveLoad()

@@ -1,18 +1,19 @@
-using Core.Di;using System.Collections.Generic;
+using System.Collections.Generic;
 using Infrastracture.SaveLoad.Progress;
+using Zenject;
 
 namespace Infrastracture.SaveLoad
 {
     public class SaveLoadRegistry: ISaveLoadRegistry
     {
-        private readonly IDiService _di;
-        public SaveLoadRegistry(IDiService di)
+        private readonly DiContainer _container;
+        public SaveLoadRegistry(DiContainer container)
         {
-            _di = di;
+            _container = container;
         }
         public IEnumerable<ISaveLoad> GetSaveLoadServices()
         {
-            return _di.ResolveAll<ISaveLoad>();
+            return _container.ResolveAll<ISaveLoad>();
         }
     }
 }

@@ -1,5 +1,3 @@
-using Zenject.SpaceFighter;
-
 namespace Scenes.GamePlay
 {
     public interface IPlayerService
