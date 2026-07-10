@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace System
+namespace Core.Di
 {
     public interface IDiService
     {

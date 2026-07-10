@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Zenject;
 
-namespace System
+namespace Core.Di
 {
     public class DiService: IDiService
     {
